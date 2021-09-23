@@ -35,10 +35,10 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        obras2018Button = new javax.swing.JButton();
+        obras2020Button = new javax.swing.JButton();
+        obras2021Button = new javax.swing.JButton();
+        obras2019Button = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
         derecha_Botton = new javax.swing.JLabel();
@@ -72,34 +72,49 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        jButton1.setText("Obras 2018");
-        jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton1.setOpaque(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        obras2018Button.setBackground(new java.awt.Color(255, 255, 255));
+        obras2018Button.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        obras2018Button.setText("Obras 2018");
+        obras2018Button.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        obras2018Button.setOpaque(false);
+        obras2018Button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                obras2018ButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        jButton2.setText("Obras 2020");
-        jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton2.setOpaque(false);
+        obras2020Button.setBackground(new java.awt.Color(255, 255, 255));
+        obras2020Button.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        obras2020Button.setText("Obras 2020");
+        obras2020Button.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        obras2020Button.setOpaque(false);
+        obras2020Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                obras2020ButtonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        jButton3.setText("Obras 2021");
-        jButton3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton3.setOpaque(false);
+        obras2021Button.setBackground(new java.awt.Color(255, 255, 255));
+        obras2021Button.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        obras2021Button.setText("Obras 2021");
+        obras2021Button.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        obras2021Button.setOpaque(false);
+        obras2021Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                obras2021ButtonActionPerformed(evt);
+            }
+        });
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        jButton4.setText("Obras 2019");
-        jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton4.setOpaque(false);
+        obras2019Button.setBackground(new java.awt.Color(255, 255, 255));
+        obras2019Button.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        obras2019Button.setText("Obras 2019");
+        obras2019Button.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        obras2019Button.setOpaque(false);
+        obras2019Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                obras2019ButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,15 +122,15 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(obras2018Button, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(obras2019Button, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(140, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(obras2020Button, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(90, 90, 90)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(obras2021Button, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(132, 132, 132))
         );
         jPanel1Layout.setVerticalGroup(
@@ -123,12 +138,12 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4))
+                    .addComponent(obras2018Button)
+                    .addComponent(obras2019Button))
                 .addGap(107, 107, 107)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(obras2020Button)
+                    .addComponent(obras2021Button))
                 .addContainerGap(157, Short.MAX_VALUE))
         );
 
@@ -187,11 +202,29 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_derecha_BottonMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void obras2018ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obras2018ButtonActionPerformed
         catalogoObras catOb = new catalogoObras();
         this.dispose();
         catOb.show();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_obras2018ButtonActionPerformed
+
+    private void obras2019ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obras2019ButtonActionPerformed
+        catalogoObras catOb = new catalogoObras();
+        this.dispose();
+        catOb.show();
+    }//GEN-LAST:event_obras2019ButtonActionPerformed
+
+    private void obras2020ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obras2020ButtonActionPerformed
+        catalogoObras catOb = new catalogoObras();
+        this.dispose();
+        catOb.show();
+    }//GEN-LAST:event_obras2020ButtonActionPerformed
+
+    private void obras2021ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obras2021ButtonActionPerformed
+        catalogoObras catOb = new catalogoObras();
+        this.dispose();
+        catOb.show();
+    }//GEN-LAST:event_obras2021ButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,15 +264,15 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel derecha_Botton;
     private javax.swing.JLabel izquierda_Button;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JButton obras2018Button;
+    private javax.swing.JButton obras2019Button;
+    private javax.swing.JButton obras2020Button;
+    private javax.swing.JButton obras2021Button;
     // End of variables declaration//GEN-END:variables
 }

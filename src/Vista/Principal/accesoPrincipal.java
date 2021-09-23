@@ -107,9 +107,9 @@ public class accesoPrincipal extends javax.swing.JFrame {
                         .addGap(9, 9, 9)
                         .addComponent(CheckBoxPassword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(210, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Pass_Text)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -154,6 +154,7 @@ public class accesoPrincipal extends javax.swing.JFrame {
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void User_TextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_User_TextFieldMouseClicked

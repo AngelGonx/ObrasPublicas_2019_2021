@@ -43,6 +43,8 @@ public class seleccionObra extends javax.swing.JFrame {
         derecha_Botton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(600, 550));
+        setSize(new java.awt.Dimension(600, 550));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         a.setEditable(false);

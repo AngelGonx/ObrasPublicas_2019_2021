@@ -202,15 +202,21 @@ public class obrasAgregadas extends javax.swing.JFrame {
     }//GEN-LAST:event_izquierda_ButtonMouseClicked
 
     private void baniosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baniosButtonActionPerformed
-        // TODO add your handling code here:
+        seleccionObra selOb = new seleccionObra();
+        this.dispose();
+        selOb.show(); 
     }//GEN-LAST:event_baniosButtonActionPerformed
 
     private void cuartosCocinaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuartosCocinaButtonActionPerformed
-        // TODO add your handling code here:
+        seleccionObra selOb = new seleccionObra();
+        this.dispose();
+        selOb.show(); 
     }//GEN-LAST:event_cuartosCocinaButtonActionPerformed
 
     private void techoConcretoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_techoConcretoButtonActionPerformed
-        // TODO add your handling code here:
+        seleccionObra selOb = new seleccionObra();
+        this.dispose();
+        selOb.show(); 
     }//GEN-LAST:event_techoConcretoButtonActionPerformed
 
     private void cuartosDormitorioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuartosDormitorioButtonActionPerformed
