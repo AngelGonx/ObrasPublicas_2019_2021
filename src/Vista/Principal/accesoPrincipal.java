@@ -5,6 +5,8 @@
  */
 package Vista.Principal;
 
+import Controlador.LibreriaBDControlador;
+import Controlador.LibreriaToolsControlador;
 import javax.swing.JPasswordField;
 
 /**
@@ -16,6 +18,8 @@ public class accesoPrincipal extends javax.swing.JFrame {
     /**
      * Acceso principal, ventana de loggeo.
      */
+    LibreriaBDControlador lbd = new LibreriaBDControlador();
+    LibreriaToolsControlador ltc = new LibreriaToolsControlador();
     int clicks_u = 0;
     int clicks_p = 0;    
     
@@ -183,6 +187,9 @@ public class accesoPrincipal extends javax.swing.JFrame {
     private void Button_EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EntrarActionPerformed
         clicks_u = 0;
         clicks_p = 0;
+        //Ya puedo hacer uso de la conexión
+        lbd.openConnection();
+        lbd.closeConnection();
         ventanaPrincipal ventanaPrincipal = new ventanaPrincipal();
         this.dispose();
         ventanaPrincipal.show();        
