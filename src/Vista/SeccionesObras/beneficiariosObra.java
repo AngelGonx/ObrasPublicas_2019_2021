@@ -32,16 +32,17 @@ public class beneficiariosObra extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        eliminarButton = new javax.swing.JButton();
-        editarButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
+        arch_b = new javax.swing.JLabel();
+        edit_b = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
         derecha_Botton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(600, 550));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         a.setEditable(false);
@@ -66,22 +67,6 @@ public class beneficiariosObra extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        eliminarButton.setBackground(new java.awt.Color(255, 255, 255));
-        eliminarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        eliminarButton.setText("ARCHIVOS");
-        eliminarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        eliminarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        eliminarButton.setOpaque(false);
-        jPanel1.add(eliminarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 343, 126, -1));
-
-        editarButton.setBackground(new java.awt.Color(255, 255, 255));
-        editarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        editarButton.setText("EDITAR");
-        editarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        editarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        editarButton.setOpaque(false);
-        jPanel1.add(editarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 343, 105, -1));
-
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -104,6 +89,32 @@ public class beneficiariosObra extends javax.swing.JFrame {
         jTextField1.setText("\"TIPO OBRA\"");
         jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 540, 40));
+
+        arch_b.setBackground(new java.awt.Color(143, 195, 131));
+        arch_b.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        arch_b.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        arch_b.setText("ARCHIVOS");
+        arch_b.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        arch_b.setOpaque(true);
+        arch_b.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arch_bMouseClicked(evt);
+            }
+        });
+        jPanel1.add(arch_b, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 130, -1));
+
+        edit_b.setBackground(new java.awt.Color(143, 195, 131));
+        edit_b.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        edit_b.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        edit_b.setText("EDITAR");
+        edit_b.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        edit_b.setOpaque(true);
+        edit_b.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                edit_bMouseClicked(evt);
+            }
+        });
+        jPanel1.add(edit_b, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 110, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 440));
 
@@ -159,47 +170,55 @@ public class beneficiariosObra extends javax.swing.JFrame {
 
     }//GEN-LAST:event_derecha_BottonMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(beneficiariosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(beneficiariosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(beneficiariosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(beneficiariosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void arch_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arch_bMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new beneficiariosObra().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_arch_bMouseClicked
+
+    private void edit_bMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit_bMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edit_bMouseClicked
+
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(beneficiariosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(beneficiariosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(beneficiariosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(beneficiariosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new beneficiariosObra().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField a;
+    private javax.swing.JLabel arch_b;
     private javax.swing.JLabel derecha_Botton;
-    private javax.swing.JButton editarButton;
-    private javax.swing.JButton eliminarButton;
+    private javax.swing.JLabel edit_b;
     private javax.swing.JLabel izquierda_Button;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

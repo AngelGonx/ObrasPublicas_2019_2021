@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.modeloTablaUsuario;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,6 +35,7 @@ public class LibreriaBDControlador {
    
 /*Se llamada a libreria Tools*/
     LibreriaToolsControlador lbt = new LibreriaToolsControlador();
+    public modeloTablaUsuario mtu = new modeloTablaUsuario();
 /*  ----------------------------------------------------------------------------------
     Nombre: Clase conex()
     Función: Apertura La Conexión con la BD/ Utilizado para la consulta de tablas
@@ -51,12 +53,12 @@ Crecenciales de DB
             String db_nam = lbt.obtenerClave("nombreBD");
             String use = lbt.obtenerClave("user");
             String pas = lbt.obtenerClave("password");
-            //For MySql 5.5
-            //Class.forName("com.mysql.jdbc.Driver");
-            //For MySql 8.0
+            System.out.println(db_nam);
+            System.out.println(use);
+            System.out.println(pas);
             Class.forName("com.mysql.cj.jdbc.Driver");
             Conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + db_nam + "?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC", use, pas);
-            System.out.println("Se ha iniciado la conexión con el servidor de forma exitosa");
+            System.out.println("Se ha iniciado la conexión con el servidor de forma exitosa.");
         } catch (ClassNotFoundException | SQLException ex) {
            Logger.getLogger(LibreriaBDControlador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -101,6 +103,38 @@ Crecenciales de DB
             Logger.getLogger(LibreriaBDControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    public List <Object> obtenerDatosUsuario(String table_name, String usuarioIngresado,
+                                             String passwordIngresado) {
+        //int id = 0;
+        List <Object> datosUsuarios = new ArrayList<Object>(); //Cargo una lista JLCI 28/06/2020 :D
+        try {
+            String Query = "SELECT * FROM " +table_name+" WHERE usuario_nombre = '"+usuarioIngresado+"' and password = '"+passwordIngresado+"'";
+            System.out.println(Query);
+            Statement st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+
+            while (resultSet.next()) {
+                
+                mtu.setUsuarioNombre(resultSet.getString("usuario_nombre"));
+                datosUsuarios.add(resultSet.getString("usuario_nombre"));
+                
+                mtu.setPassword(resultSet.getString("password"));
+                datosUsuarios.add(resultSet.getString("password"));
+
+            }
+            System.out.println("Lista datosUsuarios es: "+datosUsuarios);
+            System.out.println("ModeloTablas datosUsuarios es: "+mtu.toString());
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en la adquisición de datos.");
+            Logger.getLogger(LibreriaBDControlador.class.getName()).log(Level.SEVERE, null, ex);
+            return datosUsuarios;
+        }
+        return datosUsuarios;
+    }    
     
 }
 //Final de LibreriaBDControlador.

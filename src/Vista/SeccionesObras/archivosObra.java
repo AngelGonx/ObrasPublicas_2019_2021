@@ -32,21 +32,11 @@ public class archivosObra extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jProgressBar1 = new javax.swing.JProgressBar();
         jProgressBar2 = new javax.swing.JProgressBar();
         jProgressBar3 = new javax.swing.JProgressBar();
@@ -57,11 +47,22 @@ public class archivosObra extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        browse = new javax.swing.JLabel();
+        eliminar1 = new javax.swing.JLabel();
+        eliminar2 = new javax.swing.JLabel();
+        eliminar3 = new javax.swing.JLabel();
+        eliminar4 = new javax.swing.JLabel();
+        eliminar5 = new javax.swing.JLabel();
+        browse1 = new javax.swing.JLabel();
+        browse2 = new javax.swing.JLabel();
+        browse3 = new javax.swing.JLabel();
+        browse4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
         derecha_Botton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(600, 550));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         a.setEditable(false);
@@ -86,14 +87,6 @@ public class archivosObra extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton2.setText("Eliminar");
-        jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setOpaque(false);
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 105, -1));
-
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel1.setText("nombreArch.pdf");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 57, -1, -1));
@@ -113,78 +106,6 @@ public class archivosObra extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel5.setText("nombreArch.pdf");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
-
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton3.setText("Browse...");
-        jButton3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setOpaque(false);
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 85, 21));
-
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
-        jButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton4.setText("Browse...");
-        jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setOpaque(false);
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 85, 21));
-
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton5.setText("Browse...");
-        jButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setOpaque(false);
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 85, 21));
-
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton6.setText("Browse...");
-        jButton6.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setOpaque(false);
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 85, 21));
-
-        jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton7.setText("Browse...");
-        jButton7.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton7.setOpaque(false);
-        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 85, 21));
-
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
-        jButton8.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton8.setText("Eliminar");
-        jButton8.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton8.setOpaque(false);
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 105, -1));
-
-        jButton9.setBackground(new java.awt.Color(255, 255, 255));
-        jButton9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton9.setText("Eliminar");
-        jButton9.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton9.setOpaque(false);
-        jPanel1.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 105, -1));
-
-        jButton10.setBackground(new java.awt.Color(255, 255, 255));
-        jButton10.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton10.setText("Eliminar");
-        jButton10.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton10.setOpaque(false);
-        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 105, -1));
-
-        jButton11.setBackground(new java.awt.Color(255, 255, 255));
-        jButton11.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton11.setText("Eliminar");
-        jButton11.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton11.setOpaque(false);
-        jPanel1.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, 105, -1));
         jPanel1.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 57, 226, 21));
         jPanel1.add(jProgressBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 226, 21));
         jPanel1.add(jProgressBar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 226, 21));
@@ -210,6 +131,136 @@ public class archivosObra extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel11.setText("Upload a file:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+
+        browse.setBackground(new java.awt.Color(143, 195, 131));
+        browse.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        browse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        browse.setText("Browse...");
+        browse.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        browse.setOpaque(true);
+        browse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                browseMouseClicked(evt);
+            }
+        });
+        jPanel1.add(browse, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 90, -1));
+
+        eliminar1.setBackground(new java.awt.Color(143, 195, 131));
+        eliminar1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        eliminar1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        eliminar1.setText("Eliminar");
+        eliminar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        eliminar1.setOpaque(true);
+        eliminar1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminar1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(eliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 100, -1));
+
+        eliminar2.setBackground(new java.awt.Color(143, 195, 131));
+        eliminar2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        eliminar2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        eliminar2.setText("Eliminar");
+        eliminar2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        eliminar2.setOpaque(true);
+        eliminar2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminar2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(eliminar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 100, -1));
+
+        eliminar3.setBackground(new java.awt.Color(143, 195, 131));
+        eliminar3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        eliminar3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        eliminar3.setText("Eliminar");
+        eliminar3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        eliminar3.setOpaque(true);
+        eliminar3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminar3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(eliminar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 100, -1));
+
+        eliminar4.setBackground(new java.awt.Color(143, 195, 131));
+        eliminar4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        eliminar4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        eliminar4.setText("Eliminar");
+        eliminar4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        eliminar4.setOpaque(true);
+        eliminar4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminar4MouseClicked(evt);
+            }
+        });
+        jPanel1.add(eliminar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, 100, -1));
+
+        eliminar5.setBackground(new java.awt.Color(143, 195, 131));
+        eliminar5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        eliminar5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        eliminar5.setText("Eliminar");
+        eliminar5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        eliminar5.setOpaque(true);
+        eliminar5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminar5MouseClicked(evt);
+            }
+        });
+        jPanel1.add(eliminar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 100, -1));
+
+        browse1.setBackground(new java.awt.Color(143, 195, 131));
+        browse1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        browse1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        browse1.setText("Browse...");
+        browse1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        browse1.setOpaque(true);
+        browse1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                browse1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(browse1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 90, -1));
+
+        browse2.setBackground(new java.awt.Color(143, 195, 131));
+        browse2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        browse2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        browse2.setText("Browse...");
+        browse2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        browse2.setOpaque(true);
+        browse2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                browse2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(browse2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 90, -1));
+
+        browse3.setBackground(new java.awt.Color(143, 195, 131));
+        browse3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        browse3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        browse3.setText("Browse...");
+        browse3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        browse3.setOpaque(true);
+        browse3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                browse3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(browse3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 90, -1));
+
+        browse4.setBackground(new java.awt.Color(143, 195, 131));
+        browse4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        browse4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        browse4.setText("Browse...");
+        browse4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        browse4.setOpaque(true);
+        browse4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                browse4MouseClicked(evt);
+            }
+        });
+        jPanel1.add(browse4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 90, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 440));
 
@@ -265,55 +316,95 @@ public class archivosObra extends javax.swing.JFrame {
 
     }//GEN-LAST:event_derecha_BottonMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(archivosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(archivosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(archivosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(archivosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void browseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_browseMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new archivosObra().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_browseMouseClicked
+
+    private void eliminar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminar1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminar1MouseClicked
+
+    private void eliminar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminar2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminar2MouseClicked
+
+    private void eliminar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminar3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminar3MouseClicked
+
+    private void eliminar4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminar4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminar4MouseClicked
+
+    private void eliminar5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eliminar5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eliminar5MouseClicked
+
+    private void browse1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_browse1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_browse1MouseClicked
+
+    private void browse2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_browse2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_browse2MouseClicked
+
+    private void browse3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_browse3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_browse3MouseClicked
+
+    private void browse4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_browse4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_browse4MouseClicked
+
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(archivosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(archivosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(archivosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(archivosObra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new archivosObra().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField a;
+    private javax.swing.JLabel browse;
+    private javax.swing.JLabel browse1;
+    private javax.swing.JLabel browse2;
+    private javax.swing.JLabel browse3;
+    private javax.swing.JLabel browse4;
     private javax.swing.JLabel derecha_Botton;
+    private javax.swing.JLabel eliminar1;
+    private javax.swing.JLabel eliminar2;
+    private javax.swing.JLabel eliminar3;
+    private javax.swing.JLabel eliminar4;
+    private javax.swing.JLabel eliminar5;
     private javax.swing.JLabel izquierda_Button;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

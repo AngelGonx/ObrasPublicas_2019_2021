@@ -7,6 +7,8 @@ package Vista.Principal;
 
 import Controlador.LibreriaBDControlador;
 import Controlador.LibreriaToolsControlador;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JPasswordField;
 
 /**
@@ -18,15 +20,20 @@ public class accesoPrincipal extends javax.swing.JFrame {
     /**
      * Acceso principal, ventana de loggeo.
      */
+    
     LibreriaBDControlador lbd = new LibreriaBDControlador();
     LibreriaToolsControlador ltc = new LibreriaToolsControlador();
     int clicks_u = 0;
     int clicks_p = 0;    
+    private String Usuario = "";
+    private String Password = "";
+    List <Object> listaDatosUsuarios = new ArrayList<Object>();
     
     public accesoPrincipal() {
         initComponents();
         Pass_Text.setEchoChar((char)0);
         Pass_Text.setText("PASSWORD");
+        labelNotificacionError.setText("");
         this.setLocationRelativeTo(null);
     }
 
@@ -40,11 +47,13 @@ public class accesoPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        Button_Entrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         User_TextField = new javax.swing.JTextField();
         CheckBoxPassword = new javax.swing.JCheckBox();
         Pass_Text = new javax.swing.JPasswordField();
+        labelNotificacionError = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
@@ -57,19 +66,10 @@ public class accesoPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-
-        Button_Entrar.setBackground(new java.awt.Color(255, 255, 255));
-        Button_Entrar.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        Button_Entrar.setText("ENTRAR");
-        Button_Entrar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        Button_Entrar.setOpaque(false);
-        Button_Entrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Button_EntrarActionPerformed(evt);
-            }
-        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/usuario_icono.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 57, -1, 82));
 
         User_TextField.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         User_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -80,6 +80,7 @@ public class accesoPrincipal extends javax.swing.JFrame {
                 User_TextFieldMouseClicked(evt);
             }
         });
+        jPanel1.add(User_TextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 179, 175, 37));
 
         CheckBoxPassword.setBackground(new java.awt.Color(255, 255, 255));
         CheckBoxPassword.setFont(new java.awt.Font("Comic Sans MS", 0, 10)); // NOI18N
@@ -89,6 +90,7 @@ public class accesoPrincipal extends javax.swing.JFrame {
                 CheckBoxPasswordActionPerformed(evt);
             }
         });
+        jPanel1.add(CheckBoxPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 278, -1, -1));
 
         Pass_Text.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         Pass_Text.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -98,45 +100,31 @@ public class accesoPrincipal extends javax.swing.JFrame {
                 Pass_TextMouseClicked(evt);
             }
         });
+        jPanel1.add(Pass_Text, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 234, 175, 37));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(229, 229, 229)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Button_Entrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(CheckBoxPassword)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(231, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Pass_Text)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jLabel1))
-                    .addComponent(User_TextField, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
-                .addGap(207, 207, 207))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(User_TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Pass_Text, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CheckBoxPassword)
-                .addGap(18, 18, 18)
-                .addComponent(Button_Entrar)
-                .addContainerGap(74, Short.MAX_VALUE))
-        );
+        labelNotificacionError.setForeground(new java.awt.Color(204, 0, 0));
+        labelNotificacionError.setText("texto alerta");
+        jPanel1.add(labelNotificacionError, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 382, 336, -1));
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        jPanel2.setLayout(null);
+
+        jLabel2.setBackground(new java.awt.Color(143, 195, 131));
+        jLabel2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("ENTRAR");
+        jLabel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        jLabel2.setOpaque(true);
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(0, 0, 140, 30);
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, 140, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 600, 430));
 
@@ -184,61 +172,82 @@ public class accesoPrincipal extends javax.swing.JFrame {
         clicks_p ++;
     }//GEN-LAST:event_Pass_TextMouseClicked
 
-    private void Button_EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EntrarActionPerformed
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         clicks_u = 0;
         clicks_p = 0;
+        
         //Ya puedo hacer uso de la conexión
+
+
+
+        int validaResp = 0;
+        Usuario = User_TextField.getText();
+        Password = Pass_Text.getText();
+
         lbd.openConnection();
+        listaDatosUsuarios = lbd.obtenerDatosUsuario("tabla_usuario_sesion", Usuario, Password);
+        System.out.println("listaDatosUsuarios tamaño obtenido: "+listaDatosUsuarios.size()+"\nbotonInicioSesionActionPerformed :"+listaDatosUsuarios);
         lbd.closeConnection();
-        ventanaPrincipal ventanaPrincipal = new ventanaPrincipal();
-        this.dispose();
-        ventanaPrincipal.show();        
-    }//GEN-LAST:event_Button_EntrarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+        
+        validaResp = listaDatosUsuarios.size();
+        if(validaResp != 0){
+                        ventanaPrincipal ventanaPrincipal = new ventanaPrincipal();
+                        this.dispose();
+                        ventanaPrincipal.show();
+        }else{
+                System.out.println("No existe el usuario.");
+                labelNotificacionError.setText("No existe el usuario.\nVerifica tu usuario y contraseña.");
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(accesoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(accesoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(accesoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(accesoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new accesoPrincipal().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(accesoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(accesoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(accesoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(accesoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new accesoPrincipal().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Button_Entrar;
     private javax.swing.JCheckBox CheckBoxPassword;
     private javax.swing.JPasswordField Pass_Text;
     private javax.swing.JTextField User_TextField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel labelNotificacionError;
     // End of variables declaration//GEN-END:variables
 }

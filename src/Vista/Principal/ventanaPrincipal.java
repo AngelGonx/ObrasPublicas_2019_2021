@@ -30,20 +30,17 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        obras2018Button = new javax.swing.JButton();
-        obras2020Button = new javax.swing.JButton();
-        obras2021Button = new javax.swing.JButton();
-        obras2019Button = new javax.swing.JButton();
+        obras2018 = new javax.swing.JLabel();
+        obras2019 = new javax.swing.JLabel();
+        obras2020 = new javax.swing.JLabel();
+        obras2021 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
         derecha_Botton = new javax.swing.JLabel();
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/flecha_derecha.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Obras Públicas");
@@ -72,47 +69,51 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
 
-        obras2018Button.setBackground(new java.awt.Color(255, 255, 255));
-        obras2018Button.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        obras2018Button.setText("Obras 2018");
-        obras2018Button.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        obras2018Button.setOpaque(false);
-        obras2018Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                obras2018ButtonActionPerformed(evt);
+        obras2018.setBackground(new java.awt.Color(143, 195, 131));
+        obras2018.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        obras2018.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        obras2018.setText("Obras 2018");
+        obras2018.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        obras2018.setOpaque(true);
+        obras2018.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                obras2018MouseClicked(evt);
             }
         });
 
-        obras2020Button.setBackground(new java.awt.Color(255, 255, 255));
-        obras2020Button.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        obras2020Button.setText("Obras 2020");
-        obras2020Button.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        obras2020Button.setOpaque(false);
-        obras2020Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                obras2020ButtonActionPerformed(evt);
+        obras2019.setBackground(new java.awt.Color(143, 195, 131));
+        obras2019.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        obras2019.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        obras2019.setText("Obras 2019");
+        obras2019.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        obras2019.setOpaque(true);
+        obras2019.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                obras2019MouseClicked(evt);
             }
         });
 
-        obras2021Button.setBackground(new java.awt.Color(255, 255, 255));
-        obras2021Button.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        obras2021Button.setText("Obras 2021");
-        obras2021Button.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        obras2021Button.setOpaque(false);
-        obras2021Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                obras2021ButtonActionPerformed(evt);
+        obras2020.setBackground(new java.awt.Color(143, 195, 131));
+        obras2020.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        obras2020.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        obras2020.setText("Obras 2020");
+        obras2020.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        obras2020.setOpaque(true);
+        obras2020.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                obras2020MouseClicked(evt);
             }
         });
 
-        obras2019Button.setBackground(new java.awt.Color(255, 255, 255));
-        obras2019Button.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        obras2019Button.setText("Obras 2019");
-        obras2019Button.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        obras2019Button.setOpaque(false);
-        obras2019Button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                obras2019ButtonActionPerformed(evt);
+        obras2021.setBackground(new java.awt.Color(143, 195, 131));
+        obras2021.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        obras2021.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        obras2021.setText("Obras 2021");
+        obras2021.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        obras2021.setOpaque(true);
+        obras2021.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                obras2021MouseClicked(evt);
             }
         });
 
@@ -121,30 +122,32 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(obras2018Button, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(obras2019Button, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
-                .addComponent(obras2020Button, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90)
-                .addComponent(obras2021Button, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(obras2020, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(99, 99, 99)
+                        .addComponent(obras2021, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(obras2018, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(obras2019, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(57, 57, 57))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(101, 101, 101)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(obras2018Button)
-                    .addComponent(obras2019Button))
-                .addGap(107, 107, 107)
+                    .addComponent(obras2018, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(obras2019, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(113, 113, 113)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(obras2020Button)
-                    .addComponent(obras2021Button))
-                .addContainerGap(157, Short.MAX_VALUE))
+                    .addComponent(obras2020, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(obras2021, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 600, 410));
@@ -202,77 +205,76 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_derecha_BottonMouseClicked
 
-    private void obras2018ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obras2018ButtonActionPerformed
+    private void obras2018MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_obras2018MouseClicked
         catalogoObras catOb = new catalogoObras();
         this.dispose();
         catOb.show();
-    }//GEN-LAST:event_obras2018ButtonActionPerformed
+    }//GEN-LAST:event_obras2018MouseClicked
 
-    private void obras2019ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obras2019ButtonActionPerformed
+    private void obras2019MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_obras2019MouseClicked
         catalogoObras catOb = new catalogoObras();
         this.dispose();
         catOb.show();
-    }//GEN-LAST:event_obras2019ButtonActionPerformed
+    }//GEN-LAST:event_obras2019MouseClicked
 
-    private void obras2020ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obras2020ButtonActionPerformed
+    private void obras2020MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_obras2020MouseClicked
         catalogoObras catOb = new catalogoObras();
         this.dispose();
         catOb.show();
-    }//GEN-LAST:event_obras2020ButtonActionPerformed
+    }//GEN-LAST:event_obras2020MouseClicked
 
-    private void obras2021ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obras2021ButtonActionPerformed
+    private void obras2021MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_obras2021MouseClicked
         catalogoObras catOb = new catalogoObras();
         this.dispose();
         catOb.show();
-    }//GEN-LAST:event_obras2021ButtonActionPerformed
+    }//GEN-LAST:event_obras2021MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ventanaPrincipal().setVisible(true);
-            }
-        });
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new ventanaPrincipal().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel derecha_Botton;
     private javax.swing.JLabel izquierda_Button;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JButton obras2018Button;
-    private javax.swing.JButton obras2019Button;
-    private javax.swing.JButton obras2020Button;
-    private javax.swing.JButton obras2021Button;
+    private javax.swing.JLabel obras2018;
+    private javax.swing.JLabel obras2019;
+    private javax.swing.JLabel obras2020;
+    private javax.swing.JLabel obras2021;
     // End of variables declaration//GEN-END:variables
 }
