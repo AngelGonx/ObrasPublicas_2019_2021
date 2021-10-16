@@ -56,6 +56,11 @@ public class obrasAgregadas extends javax.swing.JFrame {
 
         jTextField3.setEditable(false);
         jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 600, 40));
 
         jTextField4.setEditable(false);
@@ -224,6 +229,10 @@ public class obrasAgregadas extends javax.swing.JFrame {
         this.dispose();
         selOb.show();        
     }//GEN-LAST:event_cuartosDormitorioButtonActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
 //    /**
 //     * @param args the command line arguments

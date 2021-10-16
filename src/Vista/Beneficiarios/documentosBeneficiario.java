@@ -158,7 +158,7 @@ public class documentosBeneficiario extends javax.swing.JFrame {
                 eliminar1MouseClicked(evt);
             }
         });
-        jPanel1.add(eliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 100, -1));
+        jPanel1.add(eliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 60, 100, -1));
 
         eliminar2.setBackground(new java.awt.Color(143, 195, 131));
         eliminar2.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -171,7 +171,7 @@ public class documentosBeneficiario extends javax.swing.JFrame {
                 eliminar2MouseClicked(evt);
             }
         });
-        jPanel1.add(eliminar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 100, -1));
+        jPanel1.add(eliminar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 100, -1));
 
         eliminar3.setBackground(new java.awt.Color(143, 195, 131));
         eliminar3.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -184,7 +184,7 @@ public class documentosBeneficiario extends javax.swing.JFrame {
                 eliminar3MouseClicked(evt);
             }
         });
-        jPanel1.add(eliminar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 100, -1));
+        jPanel1.add(eliminar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 100, -1));
 
         eliminar4.setBackground(new java.awt.Color(143, 195, 131));
         eliminar4.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -197,7 +197,7 @@ public class documentosBeneficiario extends javax.swing.JFrame {
                 eliminar4MouseClicked(evt);
             }
         });
-        jPanel1.add(eliminar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, 100, -1));
+        jPanel1.add(eliminar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 100, -1));
 
         eliminar5.setBackground(new java.awt.Color(143, 195, 131));
         eliminar5.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
@@ -210,7 +210,7 @@ public class documentosBeneficiario extends javax.swing.JFrame {
                 eliminar5MouseClicked(evt);
             }
         });
-        jPanel1.add(eliminar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 100, -1));
+        jPanel1.add(eliminar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 330, 100, -1));
 
         browse1.setBackground(new java.awt.Color(143, 195, 131));
         browse1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -394,7 +394,6 @@ public class documentosBeneficiario extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ACEPTAR;
     private javax.swing.JTextField a;
     private javax.swing.JLabel browse;
     private javax.swing.JLabel browse1;
