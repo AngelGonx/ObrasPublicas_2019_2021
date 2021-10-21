@@ -10,6 +10,16 @@ public class TablaUsuariosInfo{
 	private String documentos;
 	private String fotos;
 
+public TablaUsuariosInfo(){
+}
+
+public TablaUsuariosInfo(int idtabla_usuarios_info,String nombre,String localidad,String documentos,String fotos,){
+	this.idtabla_usuarios_info = idtabla_usuarios_info;
+	this.nombre = nombre;
+	this.localidad = localidad;
+	this.documentos = documentos;
+	this.fotos = fotos;
+}
 
 // setters and getters for TablaUsuariosInfo
 
