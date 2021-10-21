@@ -7,6 +7,13 @@ public class TablaTechos{
 	private int idtabla_techos;
 	private String codigo_techos;
 
+public TablaTechos(){
+}
+
+public TablaTechos(int idtabla_techos,String codigo_techos){
+	this.idtabla_techos = idtabla_techos;
+	this.codigo_techos = codigo_techos;
+}
 
 // setters and getters for TablaTechos
 
