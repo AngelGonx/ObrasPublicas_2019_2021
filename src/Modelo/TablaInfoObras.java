@@ -10,6 +10,16 @@ public class TablaInfoObras{
 	private String tipo_de_obra;
 	private String archivos;
 
+public TablaInfoObras(){
+}
+
+public TablaInfoObras(int idtabla_info_obras,String nombre,String localidad,String tipo_de_obra,String archivos){
+	this.idtabla_info_obras = idtabla_info_obras;
+	this.nombre = nombre;
+	this.localidad = localidad;
+	this.tipo_de_obra = tipo_de_obra;
+	this.archivos = archivos;
+}
 
 // setters and getters for TablaInfoObras
 
