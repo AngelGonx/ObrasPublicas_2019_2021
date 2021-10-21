@@ -7,6 +7,13 @@ public class TablaBanios{
 	private int idtabla_banios;
 	private String codigo_banios;
 
+public TablaBanios(){
+}
+
+public TablaBanios(int idtabla_banios,String codigo_banios){
+	this.idtabla_banios = idtabla_banios;
+	this.codigo_banios = codigo_banios;
+}
 
 // setters and getters for TablaBanios
 
