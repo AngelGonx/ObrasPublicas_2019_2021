@@ -8,6 +8,14 @@ public class TablaUsuarioSesion{
 	private String usuario_nombre;
 	private String contraseña;
 
+public TablaUsuarioSesion(){
+}
+
+public TablaUsuarioSesion(int idtabla_usuario,String usuario_nombre,String contraseña){
+	this.idtabla_usuario = idtabla_usuario;
+	this.usuario_nombre = usuario_nombre;
+	this.contraseña = contraseña;
+}
 
 // setters and getters for TablaUsuarioSesion
 
