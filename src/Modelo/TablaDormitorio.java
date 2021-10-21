@@ -7,6 +7,13 @@ public class TablaDormitorio{
 	private int idtabla_dormitorio;
 	private String codigo_dormitorio;
 
+public TablaDormitorio(){
+}
+
+public TablaDormitorio(int idtabla_dormitorio,String codigo_dormitorio,){
+	this.idtabla_dormitorio = idtabla_dormitorio;
+	this.codigo_dormitorio = codigo_dormitorio;
+}
 
 // setters and getters for TablaDormitorio
 
