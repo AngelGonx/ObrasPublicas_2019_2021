@@ -7,6 +7,13 @@ public class TablaCocina{
 	private int idtabla_cocina;
 	private String codigo_cocina;
 
+public TablaCocina(){
+}
+
+public TablaCocina(int idtabla_cocina,String codigo_cocina){
+	this.idtabla_cocina = idtabla_cocina;
+	this.codigo_cocina = codigo_cocina;
+}
 
 // setters and getters for TablaCocina
 
