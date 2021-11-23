@@ -8,10 +8,13 @@ package Controlador;
 import Vista.Principal.accesoPrincipal;
 import Vista.Principal.ventanaPrincipal;
 import java.awt.Desktop;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -27,13 +30,14 @@ import java.util.Properties;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.text.Document;
 
 /**
  * Está Librieria nos permitira realizar herramientas de apoyo en el sistema entre otras.
  * Date: 25/06/2020
  * @author joseluis.caamal
  */
-public class LibreriaToolsControlador {
+public class ControladorUtilerias {
     public String nombreTipoUsuario = "";
     
     /*Inicia: Llamo al modeloTablas para recuperar la información en get y set
@@ -146,7 +150,7 @@ public class LibreriaToolsControlador {
     Se abre la ventana principal desde el acceso principal
     @Author: Christian Olmedo 23/07/2020
     */
-    public void usuarioCorrecto(LibreriaBDControlador lbd){
+    public void usuarioCorrecto(ControladorBaseDeDatos lbd){
 //        System.out.println(lbd.mtu.toString());
 //        ventanaPrincipal ventanaPrincipal = new ventanaPrincipal(lbd.mtu);
 //        accesoPrincipal accesoPrincipal = new accesoPrincipal(); 
@@ -339,4 +343,24 @@ public class LibreriaToolsControlador {
         System.out.println("La clave especificada es: " +  respClave);
         return respClave;
     }
+    /*
+        getByteArrayFromFile(): 
+        Metodo que convierte un documento en byte para almacenarlo correctamente
+        Jose Luis Caamal Ic
+        9992059252
+        
+    */
+    private byte[] getByteArrayFromFile(final Document handledDocument) throws IOException {
+    final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    final InputStream in = new FileInputStream((File) handledDocument);
+    final byte[] buffer = new byte[500];
+
+    int read = -1;
+    while ((read = in.read(buffer)) > 0) {
+        baos.write(buffer, 0, read);
+    }
+    in.close();
+
+    return baos.toByteArray();
+}
 }

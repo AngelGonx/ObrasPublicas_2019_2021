@@ -5,8 +5,8 @@
  */
 package Vista.Principal;
 
-import Controlador.LibreriaBDControlador;
-import Controlador.LibreriaToolsControlador;
+import Controlador.ControladorBaseDeDatos;
+import Controlador.ControladorUtilerias;
 import javax.swing.JPasswordField;
 
 /**
@@ -18,8 +18,8 @@ public class accesoPrincipal extends javax.swing.JFrame {
     /**
      * Acceso principal, ventana de loggeo.
      */
-    LibreriaBDControlador lbd = new LibreriaBDControlador();
-    LibreriaToolsControlador ltc = new LibreriaToolsControlador();
+    ControladorBaseDeDatos lbd = new ControladorBaseDeDatos();
+    ControladorUtilerias ltc = new ControladorUtilerias();
     int clicks_u = 0;
     int clicks_p = 0;    
     
@@ -189,6 +189,9 @@ public class accesoPrincipal extends javax.swing.JFrame {
         clicks_p = 0;
         //Ya puedo hacer uso de la conexión
         lbd.openConnection();
+        String usuario = User_TextField.getText();
+        String password = Pass_Text.getText();
+        
         lbd.closeConnection();
         ventanaPrincipal ventanaPrincipal = new ventanaPrincipal();
         this.dispose();

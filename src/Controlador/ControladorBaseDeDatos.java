@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.TablaUsuarios;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,14 +27,14 @@ import javax.swing.table.DefaultTableModel;
  * Date: 25/06/2020
  * @author joseluis.caamal
  */
-public class LibreriaBDControlador {
+public class ControladorBaseDeDatos {
     private static Connection Conexion; //Abro la conexión
 /*Inciamos el constructor*/
 
    //controladorLibrerias lv = new controladorLibrerias();
    
 /*Se llamada a libreria Tools*/
-    LibreriaToolsControlador lbt = new LibreriaToolsControlador();
+    ControladorUtilerias lbt = new ControladorUtilerias();
 /*  ----------------------------------------------------------------------------------
     Nombre: Clase conex()
     Función: Apertura La Conexión con la BD/ Utilizado para la consulta de tablas
@@ -58,9 +59,9 @@ Crecenciales de DB
             Conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + db_nam + "?zeroDateTimeBehavior=convertToNull&serverTimezone=UTC", use, pas);
             System.out.println("Se ha iniciado la conexión con el servidor de forma exitosa");
         } catch (ClassNotFoundException | SQLException ex) {
-           Logger.getLogger(LibreriaBDControlador.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(LibreriaBDControlador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return Conexion;
     }
@@ -81,7 +82,7 @@ Crecenciales de DB
             Conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + db_name, user, pass);
             System.out.println("Se ha iniciado la conexión con el servidor de forma exitosa");
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(LibreriaBDControlador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     */
@@ -98,9 +99,35 @@ Crecenciales de DB
             Conexion.close();
             System.out.println("Se ha finalizado la conexión con el servidor");
         } catch (SQLException ex) {
-            Logger.getLogger(LibreriaBDControlador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
+     /*Nombre: Clase Consulta Usuario Valido
+    Función:Consulta el usuario y lo valida
+    Aut@r: José Luis Caamal Ic
+    Parametros: */
+    public TablaUsuarios obtenerUsuario(TablaUsuarios tbu) {
+        TablaUsuarios tbuAux = new TablaUsuarios();
+        String Query = "SELECT * FROM tabla_usuario WHERE username = '" + tbu.getUsername() + "' and password = '" + tbu.getPassword() + "'";
+        System.out.println(Query);
+        try {
+            Statement st;
+            st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+            while (resultSet.next()) {
+                tbuAux.setUsername(resultSet.getString("username"));
+                tbuAux.setPassword(resultSet.getString("password"));
+                tbuAux.setId(resultSet.getInt("id"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return tbuAux;
+    }
+    
+    
 }
-//Final de LibreriaBDControlador.
+//Final de ControladorBaseDeDatos.
