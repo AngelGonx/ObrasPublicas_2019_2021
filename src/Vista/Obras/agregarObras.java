@@ -16,6 +16,7 @@ public class agregarObras extends javax.swing.JFrame {
     /**
      * Creates new form agregarObras
      */
+    
     public agregarObras() {
         initComponents();
         this.setLocationRelativeTo(null);
