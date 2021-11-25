@@ -1,4 +1,4 @@
-package Modelo
+package Modelo;
 //created on 16-10-2021 at 8:12:54
 //class 'TablaTechos'
 public class TablaTechos{
