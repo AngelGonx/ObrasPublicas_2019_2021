@@ -239,7 +239,7 @@ public class archivosObra extends javax.swing.JFrame {
                 .addComponent(izquierda_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(derecha_Botton)
-                .addContainerGap(526, Short.MAX_VALUE))
+                .addContainerGap(530, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

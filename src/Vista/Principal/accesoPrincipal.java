@@ -7,6 +7,8 @@ package Vista.Principal;
 
 import Controlador.ControladorBaseDeDatos;
 import Controlador.ControladorUtilerias;
+import Modelo.TablaUsuarios;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
 /**
@@ -20,6 +22,8 @@ public class accesoPrincipal extends javax.swing.JFrame {
      */
     ControladorBaseDeDatos lbd = new ControladorBaseDeDatos();
     ControladorUtilerias ltc = new ControladorUtilerias();
+    TablaUsuarios tbu = new TablaUsuarios();
+    
     int clicks_u = 0;
     int clicks_p = 0;    
     
@@ -191,11 +195,19 @@ public class accesoPrincipal extends javax.swing.JFrame {
         lbd.openConnection();
         String usuario = User_TextField.getText();
         String password = Pass_Text.getText();
-        
+        tbu.setUsername(usuario);
+        tbu.setPassword(password);
+        TablaUsuarios tablaUser =  lbd.obtenerUsuario(tbu);
+        if(tablaUser.getId() > 0){
+            JOptionPane.showMessageDialog(null, "Bienvenido al Sistema");
+            ventanaPrincipal ventanaPrincipal = new ventanaPrincipal();
+            this.dispose();
+            ventanaPrincipal.show();
+        }else{
+            JOptionPane.showMessageDialog(null, "Verifica tus datos.");
+        }
         lbd.closeConnection();
-        ventanaPrincipal ventanaPrincipal = new ventanaPrincipal();
-        this.dispose();
-        ventanaPrincipal.show();        
+                
     }//GEN-LAST:event_Button_EntrarActionPerformed
 
     /**

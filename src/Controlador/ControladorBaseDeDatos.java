@@ -109,7 +109,7 @@ Crecenciales de DB
     Parametros: */
     public TablaUsuarios obtenerUsuario(TablaUsuarios tbu) {
         TablaUsuarios tbuAux = new TablaUsuarios();
-        String Query = "SELECT * FROM tabla_usuario WHERE username = '" + tbu.getUsername() + "' and password = '" + tbu.getPassword() + "'";
+        String Query = "SELECT * FROM tabla_usuarios WHERE username = '" + tbu.getUsername() + "' and password = '" + tbu.getPassword() + "'";
         System.out.println(Query);
         try {
             Statement st;
