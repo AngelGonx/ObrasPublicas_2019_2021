@@ -17,9 +17,13 @@ public class obrasAgregadas extends javax.swing.JFrame {
     /**
      * Creates new form obrasAgregadas
      */
-    public obrasAgregadas() {
+    String ageObras = "";
+    public obrasAgregadas(String ageObras) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.ageObras = ageObras;
+        campoAgeObras.setText(" Obras Agregadas "+this.ageObras);
+        System.out.println(" Obras Agregadas "+this.ageObras);
     }
 
     /**
@@ -33,7 +37,7 @@ public class obrasAgregadas extends javax.swing.JFrame {
 
         a = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        campoAgeObras = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         cuartosDormitorioButton = new javax.swing.JButton();
         baniosButton = new javax.swing.JButton();
@@ -58,12 +62,12 @@ public class obrasAgregadas extends javax.swing.JFrame {
         jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 600, 40));
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jTextField4.setText(" Obras Agregadas 20--");
-        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
+        campoAgeObras.setEditable(false);
+        campoAgeObras.setBackground(new java.awt.Color(255, 255, 255));
+        campoAgeObras.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        campoAgeObras.setText(" Obras Agregadas 20--");
+        campoAgeObras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+        getContentPane().add(campoAgeObras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
@@ -196,31 +200,31 @@ public class obrasAgregadas extends javax.swing.JFrame {
     }//GEN-LAST:event_derecha_BottonMouseClicked
 
     private void izquierda_ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_izquierda_ButtonMouseClicked
-        catalogoObras catObs = new catalogoObras();
+        catalogoObras catObs = new catalogoObras(ageObras);
         this.dispose();
         catObs.show();
     }//GEN-LAST:event_izquierda_ButtonMouseClicked
 
     private void baniosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baniosButtonActionPerformed
-        seleccionObra selOb = new seleccionObra();
+        seleccionObra selOb = new seleccionObra(ageObras);
         this.dispose();
         selOb.show(); 
     }//GEN-LAST:event_baniosButtonActionPerformed
 
     private void cuartosCocinaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuartosCocinaButtonActionPerformed
-        seleccionObra selOb = new seleccionObra();
+        seleccionObra selOb = new seleccionObra(ageObras);
         this.dispose();
         selOb.show(); 
     }//GEN-LAST:event_cuartosCocinaButtonActionPerformed
 
     private void techoConcretoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_techoConcretoButtonActionPerformed
-        seleccionObra selOb = new seleccionObra();
+        seleccionObra selOb = new seleccionObra(ageObras);
         this.dispose();
         selOb.show(); 
     }//GEN-LAST:event_techoConcretoButtonActionPerformed
 
     private void cuartosDormitorioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuartosDormitorioButtonActionPerformed
-        seleccionObra selOb = new seleccionObra();
+        seleccionObra selOb = new seleccionObra(ageObras);
         this.dispose();
         selOb.show();        
     }//GEN-LAST:event_cuartosDormitorioButtonActionPerformed
@@ -228,41 +232,42 @@ public class obrasAgregadas extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(obrasAgregadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(obrasAgregadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(obrasAgregadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(obrasAgregadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new obrasAgregadas().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(obrasAgregadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(obrasAgregadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(obrasAgregadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(obrasAgregadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new obrasAgregadas().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField a;
     private javax.swing.JButton baniosButton;
+    private javax.swing.JTextField campoAgeObras;
     private javax.swing.JButton cuartosCocinaButton;
     private javax.swing.JButton cuartosDormitorioButton;
     private javax.swing.JLabel derecha_Botton;
@@ -270,7 +275,6 @@ public class obrasAgregadas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JButton techoConcretoButton;
     // End of variables declaration//GEN-END:variables
 }

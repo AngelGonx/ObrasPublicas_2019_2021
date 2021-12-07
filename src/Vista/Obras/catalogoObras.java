@@ -18,9 +18,13 @@ public class catalogoObras extends javax.swing.JFrame {
     /**
      * Creates new form catalogoObras
      */
-    public catalogoObras() {
+    String ageObra = "";
+    public catalogoObras(String ageObra) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.ageObra = ageObra;
+        obrasAnios.setText(" Catalogo Obras "+this.ageObra);
+        System.out.println(" Catalogo Obras "+this.ageObra);
     }
 
     /**
@@ -159,13 +163,13 @@ public class catalogoObras extends javax.swing.JFrame {
     }//GEN-LAST:event_izquierda_ButtonMouseClicked
 
     private void labelObrasAgregadasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelObrasAgregadasMouseClicked
-        obrasAgregadas obAdd = new obrasAgregadas();
+        obrasAgregadas obAdd = new obrasAgregadas(ageObra);
         this.dispose();
         obAdd.show();
     }//GEN-LAST:event_labelObrasAgregadasMouseClicked
 
     private void labelAgregarObraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAgregarObraMouseClicked
-        agregarObras addOb = new agregarObras();
+        agregarObras addOb = new agregarObras(ageObra);
         this.dispose();
         addOb.show();
     }//GEN-LAST:event_labelAgregarObraMouseClicked
@@ -173,37 +177,37 @@ public class catalogoObras extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(catalogoObras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(catalogoObras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(catalogoObras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(catalogoObras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new catalogoObras().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(catalogoObras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(catalogoObras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(catalogoObras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(catalogoObras.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new catalogoObras().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel derecha_Botton;

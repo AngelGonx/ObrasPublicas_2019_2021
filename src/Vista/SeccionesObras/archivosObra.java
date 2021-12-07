@@ -14,9 +14,11 @@ public class archivosObra extends javax.swing.JFrame {
     /**
      * Creates new form archivosObra
      */
+    String ageObra = "";
     public archivosObra() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.ageObra = ageObra;
     }
 
     /**
@@ -256,7 +258,7 @@ public class archivosObra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void izquierda_ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_izquierda_ButtonMouseClicked
-        seleccionObra selOb = new seleccionObra();
+        seleccionObra selOb = new seleccionObra(ageObra);
         this.dispose();
         selOb.show();
     }//GEN-LAST:event_izquierda_ButtonMouseClicked

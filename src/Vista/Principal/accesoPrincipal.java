@@ -30,7 +30,7 @@ public class accesoPrincipal extends javax.swing.JFrame {
     public accesoPrincipal() {
         initComponents();
         Pass_Text.setEchoChar((char)0);
-        Pass_Text.setText("PASSWORD");
+        Pass_Text.setText("");
         this.setLocationRelativeTo(null);
     }
 
@@ -77,7 +77,6 @@ public class accesoPrincipal extends javax.swing.JFrame {
 
         User_TextField.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         User_TextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        User_TextField.setText("USER");
         User_TextField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         User_TextField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
