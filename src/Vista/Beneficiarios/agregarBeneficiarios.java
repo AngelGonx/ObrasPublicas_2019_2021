@@ -5,6 +5,11 @@
  */
 package Vista.Beneficiarios;
 
+import Controlador.ControladorBaseDeDatos;
+import Controlador.ControladorUtilerias;
+import Modelo.TablaBeneficiarios;
+import Vista.SeccionesObras.informacionObra;
+import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,12 +21,25 @@ public class agregarBeneficiarios extends javax.swing.JDialog {
     /**
      * Creates new form agregarBeneficiarios
      */
+    TablaBeneficiarios tbf = new TablaBeneficiarios();
+    ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
+    ControladorUtilerias cut = new ControladorUtilerias();
     String ageObra = "";
-    public agregarBeneficiarios(java.awt.Frame parent, boolean modal, String ageObra) {
+    int idBeneficiario = 0;
+    int idInformacionObras = 0;
+    public agregarBeneficiarios(java.awt.Frame parent, boolean modal, String ageObra,int idInformacionObras) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.ageObra = ageObra;
+        System.out.println("El año es:"+ageObra+" La informacion de id obras: "+idInformacionObras);
+        cbd.openConnection();
+        idBeneficiario = cbd.obtenerIDBeneficiaros()+1;
+        cbd.closeConnection();
+        this.idInformacionObras = idInformacionObras;
+        campoObra.setText(String.valueOf(idInformacionObras));
+        //campoLocalidad.setText();
+        tbf.setId(idBeneficiario);
     }
 
     /**
@@ -228,9 +246,13 @@ public class agregarBeneficiarios extends javax.swing.JDialog {
         int campoFoto = -1;
         campoDocto = Integer.parseInt(campoIDDocto.getText());
         campoFoto = Integer.parseInt(campoIDFotos.getText());
-        
+        tbf.setId(idBeneficiario);
+        tbf.setId_obra(idInformacionObras);
+        tbf.setNombre(campoNombreCompleto.getText());
+        tbf.setLocalidad(campoLocalidad.getText());
+        tbf.setCreated_at(new Timestamp(10000));
         if((campoDocto>=0) && ( campoFoto >= 0)){
-        
+            
         }
         else{
             JOptionPane.showMessageDialog(null, "Añade un Documento y Foto para continuar.");
@@ -240,15 +262,17 @@ public class agregarBeneficiarios extends javax.swing.JDialog {
     private void btnFotosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotosActionPerformed
         // TODO add your handling code here:
         
-        fotosBeneficiario fb = new fotosBeneficiario();
+        fotosBeneficiario fb = new fotosBeneficiario(ageObra,tbf);
         fb.show();
+        this.dispose();
         
     }//GEN-LAST:event_btnFotosActionPerformed
 
     private void btnDoctoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctoActionPerformed
         // TODO add your handling code here:
-        documentosBeneficiario cb = new documentosBeneficiario(ageObra);
+        documentosBeneficiario cb = new documentosBeneficiario(ageObra,tbf);
         cb.show();
+        this.dispose();
     }//GEN-LAST:event_btnDoctoActionPerformed
 
     /**

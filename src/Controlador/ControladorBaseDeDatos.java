@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.TablaObrasInformacion;
 import Modelo.TablaUsuarios;
 import java.io.IOException;
 import java.sql.Connection;
@@ -128,6 +129,135 @@ Crecenciales de DB
         return tbuAux;
     }
     
+    
+    /*Nombre: Clase crearObrasInformación
+    Función: Crea las información de las obras.
+    Aut@r: José Luis Caamal Ic
+    Parametros: */
+    public int crearObrasInformación(TablaObrasInformacion toi) {
+        int operacionExitosa = 0;
+        try {
+            String Query = "INSERT INTO  tabla_obras_informacion VALUES("
+                    + "\"" + toi.getId() + "\", "
+                    + "\"" + toi.getObra()+ "\", "
+                    + "\"" + toi.getLocalidad()+ "\", "
+                    + "\"" + toi.getFondo()+ "\", "
+                    + "\"" + toi.getFolio()+ "\", "
+                    + "\"" + toi.getNumero()+ "\","
+                    + "\"" + toi.getInicio()+ "\","
+                    + "\"" + toi.getFin()+ "\","
+                    + "\"" + toi.getAge()+ "\","
+                    + "\"" + toi.getId_tipo_obra()+ "\","
+                    + "\"" + toi.getCreated_at()+ "\")";
+            //Inica el statement de la conexión
+            System.out.println(Query);
+            Statement st = Conexion.createStatement();
+            st.executeUpdate(Query);
+            operacionExitosa = 1;
+            //JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            operacionExitosa = 0;
+        }
+
+        return operacionExitosa;
+    }
+    
+    /*Nombre: Clase Consulta obtenerIDInformacionObras
+    Función:Consulta la tabla información de las obras
+    Aut@r: José Luis Caamal Ic
+    Parametros: 
+    date: 26/10/2021*/
+    public int obtenerIDInformacionObras() {
+        int tpAux = 0;
+        String Query = "SELECT max(id) as idmax FROM tabla_obras_informacion";
+        System.out.println(Query);
+        try {
+            Statement st;
+            st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+            while (resultSet.next()) {
+                tpAux = resultSet.getInt("idmax");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tpAux;
+    }
+    
+    /*Nombre: Clase Consulta obtenerIDBeneficiaros
+    Función:Consulta la tabla información de las beneficiarios
+    Aut@r: José Luis Caamal Ic
+    Parametros: 
+    date: 26/10/2021*/
+    public int obtenerIDBeneficiaros() {
+        int tpAux = 0;
+        String Query = "SELECT max(id) as idmax FROM tabla_beneficiarios";
+        System.out.println(Query);
+        try {
+            Statement st;
+            st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+            while (resultSet.next()) {
+                tpAux = resultSet.getInt("idmax");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tpAux;
+    }
+    
+    
+    /*Nombre: Clase Consulta obtenerIDInformacionObras
+    Función:Consulta la tabla información de las obras
+    Aut@r: José Luis Caamal Ic
+    Parametros: 
+    date: 26/10/2021*/
+    public int obtenerIDFotos() {
+        int tpAux = 0;
+        String Query = "SELECT max(id) as idmax FROM tabla_obras_informacion";
+        System.out.println(Query);
+        try {
+            Statement st;
+            st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+            while (resultSet.next()) {
+                tpAux = resultSet.getInt("idmax");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tpAux;
+    }
+    
+    
+    /*Nombre: Clase Consulta obtenerIDInformacionObras
+    Función:Consulta la tabla información de las obras
+    Aut@r: José Luis Caamal Ic
+    Parametros: 
+    date: 26/10/2021*/
+    public int obtenerIDDoctos() {
+        int tpAux = 0;
+        String Query = "SELECT max(id) as idmax FROM tabla_obras_informacion";
+        System.out.println(Query);
+        try {
+            Statement st;
+            st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+            while (resultSet.next()) {
+                tpAux = resultSet.getInt("idmax");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tpAux;
+    }
     
 }
 //Final de ControladorBaseDeDatos.

@@ -5,8 +5,11 @@
  */
 package Vista.Obras;
 
+import Controlador.ControladorBaseDeDatos;
+import Controlador.ControladorUtilerias;
 import Modelo.TablaObrasInformacion;
 import Vista.Beneficiarios.agregarBeneficiarios;
+import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,13 +22,21 @@ public class agregarObras extends javax.swing.JFrame {
      * Creates new form agregarObras
      */
     TablaObrasInformacion toi = new TablaObrasInformacion();
+    ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
+    ControladorUtilerias cut = new ControladorUtilerias();
     public String ageObra = "";
+    public int idInformacionObra = 0;
     public agregarObras(String ageObra) {
         initComponents();
         this.ageObra  = ageObra;
         this.setLocationRelativeTo(null);
         System.out.println("agregarObras:"+this.ageObra);
-        System.out.println("agregarObras:"+this.ageObra);
+       // System.out.println("agregarObras:"+this.ageObra);
+        campoIDBeneficiario.setText("0");
+        cbd.openConnection();
+        idInformacionObra = cbd.obtenerIDInformacionObras()+1;
+        cbd.closeConnection();
+        System.out.println("El id de informacion Obras es: "+idInformacionObra);
     }
 
     /**
@@ -314,7 +325,7 @@ public class agregarObras extends javax.swing.JFrame {
     }//GEN-LAST:event_izquierda_ButtonMouseClicked
 
     private void agregarBeneficiariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBeneficiariosButtonActionPerformed
-        agregarBeneficiarios agBen = new agregarBeneficiarios(this, rootPaneCheckingEnabled,ageObra);
+        agregarBeneficiarios agBen = new agregarBeneficiarios(this, rootPaneCheckingEnabled,ageObra,idInformacionObra);
         agBen.show();
     }//GEN-LAST:event_agregarBeneficiariosButtonActionPerformed
 
@@ -323,9 +334,34 @@ public class agregarObras extends javax.swing.JFrame {
         System.out.println("Se inicia el guardado del beneficiario");
         int campoBenficiario = -1;
         campoBenficiario = Integer.parseInt(campoIDBeneficiario.getText());
-        
+        int procesoExitoso = -1;
         if(campoBenficiario>=0){
-            toi.setAge(Integer.parseInt(ageObra));
+            if(campoTipoObra.getSelectedIndex() != 0){
+                cbd.openConnection();
+                toi.setId(idInformacionObra);// Adquiere la información y le suma un digito
+                toi.setObra(campoNombreObra.getText());
+                toi.setLocalidad(campoNombraLocalidad.getText());
+                toi.setFondo(campoNombreFondo.getText());
+                toi.setFolio(campoNombreFolio.getText());
+                toi.setNumero(campoNumeroObra.getText());
+                toi.setInicio(cut.convertirFecha(campoInicioObra.getDate()));
+                toi.setFin(cut.convertirFecha(campoFinObra.getDate()));
+                toi.setAge(Integer.parseInt(ageObra));
+                toi.setId_tipo_obra(campoTipoObra.getSelectedIndex());
+                toi.setCreated_at(new Timestamp(100));
+                System.out.println("Obra: "+toi.toString());
+                procesoExitoso = cbd.crearObrasInformación(toi);
+                cbd.closeConnection();
+            }else{
+                JOptionPane.showMessageDialog(null, "Por favor, elije un tipo de obra.");
+            }
+            if(procesoExitoso == 1){
+                JOptionPane.showMessageDialog(null, "Los datos fueron guardados con éxito.");
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Los datos no fueron guardados con éxito.\n"
+                        + "Verífica tus datos e intenta nuevamente.");     
+            }
             //toi.setAge(Integer.parseInt(ageObra));
         }
         else{

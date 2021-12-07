@@ -5,6 +5,7 @@
  */
 package Vista.Beneficiarios;
 
+import Modelo.TablaBeneficiarios;
 import Vista.SeccionesObras.beneficiariosObra;
 
 /**
@@ -16,10 +17,13 @@ public class fotosBeneficiario extends javax.swing.JFrame {
     /**
      * Creates new form fotosBeneficiario
      */
+    TablaBeneficiarios tbf = new TablaBeneficiarios();
     String ageObra = "";
-    public fotosBeneficiario() {
+    public fotosBeneficiario(String ageObra,TablaBeneficiarios tbf) {
         initComponents();
+        this.tbf = tbf;
         this.ageObra = ageObra;
+        System.out.println("El año es:"+ageObra+" La informacion de id beneficiario: "+tbf.getId());
     }
 
     /**
@@ -119,7 +123,7 @@ public class fotosBeneficiario extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton3.setText("Browse...");
+        jButton3.setText("Buscar..");
         jButton3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setOpaque(false);
@@ -127,7 +131,7 @@ public class fotosBeneficiario extends javax.swing.JFrame {
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton4.setText("Browse...");
+        jButton4.setText("Buscar..");
         jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setOpaque(false);
@@ -135,7 +139,7 @@ public class fotosBeneficiario extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton5.setText("Browse...");
+        jButton5.setText("Buscar..");
         jButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setOpaque(false);
@@ -143,7 +147,7 @@ public class fotosBeneficiario extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton6.setText("Browse...");
+        jButton6.setText("Buscar..");
         jButton6.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton6.setOpaque(false);
@@ -151,7 +155,7 @@ public class fotosBeneficiario extends javax.swing.JFrame {
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton7.setText("Browse...");
+        jButton7.setText("Buscar..");
         jButton7.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton7.setOpaque(false);
@@ -195,23 +199,23 @@ public class fotosBeneficiario extends javax.swing.JFrame {
         jPanel1.add(jProgressBar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 226, 21));
 
         jLabel6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel6.setText("Upload a file:");
+        jLabel6.setText("Actualiza o Añadir un Archivo");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel7.setText("Upload a file:");
+        jLabel7.setText("Actualiza o Añadir un Archivo");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel9.setText("Upload a file:");
+        jLabel9.setText("Actualiza o Añadir un Archivo");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel10.setText("Upload a file:");
+        jLabel10.setText("Actualiza o Añadir un Archivo");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel11.setText("Upload a file:");
+        jLabel11.setText("Actualiza o Añadir un Archivo");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 440));
@@ -259,9 +263,9 @@ public class fotosBeneficiario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void izquierda_ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_izquierda_ButtonMouseClicked
-        beneficiariosObra benOb = new beneficiariosObra(ageObra);
+        //beneficiariosObra benOb = new beneficiariosObra(ageObra);
         this.dispose();
-        benOb.show();
+        //benOb.show();
     }//GEN-LAST:event_izquierda_ButtonMouseClicked
 
     private void derecha_BottonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_derecha_BottonMouseClicked
