@@ -29,7 +29,9 @@ import java.util.List;
 import java.util.Properties;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.Document;
 
 /**
@@ -363,4 +365,49 @@ public class ControladorUtilerias {
 
     return baos.toByteArray();
 }
+
+    public String obtenerRuta(int tipoDocumento){
+        //Creamos el objeto JFileChooser
+    JFileChooser fc=new JFileChooser();
+
+    //Indicamos lo que podemos seleccionar
+    fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+
+    //Creamos el filtro
+    FileNameExtensionFilter filtro = null;
+    if(tipoDocumento == 1)
+        filtro = new FileNameExtensionFilter("*.jpg", "jpg");
+    if(tipoDocumento == 2)
+        filtro = new FileNameExtensionFilter("*.pdf", "pdf");
+    
+    String cadena="";
+    //Le indicamos el filtro
+    fc.setFileFilter(filtro);
+
+    //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
+        int seleccion=fc.showOpenDialog(null);
+
+        //Si el usuario, pincha en aceptar
+        if(seleccion==JFileChooser.APPROVE_OPTION){
+
+            //Seleccionamos el fichero
+            File fichero=fc.getSelectedFile();
+            cadena = fichero.getAbsolutePath();
+//            //Ecribe la ruta del fichero seleccionado en el campo de texto
+//            textField.setText(fichero.getAbsolutePath());
+//            
+//            try(FileReader fr=new FileReader(fichero)){
+//
+//                int valor=fr.read();
+//                while(valor!=-1){
+//                    cadena=cadena+(char)valor;
+//                    valor=fr.read();
+//                }
+//                textArea.setText(cadena);
+//            } catch (IOException e1) {
+//                e1.printStackTrace();
+//            }
+        }
+        return cadena;
+    }
 }

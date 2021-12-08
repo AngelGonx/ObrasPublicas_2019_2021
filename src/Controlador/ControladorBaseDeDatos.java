@@ -5,9 +5,15 @@
  */
 package Controlador;
 
+import Modelo.TablaBeneficiarios;
+import Modelo.TablaDocumentosBeneficiarios;
+import Modelo.TablaFotosBeneficiarios;
 import Modelo.TablaObrasInformacion;
 import Modelo.TablaUsuarios;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -128,7 +134,43 @@ Crecenciales de DB
 
         return tbuAux;
     }
-    
+    /*Nombre: Clase crearBeneficiarios
+    Función: Crea las información de los beneficiarios.
+    Aut@r: José Luis Caamal Ic
+    Parametros: */
+    public int crearBeneficiarios(TablaBeneficiarios tbf) {
+        int operacionExitosa = 0;
+        try {
+            String Query = "INSERT INTO  tabla_beneficiarios VALUES("
+                    + "\"" + tbf.getId() + "\", "
+                    + "\"" + tbf.getNombre()+ "\", "
+                    + "\"" + tbf.getLocalidad()+ "\", "
+                    + "\"" + tbf.getId_obra()+ "\", "
+                    + "\"" + tbf.getCreated_at()+ "\")";
+            /*
+                Table: tabla_beneficiarios
+                Columns:
+                id int AI PK 
+                nombre varchar(45) 
+                localidad varchar(45) 
+                id_obra int 
+                created_at datetime
+            */
+            //Inica el statement de la conexión
+            System.out.println(Query);
+            Statement st = Conexion.createStatement();
+            st.executeUpdate(Query);
+            operacionExitosa = 1;
+            //JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            operacionExitosa = 0;
+        }
+
+        return operacionExitosa;
+    }
     
     /*Nombre: Clase crearObrasInformación
     Función: Crea las información de las obras.
@@ -257,6 +299,100 @@ Crecenciales de DB
             Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tpAux;
+    }
+    /*
+    Clase: Se insertan las imagenes para la obra;
+    Fecha: 08/12/2021
+    Create: José Luis Caamal Ic
+    */
+    public int insertaImagenes(TablaFotosBeneficiarios tfb){
+        int procesoExitoso = 0;
+        try {
+            String querySetLimit = "SET GLOBAL max_allowed_packet=104857600;";  // 10 MB
+            Statement stSetLimit = Conexion.createStatement();
+            stSetLimit.execute(querySetLimit);
+            String sql = "INSERT INTO tabla_fotos_beneficiarios (id,"
+                    + "foto_uno,"
+                    + "foto_dos,"
+                    + "foto_tres,"
+                    + "foto_cuatro,"
+                    + "foto_cinco,"
+                    + "id_beneficiario,"
+                    + "created_at) values (default,?, ?, ? , ? , ? , ?,?)";
+            PreparedStatement statement = Conexion.prepareStatement(sql);
+            InputStream inputStream = new FileInputStream(new File(tfb.getFoto_uno()));
+            statement.setBlob(1, inputStream);
+            inputStream = new FileInputStream(new File(tfb.getFoto_dos()));
+            statement.setBlob(2, inputStream);
+            inputStream = new FileInputStream(new File(tfb.getFoto_tres()));
+            statement.setBlob(3, inputStream);
+            inputStream = new FileInputStream(new File(tfb.getFoto_cuatro()));
+            statement.setBlob(4, inputStream);
+            inputStream = new FileInputStream(new File(tfb.getFoto_cinco()));
+            statement.setBlob(5, inputStream);
+            statement.setInt(6, tfb.getId_beneficiario());
+            statement.setTimestamp(7, new Timestamp(100));
+            int row = statement.executeUpdate();
+            if (row > 0) {
+                System.out.println("A contact was inserted with photo image.");
+                procesoExitoso = 1;
+            }
+            inputStream.close();
+        } catch (SQLException | IOException ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+            procesoExitoso =0;
+        }
+        return procesoExitoso;
+    
+    }
+    
+    
+    /*
+    Clase: Se insertan los documentos para la obra;
+    Fecha: 08/12/2021
+    Create: José Luis Caamal Ic
+    */
+    public int insertaDocumentos(TablaDocumentosBeneficiarios tdb){
+        int procesoExitoso = 0;
+        try {
+            String querySetLimit = "SET GLOBAL max_allowed_packet=104857600;";  // 10 MB
+            Statement stSetLimit = Conexion.createStatement();
+            stSetLimit.execute(querySetLimit);
+            String sql = "INSERT INTO tabla_doc_beneficiarios (id,"
+                    + "doc_uno,"
+                    + "doc_dos,"
+                    + "doc_tres,"
+                    + "doc_cuatro,"
+                    + "doc_cinco,"
+                    + "id_beneficiario,"
+                    + "created_at) values (default,?, ?, ? , ? , ? , ?,?)";
+            PreparedStatement statement = Conexion.prepareStatement(sql);
+            InputStream inputStream = new FileInputStream(new File(tdb.getDoc_uno()));
+            statement.setBlob(1, inputStream);
+            inputStream = new FileInputStream(new File(tdb.getDoc_dos()));
+            statement.setBlob(2, inputStream);
+            inputStream = new FileInputStream(new File(tdb.getDoc_tres()));
+            statement.setBlob(3, inputStream);
+            inputStream = new FileInputStream(new File(tdb.getDoc_cuatro()));
+            statement.setBlob(4, inputStream);
+            inputStream = new FileInputStream(new File(tdb.getDoc_cinco()));
+            statement.setBlob(5, inputStream);
+            statement.setInt(6, tdb.getId_beneficiario());
+            statement.setTimestamp(7, new Timestamp(100));
+            int row = statement.executeUpdate();
+            if (row > 0) {
+                System.out.println("A contact was inserted with photo image.");
+                procesoExitoso = 1;
+            }
+            inputStream.close();
+        } catch (SQLException | IOException ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+            procesoExitoso =0;
+        }
+        return procesoExitoso;
+    
     }
     
 }

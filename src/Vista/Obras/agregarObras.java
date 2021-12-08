@@ -32,7 +32,7 @@ public class agregarObras extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         System.out.println("agregarObras:"+this.ageObra);
        // System.out.println("agregarObras:"+this.ageObra);
-        campoIDBeneficiario.setText("0");
+//        campoIDBeneficiario.setText("0");
         cbd.openConnection();
         idInformacionObra = cbd.obtenerIDInformacionObras()+1;
         cbd.closeConnection();
@@ -57,7 +57,6 @@ public class agregarObras extends javax.swing.JFrame {
         campoNombreFondo = new javax.swing.JTextField();
         campoNombreFolio = new javax.swing.JTextField();
         campoNumeroObra = new javax.swing.JTextField();
-        agregarBeneficiariosButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         campoTipoObra = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -68,8 +67,6 @@ public class agregarObras extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        campoIDBeneficiario = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         campoFinObra = new com.toedter.calendar.JDateChooser();
         campoInicioObra = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
@@ -117,21 +114,9 @@ public class agregarObras extends javax.swing.JFrame {
         campoNumeroObra.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         campoNumeroObra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
-        agregarBeneficiariosButton.setBackground(new java.awt.Color(255, 255, 255));
-        agregarBeneficiariosButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        agregarBeneficiariosButton.setText("Agregar beneficiarios");
-        agregarBeneficiariosButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        agregarBeneficiariosButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        agregarBeneficiariosButton.setOpaque(false);
-        agregarBeneficiariosButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregarBeneficiariosButtonActionPerformed(evt);
-            }
-        });
-
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        jButton2.setText("ACEPTAR");
+        jButton2.setText("GUARDAR");
         jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setOpaque(false);
@@ -169,13 +154,6 @@ public class agregarObras extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel8.setText("Tipo Obra");
 
-        campoIDBeneficiario.setEditable(false);
-        campoIDBeneficiario.setText("-1");
-        campoIDBeneficiario.setToolTipText("");
-
-        jLabel9.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel9.setText("ID Beneficiario:");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -194,14 +172,9 @@ public class agregarObras extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(campoIDBeneficiario)
-                                .addGap(76, 76, 76)
-                                .addComponent(agregarBeneficiariosButton, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addComponent(campoTipoObra, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,16 +185,16 @@ public class agregarObras extends javax.swing.JFrame {
                                     .addComponent(campoNombraLocalidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(campoNombreObra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(campoNombreFondo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(campoNombreFolio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(campoInicioObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel7)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(campoFinObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                    .addComponent(campoNombreFolio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(campoInicioObra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(campoFinObra, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(37, 37, 37))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(228, 228, 228)
+                .addGap(231, 231, 231)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -248,26 +221,22 @@ public class agregarObras extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoNumeroObra, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(jLabel7))
-                    .addComponent(campoFinObra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoInicioObra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 18, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7)))
+                    .addComponent(campoInicioObra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(campoFinObra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoTipoObra, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(agregarBeneficiariosButton)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(campoIDBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9)))
-                .addGap(18, 18, 18)
+                .addGap(36, 36, 36)
                 .addComponent(jButton2)
-                .addGap(14, 14, 14))
+                .addGap(32, 32, 32))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 440));
@@ -324,18 +293,10 @@ public class agregarObras extends javax.swing.JFrame {
         catObs.show();
     }//GEN-LAST:event_izquierda_ButtonMouseClicked
 
-    private void agregarBeneficiariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBeneficiariosButtonActionPerformed
-        agregarBeneficiarios agBen = new agregarBeneficiarios(this, rootPaneCheckingEnabled,ageObra,idInformacionObra);
-        agBen.show();
-    }//GEN-LAST:event_agregarBeneficiariosButtonActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         System.out.println("Se inicia el guardado del beneficiario");
-        int campoBenficiario = -1;
-        campoBenficiario = Integer.parseInt(campoIDBeneficiario.getText());
-        int procesoExitoso = -1;
-        if(campoBenficiario>=0){
+            int procesoExitoso = -1;
             if(campoTipoObra.getSelectedIndex() != 0){
                 cbd.openConnection();
                 toi.setId(idInformacionObra);// Adquiere la información y le suma un digito
@@ -356,17 +317,17 @@ public class agregarObras extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Por favor, elije un tipo de obra.");
             }
             if(procesoExitoso == 1){
-                JOptionPane.showMessageDialog(null, "Los datos fueron guardados con éxito.");
+                JOptionPane.showMessageDialog(null, "Todo Listo, Los datos fueron guardados con éxito. "
+                        + "Ahora guarda un beneficiario a tu obra. ");
+                agregarBeneficiarios agb = new agregarBeneficiarios(null, rootPaneCheckingEnabled, ageObra, idInformacionObra,toi);
+                agb.show();
                 this.dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "Los datos no fueron guardados con éxito.\n"
                         + "Verífica tus datos e intenta nuevamente.");     
             }
             //toi.setAge(Integer.parseInt(ageObra));
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "Añade un beneficiario para continuar.");
-        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -406,9 +367,7 @@ public class agregarObras extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField a;
-    private javax.swing.JButton agregarBeneficiariosButton;
     private com.toedter.calendar.JDateChooser campoFinObra;
-    private javax.swing.JTextField campoIDBeneficiario;
     private com.toedter.calendar.JDateChooser campoInicioObra;
     private javax.swing.JTextField campoNombraLocalidad;
     private javax.swing.JTextField campoNombreFolio;
@@ -427,7 +386,6 @@ public class agregarObras extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField3;
