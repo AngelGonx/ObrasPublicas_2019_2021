@@ -107,6 +107,11 @@ public class informacionObra extends javax.swing.JFrame {
         archivosButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         archivosButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         archivosButton.setOpaque(false);
+        archivosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                archivosButtonActionPerformed(evt);
+            }
+        });
 
         btnEditarObra.setBackground(new java.awt.Color(255, 255, 255));
         btnEditarObra.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
@@ -304,9 +309,9 @@ public class informacionObra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void izquierda_ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_izquierda_ButtonMouseClicked
-//        seleccionObra selOb = new seleccionObra(ageObra);
+        seleccionObra selOb = new seleccionObra(ageObra, toi.getId_tipo_obra());
         this.dispose();
-//        selOb.show();
+        selOb.show();
     }//GEN-LAST:event_izquierda_ButtonMouseClicked
 
     private void derecha_BottonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_derecha_BottonMouseClicked
@@ -352,6 +357,13 @@ public class informacionObra extends javax.swing.JFrame {
         }
         //Actualiza la información de la obra.
     }//GEN-LAST:event_btnEditarObraActionPerformed
+
+    private void archivosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archivosButtonActionPerformed
+        // TODO add your handling code here:
+        archivosObra aro = new archivosObra(ageObra,toi);
+        aro.show();
+        this.dispose();
+    }//GEN-LAST:event_archivosButtonActionPerformed
 
     /**
      * @param args the command line arguments

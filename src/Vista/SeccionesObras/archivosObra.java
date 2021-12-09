@@ -5,6 +5,13 @@
  */
 package Vista.SeccionesObras;
 
+import Controlador.ControladorBaseDeDatos;
+import Controlador.ControladorUtilerias;
+import Modelo.TablaArchivos;
+import Modelo.TablaObrasInformacion;
+import Vista.Beneficiarios.documentosBeneficiario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
@@ -14,11 +21,64 @@ public class archivosObra extends javax.swing.JFrame {
     /**
      * Creates new form archivosObra
      */
+    boolean actualizacion = false;
+    TablaObrasInformacion toi = new TablaObrasInformacion();
+    ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
+    ControladorUtilerias cut = new ControladorUtilerias();
+    TablaArchivos tar = new TablaArchivos();
     String ageObra = "";
-    public archivosObra() {
+    public archivosObra(String ageObra,TablaObrasInformacion toi) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.ageObra = ageObra;
+        this.toi = toi;
+        campoNObra.setText("Archivos Número de Obra: "+toi.getNumero());
+        System.out.println("Content TOI:"+toi.toString());
+        
+        
+        /*Validamos no exista la información sino precargamos la info*/
+        
+        this.tar.setId_obra(toi.getId());
+        cbd.openConnection();
+        this.tar = cbd.obtenerArchivos(this.tar);
+        cbd.closeConnection();
+//        System.out.println(this.tar);
+        if(this.tar.getId() > 0){
+            jProgressBar1.setValue(100);
+            jButton1.setEnabled(false);
+            jProgressBar2.setValue(100);
+            jButton2.setEnabled(false);
+            jProgressBar3.setValue(100);
+            jButton3.setEnabled(false);
+            jProgressBar4.setValue(100);
+            jButton4.setEnabled(false);
+            jProgressBar5.setValue(100);
+            jButton5.setEnabled(false);
+            jProgressBar6.setValue(100);
+            jButton6.setEnabled(false);
+            jProgressBar7.setValue(100);
+            jButton7.setEnabled(false);
+            actualizacion = true;
+            btnGuardar.setText("Actualizar");
+            System.out.println("Se ejecuta otra vez");
+        }
+        else{
+            this.tar.setArchivo_uno("");
+            //btnSaveUno.setVisible(false);
+            this.tar.setArchivo_dos("");
+            //btnSaveDos.setVisible(false);
+            this.tar.setArchivo_tres("");
+            //btnSaveTres.setVisible(false);
+            this.tar.setArchivo_cuatro("");
+            //btnSaveCuatro.setVisible(false);
+            this.tar.setArchivo_cinco("");
+            //btnSaveCinco.setVisible(false);
+            this.tar.setArchivo_seis("");
+            //btnSaveSeis.setVisible(false);
+            this.tar.setArchivo_siete("");
+            //btnSaveSiete.setVisible(false);
+            actualizacion = false;
+        }
     }
 
     /**
@@ -32,7 +92,7 @@ public class archivosObra extends javax.swing.JFrame {
 
         a = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        campoNObra = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         btnEliminarUno = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -43,14 +103,14 @@ public class archivosObra extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        btnEliminarCinco = new javax.swing.JButton();
+        btnEliminarSeis = new javax.swing.JButton();
         btnEliminarDos = new javax.swing.JButton();
         btnEliminarTres = new javax.swing.JButton();
         btnEliminarCuatro = new javax.swing.JButton();
         jProgressBar1 = new javax.swing.JProgressBar();
-        jProgressBar5 = new javax.swing.JProgressBar();
+        jProgressBar6 = new javax.swing.JProgressBar();
         jProgressBar2 = new javax.swing.JProgressBar();
         jProgressBar4 = new javax.swing.JProgressBar();
         jProgressBar3 = new javax.swing.JProgressBar();
@@ -59,6 +119,17 @@ public class archivosObra extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        btnGuardar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jProgressBar5 = new javax.swing.JProgressBar();
+        jButton5 = new javax.swing.JButton();
+        btnEliminarCinco = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jProgressBar7 = new javax.swing.JProgressBar();
+        jButton7 = new javax.swing.JButton();
+        btnEliminarSiete = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
         derecha_Botton = new javax.swing.JLabel();
@@ -71,18 +142,18 @@ public class archivosObra extends javax.swing.JFrame {
         a.setFont(new java.awt.Font("Comic Sans MS", 1, 32)); // NOI18N
         a.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         a.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-        getContentPane().add(a, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 600, 30));
+        getContentPane().add(a, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 30));
 
         jTextField3.setEditable(false);
         jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 600, 40));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 630, 700, 40));
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jTextField4.setText(" Archivos \"numero obra\"");
-        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
+        campoNObra.setEditable(false);
+        campoNObra.setBackground(new java.awt.Color(255, 255, 255));
+        campoNObra.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        campoNObra.setText(" Archivos \"numero obra\"");
+        campoNObra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+        getContentPane().add(campoNObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
@@ -94,6 +165,11 @@ public class archivosObra extends javax.swing.JFrame {
         btnEliminarUno.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         btnEliminarUno.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminarUno.setOpaque(false);
+        btnEliminarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarUnoActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEliminarUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 105, -1));
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -114,7 +190,7 @@ public class archivosObra extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel5.setText("nombreArch.pdf");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -122,6 +198,11 @@ public class archivosObra extends javax.swing.JFrame {
         jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setOpaque(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, 85, 21));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
@@ -130,6 +211,11 @@ public class archivosObra extends javax.swing.JFrame {
         jButton3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setOpaque(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 85, 21));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
@@ -138,15 +224,25 @@ public class archivosObra extends javax.swing.JFrame {
         jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setOpaque(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, 85, 21));
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
-        jButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jButton5.setText("Buscar..");
-        jButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setOpaque(false);
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 85, 21));
+        jButton6.setBackground(new java.awt.Color(255, 255, 255));
+        jButton6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButton6.setText("Buscar..");
+        jButton6.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setOpaque(false);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 380, 85, 21));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -154,15 +250,25 @@ public class archivosObra extends javax.swing.JFrame {
         jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setOpaque(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 85, 21));
 
-        btnEliminarCinco.setBackground(new java.awt.Color(255, 255, 255));
-        btnEliminarCinco.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        btnEliminarCinco.setText("Eliminar");
-        btnEliminarCinco.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        btnEliminarCinco.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEliminarCinco.setOpaque(false);
-        jPanel1.add(btnEliminarCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 105, -1));
+        btnEliminarSeis.setBackground(new java.awt.Color(255, 255, 255));
+        btnEliminarSeis.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnEliminarSeis.setText("Eliminar");
+        btnEliminarSeis.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        btnEliminarSeis.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEliminarSeis.setOpaque(false);
+        btnEliminarSeis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarSeisActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminarSeis, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 370, 105, -1));
 
         btnEliminarDos.setBackground(new java.awt.Color(255, 255, 255));
         btnEliminarDos.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
@@ -170,6 +276,11 @@ public class archivosObra extends javax.swing.JFrame {
         btnEliminarDos.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         btnEliminarDos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminarDos.setOpaque(false);
+        btnEliminarDos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarDosActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEliminarDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 105, -1));
 
         btnEliminarTres.setBackground(new java.awt.Color(255, 255, 255));
@@ -178,6 +289,11 @@ public class archivosObra extends javax.swing.JFrame {
         btnEliminarTres.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         btnEliminarTres.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminarTres.setOpaque(false);
+        btnEliminarTres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarTresActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEliminarTres, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 105, -1));
 
         btnEliminarCuatro.setBackground(new java.awt.Color(255, 255, 255));
@@ -186,9 +302,14 @@ public class archivosObra extends javax.swing.JFrame {
         btnEliminarCuatro.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         btnEliminarCuatro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminarCuatro.setOpaque(false);
+        btnEliminarCuatro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarCuatroActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEliminarCuatro, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, 105, -1));
         jPanel1.add(jProgressBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 57, 226, 21));
-        jPanel1.add(jProgressBar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 226, 21));
+        jPanel1.add(jProgressBar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 226, 21));
         jPanel1.add(jProgressBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 226, 21));
         jPanel1.add(jProgressBar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 226, 21));
         jPanel1.add(jProgressBar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 226, 21));
@@ -207,13 +328,91 @@ public class archivosObra extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel10.setText("Actualizar o Añadir un Archivo:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel11.setText("Actualizar o Añadir un Archivo:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 440));
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, 140, -1));
+
+        jLabel8.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel8.setText("nombreArch.pdf");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+        jPanel1.add(jProgressBar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 226, 21));
+
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButton5.setText("Buscar..");
+        jButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setOpaque(false);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 85, 21));
+
+        btnEliminarCinco.setBackground(new java.awt.Color(255, 255, 255));
+        btnEliminarCinco.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnEliminarCinco.setText("Eliminar");
+        btnEliminarCinco.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        btnEliminarCinco.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEliminarCinco.setOpaque(false);
+        btnEliminarCinco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarCincoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminarCinco, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 320, 105, -1));
+
+        jLabel12.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel12.setText("nombreArch.pdf");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
+        jPanel1.add(jProgressBar7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 226, 21));
+
+        jButton7.setBackground(new java.awt.Color(255, 255, 255));
+        jButton7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jButton7.setText("Buscar..");
+        jButton7.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton7.setOpaque(false);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, 85, 21));
+
+        btnEliminarSiete.setBackground(new java.awt.Color(255, 255, 255));
+        btnEliminarSiete.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        btnEliminarSiete.setText("Eliminar");
+        btnEliminarSiete.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        btnEliminarSiete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEliminarSiete.setOpaque(false);
+        btnEliminarSiete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarSieteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminarSiete, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, 105, -1));
+
+        jLabel13.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel13.setText("Actualizar o Añadir un Archivo:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel14.setText("Actualizar o Añadir un Archivo:");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 700, 550));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 4, 0, 4, new java.awt.Color(0, 0, 0)));
@@ -241,7 +440,7 @@ public class archivosObra extends javax.swing.JFrame {
                 .addComponent(izquierda_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(derecha_Botton)
-                .addContainerGap(530, Short.MAX_VALUE))
+                .addContainerGap(630, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,20 +451,208 @@ public class archivosObra extends javax.swing.JFrame {
                     .addComponent(derecha_Botton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 600, 30));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 700, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void izquierda_ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_izquierda_ButtonMouseClicked
-//        seleccionObra selOb = new seleccionObra(ageObra);
+       seleccionObra selOb = new seleccionObra(ageObra,toi.getId_tipo_obra());
         this.dispose();
-//        selOb.show();
+        selOb.show();
     }//GEN-LAST:event_izquierda_ButtonMouseClicked
 
     private void derecha_BottonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_derecha_BottonMouseClicked
 
     }//GEN-LAST:event_derecha_BottonMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String ruta = cut.obtenerRuta(3);
+        System.out.println(ruta);
+        if(!ruta.equals("")){
+            tar.setArchivo_uno(ruta);
+            jProgressBar1.setValue(100);
+            jButton1.setEnabled(false);
+        }
+        else{
+            
+            JOptionPane.showMessageDialog(null, "Por favor, carga una archivo válido");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        cbd.openConnection();
+       int procesoExitoso = 0;
+       //System.out.println(tar.toString());
+       if(!tar.getArchivo_uno().isEmpty() && !tar.getArchivo_dos().isEmpty() && 
+               !tar.getArchivo_tres().isEmpty() && 
+               !tar.getArchivo_cuatro().isEmpty()&& 
+               !tar.getArchivo_cinco().isEmpty() && !tar.getArchivo_seis().isEmpty() && 
+               !tar.getArchivo_siete().isEmpty() ){
+               if(actualizacion)
+                procesoExitoso = cbd.actualizaArchivos(tar);   
+               else
+                procesoExitoso = cbd.insertaArchivos(tar);
+        if(procesoExitoso !=0){
+                JOptionPane.showMessageDialog(null, "Se guardaron las fotos de manera éxitosa.");
+//                documentosBeneficiario docben = new documentosBeneficiario(ageObra, tar);
+//                docben.show();
+                informacionObra info = new informacionObra(ageObra, tar.getId_obra());
+                info.show();
+                this.dispose();
+           }
+        else{
+               JOptionPane.showMessageDialog(null, "No se guardaron los documentos de manera éxitosa.");
+        }
+       }
+       else{
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa todos los documentos.");
+       }
+       
+       cbd.closeConnection();
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String ruta = cut.obtenerRuta(3);
+        System.out.println(ruta);
+        if(!ruta.equals("")){
+            tar.setArchivo_dos(ruta);
+            jProgressBar2.setValue(100);
+            jButton2.setEnabled(false);
+        }
+        else{
+            
+            JOptionPane.showMessageDialog(null, "Por favor, carga una archivo válido");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        String ruta = cut.obtenerRuta(3);
+        System.out.println(ruta);
+        if(!ruta.equals("")){
+            tar.setArchivo_tres(ruta);
+            jProgressBar3.setValue(100);
+            jButton3.setEnabled(false);
+        }
+        else{
+            
+            JOptionPane.showMessageDialog(null, "Por favor, carga una archivo válido");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        String ruta = cut.obtenerRuta(3);
+        System.out.println(ruta);
+        if(!ruta.equals("")){
+            tar.setArchivo_cuatro(ruta);
+            jProgressBar4.setValue(100);
+            jButton4.setEnabled(false);
+        }
+        else{
+            
+            JOptionPane.showMessageDialog(null, "Por favor, carga una archivo válido");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        String ruta = cut.obtenerRuta(3);
+        System.out.println(ruta);
+        if(!ruta.equals("")){
+            tar.setArchivo_cinco(ruta);
+            jProgressBar5.setValue(100);
+            jButton5.setEnabled(false);
+        }
+        else{
+            
+            JOptionPane.showMessageDialog(null, "Por favor, carga una archivo válido");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        String ruta = cut.obtenerRuta(3);
+        System.out.println(ruta);
+        if(!ruta.equals("")){
+            tar.setArchivo_seis(ruta);
+            jProgressBar6.setValue(100);
+            jButton6.setEnabled(false);
+        }
+        else{
+            
+            JOptionPane.showMessageDialog(null, "Por favor, carga una archivo válido");
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        String ruta = cut.obtenerRuta(3);
+        System.out.println(ruta);
+        if(!ruta.equals("")){
+            tar.setArchivo_siete(ruta);
+            jProgressBar7.setValue(100);
+            jButton7.setEnabled(false);
+        }
+        else{
+            
+            JOptionPane.showMessageDialog(null, "Por favor, carga una archivo válido");
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void btnEliminarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUnoActionPerformed
+        // TODO add your handling code here:
+            tar.setArchivo_uno("");
+            jProgressBar1.setValue(0);
+            jButton1.setEnabled(true);
+    }//GEN-LAST:event_btnEliminarUnoActionPerformed
+
+    private void btnEliminarDosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarDosActionPerformed
+        // TODO add your handling code here:
+        tar.setArchivo_dos("");
+            jProgressBar2.setValue(0);
+            jButton2.setEnabled(true);
+    }//GEN-LAST:event_btnEliminarDosActionPerformed
+
+    private void btnEliminarTresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarTresActionPerformed
+        // TODO add your handling code here:
+            tar.setArchivo_tres("");
+            jProgressBar3.setValue(0);
+            jButton3.setEnabled(true);
+    }//GEN-LAST:event_btnEliminarTresActionPerformed
+
+    private void btnEliminarCuatroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCuatroActionPerformed
+        // TODO add your handling code here:
+            tar.setArchivo_cuatro("");
+            jProgressBar4.setValue(0);
+            jButton4.setEnabled(true);
+    }//GEN-LAST:event_btnEliminarCuatroActionPerformed
+
+    private void btnEliminarCincoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCincoActionPerformed
+        // TODO add your handling code here:
+            tar.setArchivo_cinco("");
+            jProgressBar5.setValue(0);
+            jButton5.setEnabled(true);
+    }//GEN-LAST:event_btnEliminarCincoActionPerformed
+
+    private void btnEliminarSeisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSeisActionPerformed
+        // TODO add your handling code here:
+            tar.setArchivo_seis("");
+            jProgressBar6.setValue(0);
+            jButton6.setEnabled(true);
+    }//GEN-LAST:event_btnEliminarSeisActionPerformed
+
+    private void btnEliminarSieteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarSieteActionPerformed
+        // TODO add your handling code here:
+            tar.setArchivo_siete("");
+            jProgressBar7.setValue(0);
+            jButton7.setEnabled(true);
+    }//GEN-LAST:event_btnEliminarSieteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -307,8 +694,12 @@ public class archivosObra extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminarCinco;
     private javax.swing.JButton btnEliminarCuatro;
     private javax.swing.JButton btnEliminarDos;
+    private javax.swing.JButton btnEliminarSeis;
+    private javax.swing.JButton btnEliminarSiete;
     private javax.swing.JButton btnEliminarTres;
     private javax.swing.JButton btnEliminarUno;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JTextField campoNObra;
     private javax.swing.JLabel derecha_Botton;
     private javax.swing.JLabel izquierda_Button;
     private javax.swing.JButton jButton1;
@@ -316,15 +707,21 @@ public class archivosObra extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -333,7 +730,8 @@ public class archivosObra extends javax.swing.JFrame {
     private javax.swing.JProgressBar jProgressBar3;
     private javax.swing.JProgressBar jProgressBar4;
     private javax.swing.JProgressBar jProgressBar5;
+    private javax.swing.JProgressBar jProgressBar6;
+    private javax.swing.JProgressBar jProgressBar7;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

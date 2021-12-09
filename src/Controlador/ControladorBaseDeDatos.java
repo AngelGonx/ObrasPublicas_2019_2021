@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.TablaArchivos;
 import Modelo.TablaBeneficiarios;
 import Modelo.TablaDocumentosBeneficiarios;
 import Modelo.TablaFotosBeneficiarios;
@@ -12,8 +13,11 @@ import Modelo.TablaObrasInformacion;
 import Modelo.TablaUsuarios;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -517,6 +521,223 @@ Crecenciales de DB
             System.out.println(ex.getMessage());
             //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
             Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            operacionExitosa = 0;
+        }
+
+        return operacionExitosa;
+    }
+    
+    
+    /*
+    Clase: Se insertan los archivos para la obra;
+    Fecha: 08/12/2021
+    Create: José Luis Caamal Ic
+    */
+    public int insertaArchivos(TablaArchivos tar){
+        int procesoExitoso = 0;
+        try {
+            String querySetLimit = "SET GLOBAL max_allowed_packet=104857600;";  // 10 MB
+            Statement stSetLimit = Conexion.createStatement();
+            stSetLimit.execute(querySetLimit);
+            String sql = "INSERT INTO tabla_archivos (id,"
+                    + "archivo_uno,"
+                    + "archivo_dos,"
+                    + "archivo_tres,"
+                    + "archivo_cuatro,"
+                    + "archivo_cinco,"
+                    + "archivo_seis,"
+                    + "archivo_siete,"
+                    + "id_obra,"
+                    + "created_at) values (default,?, ?, ? , ? , ? , ?,?,?,?)";
+            PreparedStatement statement = Conexion.prepareStatement(sql);
+            InputStream inputStream = new FileInputStream(new File(tar.getArchivo_uno()));
+            statement.setBlob(1, inputStream);
+            inputStream = new FileInputStream(new File(tar.getArchivo_dos()));
+            statement.setBlob(2, inputStream);
+            inputStream = new FileInputStream(new File(tar.getArchivo_tres()));
+            statement.setBlob(3, inputStream);
+            inputStream = new FileInputStream(new File(tar.getArchivo_cuatro()));
+            statement.setBlob(4, inputStream);
+            inputStream = new FileInputStream(new File(tar.getArchivo_cinco()));
+            statement.setBlob(5, inputStream);
+            inputStream = new FileInputStream(new File(tar.getArchivo_seis()));
+            statement.setBlob(6, inputStream);
+            inputStream = new FileInputStream(new File(tar.getArchivo_siete()));
+            statement.setBlob(7, inputStream);
+            statement.setInt(8, tar.getId_obra());
+            statement.setTimestamp(9, new Timestamp(100));
+            int row = statement.executeUpdate();
+            if (row > 0) {
+                System.out.println("A contact was inserted with date.");
+                procesoExitoso = 1;
+            }
+            inputStream.close();
+        } catch (SQLException | IOException ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+            procesoExitoso =0;
+        }
+        return procesoExitoso;
+    
+    }
+    
+    /*Nombre: Clase Consulta TablaObrasInformacion toi
+    Función:Consulta la TablaObrasInformacion toi
+    Aut@r: José Luis Caamal Ic
+    Parametros: */
+    public TablaArchivos obtenerArchivos(TablaArchivos tar) {
+        TablaArchivos tarAux = new TablaArchivos();
+        String Query = "SELECT * FROM tabla_archivos WHERE id_obra = '" + tar.getId_obra()+ "'";
+        System.out.println(Query);
+        try {
+            Statement st;
+            st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+            /*
+                Table: tabla_archivos
+                Columns:
+                id int AI PK 
+                archivo_uno longblob 
+                archivo_dos longblob 
+                archivo_tres longblob 
+                archivo_cuatro longblob 
+                archivo_cinco longblob 
+                archivo_seis longblob 
+                archivo_siete longblob 
+                id_obra int 
+                created_at
+            */
+            while (resultSet.next()) {
+                tarAux.setId(resultSet.getInt("id"));
+                tarAux.setArchivo_uno(resultSet.getString("archivo_uno"));
+                tarAux.setArchivo_dos(resultSet.getString("archivo_dos"));
+                tarAux.setArchivo_tres(resultSet.getString("archivo_tres"));
+                tarAux.setArchivo_cuatro(resultSet.getString("archivo_cuatro"));
+                tarAux.setArchivo_cinco(resultSet.getString("archivo_cinco"));
+                tarAux.setArchivo_seis(resultSet.getString("archivo_seis"));
+                tarAux.setArchivo_siete(resultSet.getString("archivo_siete"));
+                tarAux.setId_obra(resultSet.getInt("id_obra"));
+                tarAux.setCreated_at(resultSet.getTimestamp("created_at"));
+//                toiAux.setNombre(resultSet.getString("nombre"));
+//                toiAux.setPrecio(resultSet.getString("precio"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tarAux;
+    }
+    
+    public int guardarArchivo(String filePath,int docGuardar,TablaArchivos tar){
+        int operacionExitosa = 0;
+//        String filePath = "C:/src/m.jpg";
+        int BUFFER_SIZE = 4096;
+        try {
+//            Connection conn = DriverManager.getConnection(url, user, password);
+
+            String sql = "SELECT * FROM tabla_archivos "
+                    + "WHERE id =?";
+            PreparedStatement statement = Conexion.prepareStatement(sql);
+            statement.setInt(1, tar.getId());
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                Blob blob = null;
+                if(docGuardar == 1)
+                    blob = result.getBlob("archivo_uno");
+                if(docGuardar == 2)
+                    blob = result.getBlob("archivo_dos");
+                if(docGuardar == 3)
+                    blob = result.getBlob("archivo_tres");
+                if(docGuardar == 4)
+                    blob = result.getBlob("archivo_cuatro");
+                if(docGuardar == 5)
+                    blob = result.getBlob("archivo_cinco");
+                if(docGuardar == 6)
+                    blob = result.getBlob("archivo_seis");
+                if(docGuardar == 7)
+                    blob = result.getBlob("archivo_siete");
+                
+                InputStream inputStream = blob.getBinaryStream();
+                OutputStream outputStream = new FileOutputStream(filePath);
+                int bytesRead = -1;
+                byte[] buffer = new byte[BUFFER_SIZE];
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                inputStream.close();
+                outputStream.close();
+                System.out.println("File saved");
+                operacionExitosa = 1;
+            }
+            Conexion.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            operacionExitosa = 0;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            operacionExitosa = 0;
+        }
+        return operacionExitosa;
+    
+    }
+    
+    
+     /*Nombre: Clase actualizaObrasInformacio
+    Función: Actualiza las multas a los automovilistas
+    Aut@r: José Luis Caamal Ic
+    Parametros: */
+    public int actualizaArchivos(TablaArchivos tar){
+        int operacionExitosa = 0;
+        try {
+            String querySetLimit = "SET GLOBAL max_allowed_packet=104857600;";  // 10 MB
+            Statement stSetLimit = Conexion.createStatement();
+            stSetLimit.execute(querySetLimit);
+            //Inica el statement de la conexión
+            String Query = "UPDATE tabla_archivos "
+                    + "SET "
+                    + "archivo_uno=(?),"
+                    + "archivo_dos=(?),"
+                    + "archivo_tres=(?),"
+                    + "archivo_cuatro=(?),"
+                    + "archivo_cinco=(?),"
+                    + "archivo_seis=(?),"
+                    + "archivo_siete=(?) "
+                    + "WHERE id = " + tar.getId() + "";
+            
+            System.out.println(Query);
+            PreparedStatement st = Conexion.prepareStatement(Query);
+            
+            InputStream inputStream = new FileInputStream(new File(tar.getArchivo_uno()));
+            st.setBlob(1, inputStream);
+            inputStream = new FileInputStream(new File(tar.getArchivo_dos()));
+            st.setBlob(2, inputStream);
+            inputStream = new FileInputStream(new File(tar.getArchivo_tres()));
+            st.setBlob(3, inputStream);
+            inputStream = new FileInputStream(new File(tar.getArchivo_cuatro()));
+            st.setBlob(4, inputStream);
+            inputStream = new FileInputStream(new File(tar.getArchivo_cinco()));
+            st.setBlob(5, inputStream);
+            inputStream = new FileInputStream(new File(tar.getArchivo_seis()));
+            st.setBlob(6, inputStream);
+            inputStream = new FileInputStream(new File(tar.getArchivo_siete()));
+            st.setBlob(7, inputStream);
+            st.executeUpdate(Query);
+            operacionExitosa = 1;
+            int row = st.executeUpdate();
+            if (row > 0) {
+                System.out.println("A contact was inserted with photo image.");
+                operacionExitosa = 1;
+            }
+            inputStream.close();
+            //JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            operacionExitosa = 0;
+        }catch (IOException ex) {
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
             operacionExitosa = 0;
         }
 

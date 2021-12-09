@@ -31,8 +31,7 @@ public class fotosBeneficiario extends javax.swing.JFrame {
         this.ageObra = ageObra;
         System.out.println("El año es:"+ageObra+" La informacion de id beneficiario: "+tbf.getId());
         //Valido que el usuario tenga información
-        cbd.openConnection();
-        cbd.closeConnection();
+        
         tfb.setFoto_uno("");
         tfb.setFoto_dos("");
         tfb.setFoto_tres("");

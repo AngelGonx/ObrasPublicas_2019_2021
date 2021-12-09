@@ -394,6 +394,8 @@ public class ControladorUtilerias {
         filtro = new FileNameExtensionFilter("*.jpg", "jpg");
     if(tipoDocumento == 2)
         filtro = new FileNameExtensionFilter("*.pdf", "pdf");
+    if(tipoDocumento == 3)
+        filtro = new FileNameExtensionFilter("*.pdf", "pdf");
     
     String cadena="";
     //Le indicamos el filtro
