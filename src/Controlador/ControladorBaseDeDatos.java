@@ -395,5 +395,133 @@ Crecenciales de DB
     
     }
     
+    /*Nombre: Clase modeloVehiculoPropietario
+    Función: Obtiene el modelo de los vehiculos y propietarios y las pinta en la tabla
+    Aut@r: Angel 
+    Parametros: */
+    public DefaultTableModel modeloInformacionObras(String columna[],int tipoObra, String ageObra) {
+        DefaultTableModel modeloRetorno;
+        modeloRetorno = new DefaultTableModel(null, columna);
+        try {
+            String Query = "SELECT * FROM tabla_obras_informacion where id_tipo_obra ="+tipoObra+" and age='"+ageObra+"'";
+
+            System.out.println("Contenido en ejecución: " + Query);
+
+            PreparedStatement us = Conexion.prepareStatement(Query);
+            ResultSet res = us.executeQuery();
+            Object objDatos[] = new Object[columna.length]; //Siempre debe cconexoincidir con el numero de columnas!
+
+            while (res.next()) {
+                for (int i = 0; i < columna.length; i++) {
+                    objDatos[i] = res.getObject(i + 1);
+                    //System.out.println(objDatos[i]);
+                }
+                modeloRetorno.addRow(objDatos);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.toString());
+        }
+
+        return modeloRetorno;
+    }
+    
+    /*Nombre: Clase Consulta TablaObrasInformacion toi
+    Función:Consulta la TablaObrasInformacion toi
+    Aut@r: José Luis Caamal Ic
+    Parametros: */
+    public TablaObrasInformacion obtenerInformacion(TablaObrasInformacion toi) {
+        TablaObrasInformacion toiAux = new TablaObrasInformacion();
+        String Query = "SELECT * FROM tabla_obras_informacion WHERE id = '" + toi.getId() + "'";
+        System.out.println(Query);
+        try {
+            Statement st;
+            st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+            /*
+                Table: tabla_obras_informacion
+                Columns:
+                id int AI PK 
+                obra varchar(60) 
+                localidad varchar(45) 
+                fondo varchar(45) 
+                folio varchar(45) 
+                numero varchar(45) 
+                inicio varchar(45) 
+                fin varchar(45) 
+                age int 
+                id_tipo_obra int 
+                created_at datetime
+            */
+            while (resultSet.next()) {
+                toiAux.setId(resultSet.getInt("id"));
+                toiAux.setObra(resultSet.getString("obra"));
+                toiAux.setLocalidad(resultSet.getString("localidad"));
+                toiAux.setFondo(resultSet.getString("fondo"));
+                toiAux.setFolio(resultSet.getString("folio"));
+                toiAux.setNumero(resultSet.getString("numero"));
+                toiAux.setInicio(resultSet.getString("inicio"));
+                toiAux.setFin(resultSet.getString("fin"));
+                toiAux.setAge(resultSet.getInt("age"));
+                toiAux.setId_tipo_obra(resultSet.getInt("id_tipo_obra"));
+                toiAux.setCreated_at(resultSet.getTimestamp("created_at"));
+//                toiAux.setNombre(resultSet.getString("nombre"));
+//                toiAux.setPrecio(resultSet.getString("precio"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return toiAux;
+    }
+    
+    /*Nombre: Clase actualizaObrasInformacio
+    Función: Actualiza las multas a los automovilistas
+    Aut@r: José Luis Caamal Ic
+    Parametros: */
+    public int actualizaObrasInformacion(TablaObrasInformacion toi) {
+        int operacionExitosa = 0;
+        try {
+            /*
+                Table: tabla_obras_informacion
+                Columns:
+                id int AI PK 
+                obra varchar(60) 
+                localidad varchar(45) 
+                fondo varchar(45) 
+                folio varchar(45) 
+                numero varchar(45) 
+                inicio varchar(45) 
+                fin varchar(45) 
+                age int 
+                id_tipo_obra int 
+                created_at datetime
+            */
+            //Inica el statement de la conexión
+            String Query = ("UPDATE tabla_obras_informacion "
+                    + "SET "
+                    + "obra = '" + toi.getObra()+ "', "
+                    + "localidad = '" + toi.getLocalidad()+ "', "
+                    + "fondo = '" + toi.getFondo()+ "', "
+                    + "folio = '" + toi.getFolio()+ "', "
+                    + "numero = '" + toi.getNumero()+ "', "
+                    + "inicio = '" + toi.getInicio()+ "', "
+                    + "fin = '" + toi.getFin()+ "' "
+                    + "WHERE id = '" + toi.getId() + "'");
+            System.out.println(Query);
+            Statement st = Conexion.createStatement();
+            st.executeUpdate(Query);
+            operacionExitosa = 1;
+            //JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            operacionExitosa = 0;
+        }
+
+        return operacionExitosa;
+    }
+    
 }
 //Final de ControladorBaseDeDatos.

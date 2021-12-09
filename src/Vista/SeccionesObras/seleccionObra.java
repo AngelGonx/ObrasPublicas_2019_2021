@@ -5,7 +5,13 @@
  */
 package Vista.SeccionesObras;
 
+import Controlador.ControladorBaseDeDatos;
+import Controlador.ControladorUtilerias;
 import Vista.Obras.obrasAgregadas;
+import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * @author Ángel González Rincón
@@ -17,10 +23,52 @@ public class seleccionObra extends javax.swing.JFrame {
      * Creates new form seleccionObra
      */
     String ageObra = "";
-    public seleccionObra(String ageObra) {
+    DefaultTableModel modeloInformacionObras;
+    String[] columna = new String[]{"Id", "Nombre Obra",
+        "Localidad", "Fondo", "Folio", "Número", "Inicio de Obra","Fin de Obra", "Año",
+        "Tipo de Obra", "Fecha Creación"};
+    ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
+    ControladorUtilerias cut = new ControladorUtilerias();
+    String campovalorID = "0";
+    public seleccionObra(String ageObra,int tipoObra) {
         initComponents();
         this.setLocationRelativeTo(null);
+        cbd.openConnection();
+        modeloInformacionObras = cbd.modeloInformacionObras(columna,tipoObra,ageObra);
+        cbd.closeConnection();
         this.ageObra = ageObra;
+        campoDatosObra.setText("Obra : "+ageObra);
+        String tipoObraAux = "";
+        tipoObraAux = cut.tipoObra(tipoObra);
+        campoTipoObra.setText(tipoObraAux);
+        jTable1.setModel(modeloInformacionObras);
+        
+        /*Obtengo el valor que selecciono de la tabla*/
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = jTable1.rowAtPoint(evt.getPoint());
+                int col = 0;
+                if (row >= 0 && col >= 0) {
+                    String valor = jTable1.getModel().getValueAt(row, col).toString(); //Tomo el valor de el modelo de la tabla
+                    campovalorID = valor; //Obtengo el valor y lo seteo
+                    System.out.println("El ID Seleccionado es: "+campovalorID);
+                }
+//                col = 1;
+//                if (row >= 0 && col >= 0) {
+//                    String valor = tablaMultas.getModel().getValueAt(row, col).toString(); //Tomo el valor de el modelo de la tabla
+//                    campoNombreMulta.setText(valor); //Obtengo el valor del textfield
+//                }
+//                col = 3;
+//                if (row >= 0 && col >= 0) {
+//                    String valor = tablaMultas.getModel().getValueAt(row, col).toString(); //Tomo el valor de el modelo de la tabla
+//                    campoPrecio.setText(valor); //Obtengo el valor del textfield
+//                }
+            }
+        });
+
+        ((DefaultTableCellRenderer) jTable1.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment(SwingConstants.CENTER);
     }
 
     /**
@@ -34,12 +82,12 @@ public class seleccionObra extends javax.swing.JFrame {
 
         a = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        campoDatosObra = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         editarButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        campoTipoObra = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
         derecha_Botton = new javax.swing.JLabel();
@@ -54,18 +102,18 @@ public class seleccionObra extends javax.swing.JFrame {
         a.setFont(new java.awt.Font("Comic Sans MS", 1, 32)); // NOI18N
         a.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         a.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-        getContentPane().add(a, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 600, 30));
+        getContentPane().add(a, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1030, 30));
 
         jTextField3.setEditable(false);
         jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 600, 40));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 1030, 40));
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jTextField4.setText(" \"Obra\"\"Año\"");
-        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
+        campoDatosObra.setEditable(false);
+        campoDatosObra.setBackground(new java.awt.Color(255, 255, 255));
+        campoDatosObra.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        campoDatosObra.setText(" \"Obra\"\"Año\"");
+        campoDatosObra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+        getContentPane().add(campoDatosObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1030, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
@@ -77,7 +125,12 @@ public class seleccionObra extends javax.swing.JFrame {
         editarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         editarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         editarButton.setOpaque(false);
-        jPanel1.add(editarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(463, 371, 105, -1));
+        editarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(editarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 490, 105, -1));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
@@ -96,15 +149,15 @@ public class seleccionObra extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 73, 443, 230));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 73, 900, 410));
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField1.setText("\"TIPO OBRA\"");
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 47, 443, 30));
+        campoTipoObra.setEditable(false);
+        campoTipoObra.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        campoTipoObra.setText("\"TIPO OBRA\"");
+        campoTipoObra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        jPanel1.add(campoTipoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 47, 900, 30));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 440));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1030, 540));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 4, 0, 4, new java.awt.Color(0, 0, 0)));
@@ -132,7 +185,7 @@ public class seleccionObra extends javax.swing.JFrame {
                 .addComponent(izquierda_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(derecha_Botton)
-                .addContainerGap(526, Short.MAX_VALUE))
+                .addContainerGap(960, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,7 +196,7 @@ public class seleccionObra extends javax.swing.JFrame {
                     .addComponent(derecha_Botton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 600, 30));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 1030, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -157,6 +210,22 @@ public class seleccionObra extends javax.swing.JFrame {
     private void derecha_BottonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_derecha_BottonMouseClicked
 
     }//GEN-LAST:event_derecha_BottonMouseClicked
+
+    private void editarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButtonActionPerformed
+        // TODO add your handling code here:
+        //        System.out.println("");
+        int idObra = Integer.parseInt(campovalorID);
+        
+        if(idObra != 0){
+                informacionObra info = new informacionObra(ageObra, idObra);
+                info.show();
+                this.dispose();
+        } 
+        else{
+            JOptionPane.showMessageDialog(null, "Selecciona una obra de la lista para continuar.");
+        }
+        
+    }//GEN-LAST:event_editarButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,6 +264,8 @@ public class seleccionObra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField a;
+    private javax.swing.JTextField campoDatosObra;
+    private javax.swing.JTextField campoTipoObra;
     private javax.swing.JLabel derecha_Botton;
     private javax.swing.JButton editarButton;
     private javax.swing.JLabel izquierda_Button;
@@ -202,8 +273,6 @@ public class seleccionObra extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

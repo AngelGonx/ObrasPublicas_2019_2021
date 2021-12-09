@@ -148,6 +148,21 @@ public class ControladorUtilerias {
         return fechaDate;
     }    
     
+    public static Date fechaFormatoDateCalendar(String fecha)
+    {
+        //Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dd);
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDate = new Date();
+        try {
+            fechaDate = formato.parse(fecha);
+        } 
+        catch (ParseException ex) 
+        {
+            System.out.println(ex);
+        }
+        return fechaDate;
+    }    
+    
     /*
     Se abre la ventana principal desde el acceso principal
     @Author: Christian Olmedo 23/07/2020
@@ -409,5 +424,25 @@ public class ControladorUtilerias {
 //            }
         }
         return cadena;
+    }
+    
+    public String tipoObra(int tipoObra){
+        String nombreTipoObra = "";
+        switch(tipoObra){
+            case 1:
+                nombreTipoObra = "Cuartos Dormitorio";
+            break;
+            case 2:
+                nombreTipoObra = "Techos de Concreto";
+            break;
+            case 3:
+                nombreTipoObra = "Cuartos para Cocina";
+            break;
+            case 4:
+                nombreTipoObra = "Baños";
+            break;
+        }
+     
+        return nombreTipoObra;
     }
 }

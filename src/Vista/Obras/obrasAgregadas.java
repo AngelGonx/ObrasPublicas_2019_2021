@@ -204,27 +204,32 @@ public class obrasAgregadas extends javax.swing.JFrame {
         this.dispose();
         catObs.show();
     }//GEN-LAST:event_izquierda_ButtonMouseClicked
-
+    /*
+        1	Cuartos Dormitorio
+        2	Techos de Concreto
+        3	Cuartos para Cocina
+        4	Baños
+    */
     private void baniosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_baniosButtonActionPerformed
-        seleccionObra selOb = new seleccionObra(ageObras);
+        seleccionObra selOb = new seleccionObra(ageObras,4);
         this.dispose();
         selOb.show(); 
     }//GEN-LAST:event_baniosButtonActionPerformed
 
     private void cuartosCocinaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuartosCocinaButtonActionPerformed
-        seleccionObra selOb = new seleccionObra(ageObras);
+        seleccionObra selOb = new seleccionObra(ageObras,3);
         this.dispose();
         selOb.show(); 
     }//GEN-LAST:event_cuartosCocinaButtonActionPerformed
 
     private void techoConcretoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_techoConcretoButtonActionPerformed
-        seleccionObra selOb = new seleccionObra(ageObras);
+        seleccionObra selOb = new seleccionObra(ageObras,2);
         this.dispose();
         selOb.show(); 
     }//GEN-LAST:event_techoConcretoButtonActionPerformed
 
     private void cuartosDormitorioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cuartosDormitorioButtonActionPerformed
-        seleccionObra selOb = new seleccionObra(ageObras);
+        seleccionObra selOb = new seleccionObra(ageObras,1);
         this.dispose();
         selOb.show();        
     }//GEN-LAST:event_cuartosDormitorioButtonActionPerformed

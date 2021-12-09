@@ -39,6 +39,7 @@ public class beneficiariosObra extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
+        eliminarButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
         derecha_Botton = new javax.swing.JLabel();
@@ -70,11 +71,11 @@ public class beneficiariosObra extends javax.swing.JFrame {
 
         eliminarButton.setBackground(new java.awt.Color(255, 255, 255));
         eliminarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        eliminarButton.setText("ARCHIVOS");
+        eliminarButton.setText("Ver Fotos");
         eliminarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         eliminarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         eliminarButton.setOpaque(false);
-        jPanel1.add(eliminarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 343, 126, -1));
+        jPanel1.add(eliminarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 126, -1));
 
         editarButton.setBackground(new java.awt.Color(255, 255, 255));
         editarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
@@ -106,6 +107,14 @@ public class beneficiariosObra extends javax.swing.JFrame {
         jTextField1.setText("\"TIPO OBRA\"");
         jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 540, 40));
+
+        eliminarButton1.setBackground(new java.awt.Color(255, 255, 255));
+        eliminarButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        eliminarButton1.setText("Ver Documentos");
+        eliminarButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        eliminarButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        eliminarButton1.setOpaque(false);
+        jPanel1.add(eliminarButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 126, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 440));
 
@@ -152,9 +161,9 @@ public class beneficiariosObra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void izquierda_ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_izquierda_ButtonMouseClicked
-        informacionObra infOb = new informacionObra(ageObra);
-        this.dispose();
-        infOb.show();
+//        informacionObra infOb = new informacionObra(ageObra);
+//        this.dispose();
+//        infOb.show();
     }//GEN-LAST:event_izquierda_ButtonMouseClicked
 
     private void derecha_BottonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_derecha_BottonMouseClicked
@@ -202,6 +211,7 @@ public class beneficiariosObra extends javax.swing.JFrame {
     private javax.swing.JLabel derecha_Botton;
     private javax.swing.JButton editarButton;
     private javax.swing.JButton eliminarButton;
+    private javax.swing.JButton eliminarButton1;
     private javax.swing.JLabel izquierda_Button;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
