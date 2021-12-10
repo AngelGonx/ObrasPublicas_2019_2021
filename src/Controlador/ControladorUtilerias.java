@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -446,5 +447,15 @@ public class ControladorUtilerias {
         }
      
         return nombreTipoObra;
+    }
+    
+    public boolean isValidPath(String path) {
+    try {
+        Paths.get(path);
+    } catch (InvalidPathException ex) {
+        System.out.println(ex.getMessage());
+        return false;
+    }
+        return true;
     }
 }

@@ -31,7 +31,9 @@ import java.sql.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import javax.sql.rowset.serial.SerialBlob;
 import javax.swing.table.DefaultTableModel;
+import org.apache.commons.io.IOUtils;
 
 /**
  * Esta librería nos permitira controlar el acceso y consultas en base de datos.
@@ -634,7 +636,7 @@ Crecenciales de DB
         int BUFFER_SIZE = 4096;
         try {
 //            Connection conn = DriverManager.getConnection(url, user, password);
-
+            filePath = filePath +".pdf";
             String sql = "SELECT * FROM tabla_archivos "
                     + "WHERE id =?";
             PreparedStatement statement = Conexion.prepareStatement(sql);
@@ -689,45 +691,83 @@ Crecenciales de DB
     public int actualizaArchivos(TablaArchivos tar){
         int operacionExitosa = 0;
         try {
-            String querySetLimit = "SET GLOBAL max_allowed_packet=104857600;";  // 10 MB
-            Statement stSetLimit = Conexion.createStatement();
-            stSetLimit.execute(querySetLimit);
+//            String querySetLimit = "SET GLOBAL max_allowed_packet=104857600;";  // 10 MB
+//            Statement stSetLimit = Conexion.createStatement();
+//            stSetLimit.execute(querySetLimit);
             //Inica el statement de la conexión
-            String Query = "UPDATE tabla_archivos "
-                    + "SET "
-                    + "archivo_uno=(?),"
-                    + "archivo_dos=(?),"
-                    + "archivo_tres=(?),"
-                    + "archivo_cuatro=(?),"
-                    + "archivo_cinco=(?),"
-                    + "archivo_seis=(?),"
-                    + "archivo_siete=(?) "
-                    + "WHERE id = " + tar.getId() + "";
-            
+//            InputStream inputStreamAux1 = new FileInputStream(new File(tar.getArchivo_uno()));
+//            byte [] inputStream1 = IOUtils.toByteArray(inputStreamAux1);
+//            //st.setBlob(1, inputStream);
+//            InputStream inputStreamAux2 = new FileInputStream(new File(tar.getArchivo_dos()));
+//            byte [] inputStream2 = IOUtils.toByteArray(inputStreamAux2);
+//            //st.setBlob(2, inputStream);
+//            InputStream inputStreamAux3 = new FileInputStream(new File(tar.getArchivo_tres()));
+//            byte [] inputStream3 = IOUtils.toByteArray(inputStreamAux3);
+//            //st.setBlob(3, inputStream);
+//            InputStream inputStreamAux4 = new FileInputStream(new File(tar.getArchivo_cuatro()));
+//            byte [] inputStream4 = IOUtils.toByteArray(inputStreamAux4);
+//            //st.setBlob(4, inputStream);
+//            InputStream inputStreamAux5 = new FileInputStream(new File(tar.getArchivo_cinco()));
+//            byte [] inputStream5 = IOUtils.toByteArray(inputStreamAux5);
+//            //st.setBlob(5, inputStream);
+//            
+//            InputStream inputStreamAux6 = new FileInputStream(new File(tar.getArchivo_seis()));
+//            byte [] inputStream6 = IOUtils.toByteArray(inputStreamAux6);
+//            //st.setBlob(6, inputStream);
+//            InputStream inputStreamAux7 = new FileInputStream(new File(tar.getArchivo_siete()));
+//            byte [] inputStream7 = IOUtils.toByteArray(inputStreamAux7);
+//            //st.setBlob(7, inputStream);
+//            Blob sb1 = new Blob(inputStream1);
+//            Blob sb2 = new SerialBlob(inputStream2);
+//            Blob sb3 = new SerialBlob(inputStream3);
+//            Blob sb4 = new SerialBlob(inputStream4);
+//            Blob sb5 = new SerialBlob(inputStream5);
+//            Blob sb6 = new SerialBlob(inputStream6);
+//            Blob sb7 = new SerialBlob(inputStream7);
+            /*
+                id int AI PK 
+                archivo_uno longblob 
+                archivo_dos longblob 
+                archivo_tres longblob 
+                archivo_cuatro longblob 
+                archivo_cinco longblob 
+                archivo_seis longblob 
+                archivo_siete longblob 
+                id_obra int 
+                created_at datetime
+            */
+            String Query = "UPDATE `tabla_archivos` SET `archivo_uno` =?,"
+                    + "`archivo_dos`=?, `archivo_tres`=?, `archivo_tres`=?,`archivo_cuatro`=?,`archivo_cinco`=?,"
+                    + "`archivo_seis`=?,`archivo_siete`=? where `id`=?";
             System.out.println(Query);
             PreparedStatement st = Conexion.prepareStatement(Query);
-            
             InputStream inputStream = new FileInputStream(new File(tar.getArchivo_uno()));
-            st.setBlob(1, inputStream);
+            st.setBinaryStream(1, inputStream);
+            
             inputStream = new FileInputStream(new File(tar.getArchivo_dos()));
-            st.setBlob(2, inputStream);
+            st.setBinaryStream(2, inputStream);
+            
             inputStream = new FileInputStream(new File(tar.getArchivo_tres()));
-            st.setBlob(3, inputStream);
+            st.setBinaryStream(3, inputStream);
+            
             inputStream = new FileInputStream(new File(tar.getArchivo_cuatro()));
-            st.setBlob(4, inputStream);
+            st.setBinaryStream(4, inputStream);
+            
             inputStream = new FileInputStream(new File(tar.getArchivo_cinco()));
-            st.setBlob(5, inputStream);
+            st.setBinaryStream(5, inputStream);
+            
+            
             inputStream = new FileInputStream(new File(tar.getArchivo_seis()));
-            st.setBlob(6, inputStream);
+            st.setBinaryStream(6, inputStream);
+           
             inputStream = new FileInputStream(new File(tar.getArchivo_siete()));
-            st.setBlob(7, inputStream);
+            st.setBinaryStream(7, inputStream);
+            
+            st.setInt(8, tar.getId());
+            
             st.executeUpdate(Query);
             operacionExitosa = 1;
-            int row = st.executeUpdate();
-            if (row > 0) {
-                System.out.println("A contact was inserted with photo image.");
-                operacionExitosa = 1;
-            }
+            
             inputStream.close();
             //JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
         } catch (SQLException ex) {
@@ -741,6 +781,33 @@ Crecenciales de DB
             operacionExitosa = 0;
         }
 
+        return operacionExitosa;
+    }
+    
+    /*  ----------------------------------------------------------------------------------
+    Nombre: Clase eliminarArchivoRegistro
+    Función: Elimina los valores en la tabla correspondiente.
+    Aut@r: José Luis Caamal Ic
+    Parametros: Table: tabla_pacientes
+                Columns:
+    Date: 27/06/2020
+    ----------------------------------------------------------------------------------
+*/
+
+    public int eliminarArchivoRegistro(int ID) {
+        int operacionExitosa = 0;
+        try {
+            String Query = "DELETE FROM tabla_archivos WHERE ID = \"" + ID + "\"";
+            System.out.println("SQL Elimina: "+Query);
+            Statement st = Conexion.createStatement();
+            st.executeUpdate(Query);
+            operacionExitosa = 1;
+        } catch (SQLException ex) {
+            //System.out.println(ex.getMessage());
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(null, "Error borrando el registro especificado");return 0;
+            operacionExitosa = 0;
+        }
         return operacionExitosa;
     }
     

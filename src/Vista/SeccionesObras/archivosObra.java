@@ -21,7 +21,7 @@ public class archivosObra extends javax.swing.JFrame {
     /**
      * Creates new form archivosObra
      */
-    boolean actualizacion = false;
+    boolean eliminacion = false;
     TablaObrasInformacion toi = new TablaObrasInformacion();
     ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
     ControladorUtilerias cut = new ControladorUtilerias();
@@ -58,9 +58,9 @@ public class archivosObra extends javax.swing.JFrame {
             jButton6.setEnabled(false);
             jProgressBar7.setValue(100);
             jButton7.setEnabled(false);
-            actualizacion = true;
-            btnGuardar.setText("Actualizar");
-            System.out.println("Se ejecuta otra vez");
+            eliminacion = true;
+            btnGuardar.setText("Eliminar");
+            jButton8.setVisible(true);
         }
         else{
             this.tar.setArchivo_uno("");
@@ -77,7 +77,9 @@ public class archivosObra extends javax.swing.JFrame {
             //btnSaveSeis.setVisible(false);
             this.tar.setArchivo_siete("");
             //btnSaveSiete.setVisible(false);
-            actualizacion = false;
+            eliminacion = false;
+            jButton8.setVisible(false);
+            tar.setId_obra(toi.getId());
         }
     }
 
@@ -130,6 +132,7 @@ public class archivosObra extends javax.swing.JFrame {
         btnEliminarSiete = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
         derecha_Botton = new javax.swing.JLabel();
@@ -412,6 +415,14 @@ public class archivosObra extends javax.swing.JFrame {
         jLabel14.setText("Actualizar o Añadir un Archivo:");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, -1));
 
+        jButton8.setText("Descargar");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 480, 130, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 700, 550));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -492,21 +503,54 @@ public class archivosObra extends javax.swing.JFrame {
                !tar.getArchivo_cuatro().isEmpty()&& 
                !tar.getArchivo_cinco().isEmpty() && !tar.getArchivo_seis().isEmpty() && 
                !tar.getArchivo_siete().isEmpty() ){
-               if(actualizacion)
-                procesoExitoso = cbd.actualizaArchivos(tar);   
-               else
-                procesoExitoso = cbd.insertaArchivos(tar);
-        if(procesoExitoso !=0){
-                JOptionPane.showMessageDialog(null, "Se guardaron las fotos de manera éxitosa.");
-//                documentosBeneficiario docben = new documentosBeneficiario(ageObra, tar);
-//                docben.show();
-                informacionObra info = new informacionObra(ageObra, tar.getId_obra());
-                info.show();
-                this.dispose();
-           }
-        else{
-               JOptionPane.showMessageDialog(null, "No se guardaron los documentos de manera éxitosa.");
-        }
+               if(eliminacion){
+//                    boolean rutaValida = false;
+//                    rutaValida = cut.isValidPath(tar.getArchivo_uno());
+//                    if(rutaValida)
+//                        rutaValida = cut.isValidPath(tar.getArchivo_dos());
+//                    if(rutaValida)
+//                        rutaValida = cut.isValidPath(tar.getArchivo_tres());
+//                    if(rutaValida)
+//                        rutaValida = cut.isValidPath(tar.getArchivo_cuatro());
+//                    if(rutaValida)
+//                        rutaValida = cut.isValidPath(tar.getArchivo_cinco());
+//                    if(rutaValida)
+//                        rutaValida = cut.isValidPath(tar.getArchivo_seis());
+//                    if(rutaValida)
+//                        rutaValida = cut.isValidPath(tar.getArchivo_siete());
+                    
+                   
+                       //procesoExitoso = cbd.actualizaArchivos(tar);
+                       /*No se logra actualizar y se pretende realizar otra opción  */
+                       procesoExitoso = cbd.eliminarArchivoRegistro(tar.getId());
+                       if(procesoExitoso==1){
+                           this.dispose();
+                           JOptionPane.showMessageDialog(null, "Se eliminaron correctamente los archivos.");
+                           informacionObra info = new informacionObra(ageObra, tar.getId_obra());
+                           info.show();
+                       }
+                       else{
+                           JOptionPane.showMessageDialog(null, "No se eliminaron los archivos, favor de validar que existan.");
+                       }
+                    
+                      
+               }
+               else{
+                   //System.out.println(tar.toString());
+                    procesoExitoso = cbd.insertaArchivos(tar);
+                    if(procesoExitoso !=0){
+                        JOptionPane.showMessageDialog(null, "Se guardaron los archivos de manera éxitosa.");
+        //                documentosBeneficiario docben = new documentosBeneficiario(ageObra, tar);
+        //                docben.show();
+                        informacionObra info = new informacionObra(ageObra, tar.getId_obra());
+                        info.show();
+                        this.dispose();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "No se guardaron los documentos de manera éxitosa.");
+                 }
+               }
+        
        }
        else{
             JOptionPane.showMessageDialog(null, "Por favor, ingresa todos los documentos.");
@@ -654,6 +698,46 @@ public class archivosObra extends javax.swing.JFrame {
             jButton7.setEnabled(true);
     }//GEN-LAST:event_btnEliminarSieteActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Únicamente escribe el nombre del recuadro después de seleccionar la carpeta.");
+        int operacionExitosa = 0;
+        cbd.openConnection();
+        String ruta = cut.obtenerRuta(3);
+        operacionExitosa = cbd.guardarArchivo(ruta, 1, tar);
+        cbd.closeConnection();
+        
+        cbd.openConnection();
+         ruta = cut.obtenerRuta(3);
+        operacionExitosa = cbd.guardarArchivo(ruta, 2, tar);
+        cbd.closeConnection();
+        
+        cbd.openConnection();
+         ruta = cut.obtenerRuta(3);
+        operacionExitosa = cbd.guardarArchivo(ruta, 3, tar);
+        cbd.closeConnection();
+        
+        cbd.openConnection();
+         ruta = cut.obtenerRuta(3);
+        operacionExitosa = cbd.guardarArchivo(ruta, 4, tar);
+        cbd.closeConnection();
+        
+        cbd.openConnection();
+         ruta = cut.obtenerRuta(3);
+        operacionExitosa = cbd.guardarArchivo(ruta, 5, tar);
+        cbd.closeConnection();
+        
+        cbd.openConnection();
+         ruta = cut.obtenerRuta(3);
+        operacionExitosa = cbd.guardarArchivo(ruta, 6, tar);
+        cbd.closeConnection();
+        
+        cbd.openConnection();
+         ruta = cut.obtenerRuta(3);
+        operacionExitosa = cbd.guardarArchivo(ruta,7, tar);
+        cbd.closeConnection();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -709,6 +793,7 @@ public class archivosObra extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
