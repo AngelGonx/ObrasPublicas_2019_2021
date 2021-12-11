@@ -337,9 +337,9 @@ public class documentosBeneficiario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void izquierda_ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_izquierda_ButtonMouseClicked
-        beneficiariosObra benOb = new beneficiariosObra(ageObra);
-        this.dispose();
-        benOb.show();
+//        beneficiariosObra benOb = new beneficiariosObra(ageObra,toi);
+//        this.dispose();
+//        benOb.show();
     }//GEN-LAST:event_izquierda_ButtonMouseClicked
 
     private void derecha_BottonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_derecha_BottonMouseClicked

@@ -319,7 +319,7 @@ public class informacionObra extends javax.swing.JFrame {
     }//GEN-LAST:event_derecha_BottonMouseClicked
 
     private void verBeneficiariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verBeneficiariosButtonActionPerformed
-        beneficiariosObra benOb = new beneficiariosObra(ageObra);
+        beneficiariosObra benOb = new beneficiariosObra(ageObra,toi);
         this.dispose();
         benOb.show();
     }//GEN-LAST:event_verBeneficiariosButtonActionPerformed

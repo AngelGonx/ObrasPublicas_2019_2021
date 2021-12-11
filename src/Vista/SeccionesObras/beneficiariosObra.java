@@ -5,6 +5,14 @@
  */
 package Vista.SeccionesObras;
 
+import Controlador.ControladorBaseDeDatos;
+import Controlador.ControladorUtilerias;
+import Modelo.TablaObrasInformacion;
+import Vista.Beneficiarios.actualizarBeneficiarios;
+import Vista.Beneficiarios.agregarBeneficiarios;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  * @author Ángel González Rincón
  * Date: 01-sep-2021
@@ -15,10 +23,50 @@ public class beneficiariosObra extends javax.swing.JFrame {
      * Creates new form detallesObra
      */
     String ageObra = "";
-    public beneficiariosObra(String ageObra) {
+    DefaultTableModel modeloInformacionBeneficiarios;
+    TablaObrasInformacion toi = new TablaObrasInformacion();
+    String[] columna = new String[]{"Id", "Nombre Beneficiario",
+        "Localidad", "Id Obra", "Fecha Creación"};
+    String tipoObra = "";
+    ControladorUtilerias cut = new ControladorUtilerias();
+    ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
+    String campoValorID = "0";
+    public beneficiariosObra(String ageObra, TablaObrasInformacion toi) {
         initComponents();
         this.setLocationRelativeTo(null);
+        cbd.openConnection();
+        modeloInformacionBeneficiarios = cbd.modeloBeneficiarios(columna, toi.getId());
+        cbd.closeConnection();
         this.ageObra = ageObra;
+        this.toi = toi; 
+        tipoObra = cut.tipoObra(toi.getId_tipo_obra());
+        campoNumObra.setText(toi.getNumero());
+        campoTipoObra.setText(tipoObra);
+        jTable1.setModel(modeloInformacionBeneficiarios);
+        
+        /*Obtengo el valor que selecciono de la tabla*/
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = jTable1.rowAtPoint(evt.getPoint());
+                int col = 0;
+                if (row >= 0 && col >= 0) {
+                    String valor = jTable1.getModel().getValueAt(row, col).toString(); //Tomo el valor de el modelo de la tabla
+                    campoValorID = valor; //Obtengo el valor y lo seteo
+                    System.out.println("El ID Seleccionado es: "+campoValorID);
+                }
+//                col = 1;
+//                if (row >= 0 && col >= 0) {
+//                    String valor = tablaMultas.getModel().getValueAt(row, col).toString(); //Tomo el valor de el modelo de la tabla
+//                    campoNombreMulta.setText(valor); //Obtengo el valor del textfield
+//                }
+//                col = 3;
+//                if (row >= 0 && col >= 0) {
+//                    String valor = tablaMultas.getModel().getValueAt(row, col).toString(); //Tomo el valor de el modelo de la tabla
+//                    campoPrecio.setText(valor); //Obtengo el valor del textfield
+//                }
+            }
+        });
     }
 
     /**
@@ -32,14 +80,16 @@ public class beneficiariosObra extends javax.swing.JFrame {
 
         a = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        campoNumObra = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        eliminarButton = new javax.swing.JButton();
-        editarButton = new javax.swing.JButton();
+        fotosbtn = new javax.swing.JButton();
+        agregarBTN = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        eliminarButton1 = new javax.swing.JButton();
+        campoTipoObra = new javax.swing.JTextField();
+        documentosBtn = new javax.swing.JButton();
+        editarButton = new javax.swing.JButton();
+        fotosbtn1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
         derecha_Botton = new javax.swing.JLabel();
@@ -58,32 +108,42 @@ public class beneficiariosObra extends javax.swing.JFrame {
         jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 600, 40));
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
-        jTextField4.setText("\"NÚMERO OBRA\"");
-        jTextField4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
+        campoNumObra.setEditable(false);
+        campoNumObra.setBackground(new java.awt.Color(255, 255, 255));
+        campoNumObra.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
+        campoNumObra.setText("\"NÚMERO OBRA\"");
+        campoNumObra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
+        getContentPane().add(campoNumObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        eliminarButton.setBackground(new java.awt.Color(255, 255, 255));
-        eliminarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        eliminarButton.setText("Ver Fotos");
-        eliminarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        eliminarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        eliminarButton.setOpaque(false);
-        jPanel1.add(eliminarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 126, -1));
+        fotosbtn.setBackground(new java.awt.Color(255, 255, 255));
+        fotosbtn.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        fotosbtn.setText("Eliminar");
+        fotosbtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        fotosbtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        fotosbtn.setOpaque(false);
+        fotosbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fotosbtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(fotosbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 340, 126, -1));
 
-        editarButton.setBackground(new java.awt.Color(255, 255, 255));
-        editarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        editarButton.setText("EDITAR");
-        editarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        editarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        editarButton.setOpaque(false);
-        jPanel1.add(editarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(62, 343, 105, -1));
+        agregarBTN.setBackground(new java.awt.Color(255, 255, 255));
+        agregarBTN.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        agregarBTN.setText("AÑADIR");
+        agregarBTN.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        agregarBTN.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        agregarBTN.setOpaque(false);
+        agregarBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarBTNActionPerformed(evt);
+            }
+        });
+        jPanel1.add(agregarBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 105, -1));
 
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
 
@@ -102,19 +162,40 @@ public class beneficiariosObra extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 54, 539, 270));
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jTextField1.setText("\"TIPO OBRA\"");
-        jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 540, 40));
+        campoTipoObra.setEditable(false);
+        campoTipoObra.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        campoTipoObra.setText("\"TIPO OBRA\"");
+        campoTipoObra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        jPanel1.add(campoTipoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 540, 40));
 
-        eliminarButton1.setBackground(new java.awt.Color(255, 255, 255));
-        eliminarButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        eliminarButton1.setText("Ver Documentos");
-        eliminarButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        eliminarButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        eliminarButton1.setOpaque(false);
-        jPanel1.add(eliminarButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 126, -1));
+        documentosBtn.setBackground(new java.awt.Color(255, 255, 255));
+        documentosBtn.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        documentosBtn.setText("Ver Documentos");
+        documentosBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        documentosBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        documentosBtn.setOpaque(false);
+        jPanel1.add(documentosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, 126, -1));
+
+        editarButton.setBackground(new java.awt.Color(255, 255, 255));
+        editarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        editarButton.setText("EDITAR");
+        editarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        editarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        editarButton.setOpaque(false);
+        editarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(editarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 105, -1));
+
+        fotosbtn1.setBackground(new java.awt.Color(255, 255, 255));
+        fotosbtn1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        fotosbtn1.setText("Ver Fotos");
+        fotosbtn1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        fotosbtn1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        fotosbtn1.setOpaque(false);
+        jPanel1.add(fotosbtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, 126, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 440));
 
@@ -170,6 +251,40 @@ public class beneficiariosObra extends javax.swing.JFrame {
 
     }//GEN-LAST:event_derecha_BottonMouseClicked
 
+    private void agregarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBTNActionPerformed
+        // TODO add your handling code here:
+        agregarBeneficiarios agb = new agregarBeneficiarios(this, rootPaneCheckingEnabled, ageObra, toi.getId(), toi);
+        agb.show();
+        this.dispose();
+    }//GEN-LAST:event_agregarBTNActionPerformed
+
+    private void editarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButtonActionPerformed
+        // TODO add your handling code here:
+        actualizarBeneficiarios ab = new actualizarBeneficiarios(this, rootPaneCheckingEnabled, ageObra, toi.getId(), toi,  Integer.parseInt(campoValorID));
+        ab.show();
+        refrescarTabla();
+    }//GEN-LAST:event_editarButtonActionPerformed
+
+    private void fotosbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotosbtnActionPerformed
+        // TODO add your handling code here:
+        cbd.openConnection();
+        int operacionExitosa = cbd.eliminaBeneficiarios(Integer.parseInt(campoValorID));
+        cbd.closeConnection();
+        if(operacionExitosa == 1){
+            JOptionPane.showMessageDialog(null, "El Beneficiarios, sus fotos y documentos fueron eliminados correctamente.");
+            refrescarTabla();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Ocurrio un error al intentar eliminar ó no seleccionaste un beneficiario, consulte a su administrador.");
+        }
+    }//GEN-LAST:event_fotosbtnActionPerformed
+     public void refrescarTabla() {
+        cbd.openConnection();
+        modeloInformacionBeneficiarios = cbd.modeloBeneficiarios(columna,toi.getId());
+        cbd.closeConnection();
+        jTable1.setModel(modeloInformacionBeneficiarios);
+        modeloInformacionBeneficiarios.fireTableDataChanged();
+    }  
     /**
      * @param args the command line arguments
      */
@@ -208,17 +323,19 @@ public class beneficiariosObra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField a;
+    private javax.swing.JButton agregarBTN;
+    private javax.swing.JTextField campoNumObra;
+    private javax.swing.JTextField campoTipoObra;
     private javax.swing.JLabel derecha_Botton;
+    private javax.swing.JButton documentosBtn;
     private javax.swing.JButton editarButton;
-    private javax.swing.JButton eliminarButton;
-    private javax.swing.JButton eliminarButton1;
+    private javax.swing.JButton fotosbtn;
+    private javax.swing.JButton fotosbtn1;
     private javax.swing.JLabel izquierda_Button;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

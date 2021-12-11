@@ -259,6 +259,35 @@ Crecenciales de DB
         return tpAux;
     }
     
+    /*Nombre: Clase Consulta obtiene la información de un solo beneficiario
+    Función:Consulta la tabla información de las beneficiarios
+    Aut@r: José Luis Caamal Ic
+    Parametros: 
+    date: 26/10/2021*/
+    public TablaBeneficiarios obtenerBeneficiario(int idBeneficiario) {
+        TablaBeneficiarios tbe = new TablaBeneficiarios();
+        int tpAux = 0;
+        String Query = "SELECT * FROM tabla_beneficiarios where id= "+idBeneficiario+"";
+        System.out.println(Query);
+        try {
+            Statement st;
+            st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+            while (resultSet.next()) {
+//                tpAux = resultSet.getInt("idmax");
+                  tbe.setId(resultSet.getInt("id"));
+                  tbe.setNombre(resultSet.getString("nombre"));
+                  tbe.setLocalidad(resultSet.getString("localidad"));
+                  tbe.setId_obra(resultSet.getInt("id_obra"));
+                  tbe.setCreated_at(resultSet.getTimestamp("created_at"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tbe;
+    }
+    
     
     /*Nombre: Clase Consulta obtenerIDInformacionObras
     Función:Consulta la tabla información de las obras
@@ -802,6 +831,106 @@ Crecenciales de DB
             Statement st = Conexion.createStatement();
             st.executeUpdate(Query);
             operacionExitosa = 1;
+        } catch (SQLException ex) {
+            //System.out.println(ex.getMessage());
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(null, "Error borrando el registro especificado");return 0;
+            operacionExitosa = 0;
+        }
+        return operacionExitosa;
+    }
+    
+    /*Nombre: Clase modeloVehiculoPropietario
+    Función: Obtiene el modelo de los vehiculos y propietarios y las pinta en la tabla
+    Aut@r: Angel 
+    Parametros: */
+    public DefaultTableModel modeloBeneficiarios(String columna[],int idObra) {
+        DefaultTableModel modeloRetorno;
+        modeloRetorno = new DefaultTableModel(null, columna);
+        try {
+            String Query = "SELECT * FROM tabla_beneficiarios where id_obra ="+idObra+"";
+
+            System.out.println("Contenido en ejecución: " + Query);
+
+            PreparedStatement us = Conexion.prepareStatement(Query);
+            ResultSet res = us.executeQuery();
+            Object objDatos[] = new Object[columna.length]; //Siempre debe cconexoincidir con el numero de columnas!
+
+            while (res.next()) {
+                for (int i = 0; i < columna.length; i++) {
+                    objDatos[i] = res.getObject(i + 1);
+                    //System.out.println(objDatos[i]);
+                }
+                modeloRetorno.addRow(objDatos);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.toString());
+        }
+
+        return modeloRetorno;
+    }
+    
+    /*Nombre: Clase actualizaBeneficiarios
+    Función: Actualiza los beneficiarios
+    Aut@r: José Luis Caamal Ic
+    Parametros: */
+    public int actualizaBeneficiarios(TablaBeneficiarios tben) {
+        int operacionExitosa = 0;
+        try {
+            String Query = ("UPDATE tabla_beneficiarios "
+                    + "SET "
+                    + "nombre = '" + tben.getNombre()+ "', "
+                    + "localidad = '" + tben.getLocalidad()+ "' "
+                    + "WHERE id = '" + tben.getId() + "'");
+            System.out.println(Query);
+            Statement st = Conexion.createStatement();
+            st.executeUpdate(Query);
+            operacionExitosa = 1;
+            //JOptionPane.showMessageDialog(null, "Datos almacenados de forma exitosa");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            //JOptionPane.showMessageDialog(null, "Error en el almacenamiento de datos");
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+            operacionExitosa = 0;
+        }
+
+        return operacionExitosa;
+    }
+    
+     /*  ----------------------------------------------------------------------------------
+    Nombre: Clase eliminaBeneficiarios
+    Función: Elimina los valores en la tabla correspondiente y sus relacionados
+    Aut@r: José Luis Caamal Ic
+    Parametros: Table: tabla_pacientes
+                Columns:
+    Date: 27/06/2020
+    ----------------------------------------------------------------------------------
+*/
+
+    public int eliminaBeneficiarios(int ID) {
+        int operacionExitosa = 0;
+        try {
+            String Query = "DELETE FROM tabla_fotos_beneficiarios WHERE id_beneficiario = \"" + ID + "\"";
+            System.out.println("SQL Elimina: "+Query);
+            Statement st = Conexion.createStatement();
+            st.executeUpdate(Query);
+            st.close();
+            operacionExitosa = 1;
+            if(operacionExitosa == 1){
+                Query = "DELETE FROM tabla_doc_beneficiarios WHERE id_beneficiario = \"" + ID + "\"";
+                System.out.println("SQL Elimina: "+Query);
+                st = Conexion.createStatement();
+                st.executeUpdate(Query);
+                st.close();
+            }
+            if(operacionExitosa == 1){
+                 Query = "DELETE FROM tabla_beneficiarios WHERE id = \"" + ID + "\"";
+                 System.out.println("SQL Elimina: "+Query);
+                 st = Conexion.createStatement();
+                 st.executeUpdate(Query);
+                 st.close();
+            }
         } catch (SQLException ex) {
             //System.out.println(ex.getMessage());
             Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);

@@ -736,6 +736,10 @@ public class archivosObra extends javax.swing.JFrame {
          ruta = cut.obtenerRuta(3);
         operacionExitosa = cbd.guardarArchivo(ruta,7, tar);
         cbd.closeConnection();
+        
+        this.dispose();
+        informacionObra info = new informacionObra(ageObra, tar.getId_obra());
+        info.show();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
