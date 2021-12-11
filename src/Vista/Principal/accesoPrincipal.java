@@ -29,8 +29,8 @@ public class accesoPrincipal extends javax.swing.JFrame {
     
     public accesoPrincipal() {
         initComponents();
-        Pass_Text.setEchoChar((char)0);
-        Pass_Text.setText("");
+//        Pass_Text.setEchoChar((char)0);
+//        Pass_Text.setText("");
         this.setLocationRelativeTo(null);
     }
 
@@ -165,10 +165,10 @@ public class accesoPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void User_TextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_User_TextFieldMouseClicked
-        if(clicks_u == 0){
-        User_TextField.setText("");
-        } 
-        clicks_u ++;
+//        if(clicks_u == 0){
+//        User_TextField.setText("");
+//        } 
+//        clicks_u ++;
     }//GEN-LAST:event_User_TextFieldMouseClicked
 
     private void CheckBoxPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBoxPasswordActionPerformed
@@ -180,11 +180,11 @@ public class accesoPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_CheckBoxPasswordActionPerformed
 
     private void Pass_TextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Pass_TextMouseClicked
-        if(clicks_p == 0){
-        Pass_Text.setText("");
-        Pass_Text.setEchoChar('*');
-        } 
-        clicks_p ++;
+//        if(clicks_p == 0){
+//        Pass_Text.setText("");
+//        Pass_Text.setEchoChar('*');
+//        } 
+//        clicks_p ++;
     }//GEN-LAST:event_Pass_TextMouseClicked
 
     private void Button_EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EntrarActionPerformed

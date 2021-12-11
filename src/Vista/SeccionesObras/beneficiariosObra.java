@@ -9,6 +9,8 @@ import Controlador.ControladorBaseDeDatos;
 import Controlador.ControladorUtilerias;
 import Modelo.TablaObrasInformacion;
 import Vista.Beneficiarios.actualizarBeneficiarios;
+import Vista.Beneficiarios.actualizarDocumentosBeneficiarios;
+import Vista.Beneficiarios.actualizarFotosBeneficiarios;
 import Vista.Beneficiarios.agregarBeneficiarios;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -174,6 +176,11 @@ public class beneficiariosObra extends javax.swing.JFrame {
         documentosBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         documentosBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         documentosBtn.setOpaque(false);
+        documentosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                documentosBtnActionPerformed(evt);
+            }
+        });
         jPanel1.add(documentosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, 126, -1));
 
         editarButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -195,6 +202,11 @@ public class beneficiariosObra extends javax.swing.JFrame {
         fotosbtn1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
         fotosbtn1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         fotosbtn1.setOpaque(false);
+        fotosbtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fotosbtn1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(fotosbtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 380, 126, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 440));
@@ -278,6 +290,20 @@ public class beneficiariosObra extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ocurrio un error al intentar eliminar ó no seleccionaste un beneficiario, consulte a su administrador.");
         }
     }//GEN-LAST:event_fotosbtnActionPerformed
+
+    private void documentosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentosBtnActionPerformed
+        // TODO add your handling code here:
+        actualizarDocumentosBeneficiarios actb = new actualizarDocumentosBeneficiarios(ageObra, Integer.parseInt(campoValorID));
+        actb.show();
+        //this.dispose();
+    }//GEN-LAST:event_documentosBtnActionPerformed
+
+    private void fotosbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotosbtn1ActionPerformed
+        // TODO add your handling code here:
+        actualizarFotosBeneficiarios actb = new actualizarFotosBeneficiarios(ageObra, Integer.parseInt(campoValorID));
+        actb.show();
+        //this.dispose();
+    }//GEN-LAST:event_fotosbtn1ActionPerformed
      public void refrescarTabla() {
         cbd.openConnection();
         modeloInformacionBeneficiarios = cbd.modeloBeneficiarios(columna,toi.getId());

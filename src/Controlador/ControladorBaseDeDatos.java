@@ -13,7 +13,6 @@ import Modelo.TablaObrasInformacion;
 import Modelo.TablaUsuarios;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,18 +21,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import java.sql.*;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import javax.sql.rowset.serial.SerialBlob;
 import javax.swing.table.DefaultTableModel;
-import org.apache.commons.io.IOUtils;
 
 /**
  * Esta librería nos permitira controlar el acceso y consultas en base de datos.
@@ -658,7 +649,12 @@ Crecenciales de DB
         }
         return tarAux;
     }
-    
+    /*
+    Clase: guardarArchivo
+    Nota: Permite guardar el archivo en la dirección que se le asigne
+    Por: Jose Luis Caamal Ic
+    Fecha 11/12/2021
+    */
     public int guardarArchivo(String filePath,int docGuardar,TablaArchivos tar){
         int operacionExitosa = 0;
 //        String filePath = "C:/src/m.jpg";
@@ -698,6 +694,116 @@ Crecenciales de DB
                 inputStream.close();
                 outputStream.close();
                 System.out.println("File saved");
+                operacionExitosa = 1;
+            }
+            Conexion.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            operacionExitosa = 0;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            operacionExitosa = 0;
+        }
+        return operacionExitosa;
+    
+    }
+    
+    /*
+    Clase: guardarDocumento
+    Nota: Permite guardar el documento en la dirección que se le asigne
+    Por: Jose Luis Caamal Ic
+    Fecha 11/12/2021
+    */
+    public int guardarDocumento(String filePath,int docGuardar,TablaDocumentosBeneficiarios tdb){
+        int operacionExitosa = 0;
+//        String filePath = "C:/src/m.jpg";
+        int BUFFER_SIZE = 4096;
+        try {
+//            Connection conn = DriverManager.getConnection(url, user, password);
+            filePath = filePath +".pdf";
+            String sql = "SELECT * FROM tabla_doc_beneficiarios "
+                    + "WHERE id =?";
+            PreparedStatement statement = Conexion.prepareStatement(sql);
+            statement.setInt(1, tdb.getId());
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                Blob blob = null;
+                if(docGuardar == 1)
+                    blob = result.getBlob("doc_uno");
+                if(docGuardar == 2)
+                    blob = result.getBlob("doc_dos");
+                if(docGuardar == 3)
+                    blob = result.getBlob("doc_tres");
+                if(docGuardar == 4)
+                    blob = result.getBlob("doc_cuatro");
+                if(docGuardar == 5)
+                    blob = result.getBlob("doc_cinco");
+                
+                InputStream inputStream = blob.getBinaryStream();
+                OutputStream outputStream = new FileOutputStream(filePath);
+                int bytesRead = -1;
+                byte[] buffer = new byte[BUFFER_SIZE];
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                inputStream.close();
+                outputStream.close();
+                System.out.println("Documento Guardado");
+                operacionExitosa = 1;
+            }
+            Conexion.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            operacionExitosa = 0;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            operacionExitosa = 0;
+        }
+        return operacionExitosa;
+    
+    }
+    
+     /*
+    Clase: guardarFoto
+    Nota: Permite guardar el documento en la dirección que se le asigne
+    Por: Jose Luis Caamal Ic
+    Fecha 11/12/2021
+    */
+    public int guardarFoto(String filePath,int docGuardar,TablaFotosBeneficiarios tfb){
+        int operacionExitosa = 0;
+//        String filePath = "C:/src/m.jpg";
+        int BUFFER_SIZE = 4096;
+        try {
+//            Connection conn = DriverManager.getConnection(url, user, password);
+            filePath = filePath +".jpg";
+            String sql = "SELECT * FROM tabla_fotos_beneficiarios "
+                    + "WHERE id =?";
+            PreparedStatement statement = Conexion.prepareStatement(sql);
+            statement.setInt(1, tfb.getId());
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                Blob blob = null;
+                if(docGuardar == 1)
+                    blob = result.getBlob("foto_uno");
+                if(docGuardar == 2)
+                    blob = result.getBlob("foto_dos");
+                if(docGuardar == 3)
+                    blob = result.getBlob("foto_tres");
+                if(docGuardar == 4)
+                    blob = result.getBlob("foto_cuatro");
+                if(docGuardar == 5)
+                    blob = result.getBlob("foto_cinco");
+                
+                InputStream inputStream = blob.getBinaryStream();
+                OutputStream outputStream = new FileOutputStream(filePath);
+                int bytesRead = -1;
+                byte[] buffer = new byte[BUFFER_SIZE];
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                inputStream.close();
+                outputStream.close();
+                System.out.println("Foto Guardado");
                 operacionExitosa = 1;
             }
             Conexion.close();
@@ -938,6 +1044,64 @@ Crecenciales de DB
             operacionExitosa = 0;
         }
         return operacionExitosa;
+    }
+    
+     /*Nombre: Clase Consulta TablaDocumentosBeneficiarios obtenerDocumentos
+    Función:Consulta la TablaDocumentosBeneficiarios obtenerDocumentos
+    Aut@r: José Luis Caamal Ic
+    Parametros: */
+    public TablaDocumentosBeneficiarios obtenerDocumentos(TablaBeneficiarios tbf) {
+        TablaDocumentosBeneficiarios tarAux = new TablaDocumentosBeneficiarios();
+        String Query = "SELECT * FROM tabla_doc_beneficiarios WHERE id_beneficiario = '" + tbf.getId()+ "'";
+        System.out.println(Query);
+        try {
+            Statement st;
+            st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+            while (resultSet.next()) {
+                tarAux.setId(resultSet.getInt("id"));
+                tarAux.setDoc_uno(resultSet.getString("doc_uno"));
+                tarAux.setDoc_uno(resultSet.getString("doc_dos"));
+                tarAux.setDoc_uno(resultSet.getString("doc_tres"));
+                tarAux.setDoc_uno(resultSet.getString("doc_cuatro"));
+                tarAux.setDoc_uno(resultSet.getString("doc_cinco"));
+                tarAux.setId_beneficiario(resultSet.getInt("id_beneficiario"));
+                tarAux.setCreated_at(resultSet.getTimestamp("created_at"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tarAux;
+    }
+    
+    /*Nombre: Clase Consulta TablaFotosBeneficiarios obtenerFotos
+    Función:Consulta la TablaFotosBeneficiarios obtenerFotos
+    Aut@r: José Luis Caamal Ic
+    Parametros: */
+    public TablaFotosBeneficiarios obtenerFotos(TablaBeneficiarios tbf) {
+        TablaFotosBeneficiarios tarAux = new TablaFotosBeneficiarios();
+        String Query = "SELECT * FROM tabla_fotos_beneficiarios WHERE id_beneficiario = '" + tbf.getId()+ "'";
+        System.out.println(Query);
+        try {
+            Statement st;
+            st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+            while (resultSet.next()) {
+                tarAux.setId(resultSet.getInt("id"));
+                tarAux.setFoto_uno(resultSet.getString("foto_uno"));
+                tarAux.setFoto_dos(resultSet.getString("foto_dos"));
+                tarAux.setFoto_tres(resultSet.getString("foto_tres"));
+                tarAux.setFoto_cuatro(resultSet.getString("foto_cuatro"));
+                tarAux.setFoto_cinco(resultSet.getString("foto_cinco"));
+                tarAux.setId_beneficiario(resultSet.getInt("id_beneficiario"));
+                tarAux.setCreated_at(resultSet.getTimestamp("created_at"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tarAux;
     }
     
 }
