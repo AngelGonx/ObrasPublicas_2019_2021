@@ -142,6 +142,11 @@ CREATE TABLE `tabla_tipo_obra` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+LOCK TABLES `tabla_tipo_obra` WRITE;
+/*!40000 ALTER TABLE `tabla_tipo_obra` DISABLE KEYS */;
+INSERT INTO `tabla_tipo_obra` VALUES (1,'Cuartos Dormitorio','2011-12-18 13:17:17'),(2,'Techos de Concreto','2011-12-18 13:17:17'),(3,'Cuartos para Cocina','2011-12-18 13:17:17'),(4,'Baños','2011-12-18 13:17:17');
+/*!40000 ALTER TABLE `tabla_tipo_obra` ENABLE KEYS */;
+UNLOCK TABLES;
 --
 -- Table structure for table `tabla_usuarios`
 --
