@@ -9,7 +9,6 @@ import Controlador.ControladorBaseDeDatos;
 import Controlador.ControladorUtilerias;
 import Modelo.TablaUsuarios;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 
 /**
  * @author Ángel González Rincón

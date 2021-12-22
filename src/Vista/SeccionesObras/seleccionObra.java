@@ -88,6 +88,7 @@ public class seleccionObra extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         campoTipoObra = new javax.swing.JTextField();
+        editarButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
         derecha_Botton = new javax.swing.JLabel();
@@ -130,7 +131,7 @@ public class seleccionObra extends javax.swing.JFrame {
                 editarButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(editarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 490, 105, -1));
+        jPanel1.add(editarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 490, 170, -1));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
@@ -156,6 +157,19 @@ public class seleccionObra extends javax.swing.JFrame {
         campoTipoObra.setText("\"TIPO OBRA\"");
         campoTipoObra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         jPanel1.add(campoTipoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 47, 900, 30));
+
+        editarButton1.setBackground(new java.awt.Color(255, 255, 255));
+        editarButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        editarButton1.setText("VER INFORMACIÓN");
+        editarButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        editarButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        editarButton1.setOpaque(false);
+        editarButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(editarButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 490, 190, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1030, 540));
 
@@ -227,6 +241,20 @@ public class seleccionObra extends javax.swing.JFrame {
         
     }//GEN-LAST:event_editarButtonActionPerformed
 
+    private void editarButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButton1ActionPerformed
+        // TODO add your handling code here:
+        int idObra = Integer.parseInt(campovalorID);
+        
+        if(idObra != 0){
+                informacionVerObra info = new informacionVerObra(ageObra, idObra);
+                info.show();
+                //this.dispose();
+        } 
+        else{
+            JOptionPane.showMessageDialog(null, "Selecciona una obra de la lista para continuar.");
+        }
+    }//GEN-LAST:event_editarButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -268,6 +296,7 @@ public class seleccionObra extends javax.swing.JFrame {
     private javax.swing.JTextField campoTipoObra;
     private javax.swing.JLabel derecha_Botton;
     private javax.swing.JButton editarButton;
+    private javax.swing.JButton editarButton1;
     private javax.swing.JLabel izquierda_Button;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author Ángel González Rincón
  * Date: 01-sep-2021
  */
-public class informacionObra extends javax.swing.JFrame {
+public class informacionVerObra extends javax.swing.JFrame {
 
     /**
      * Creates new form informacionObra
@@ -23,7 +23,7 @@ public class informacionObra extends javax.swing.JFrame {
     TablaObrasInformacion toi = new TablaObrasInformacion();
     ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
     ControladorUtilerias cut = new ControladorUtilerias();
-    public informacionObra(String ageObra, int idObra) {
+    public informacionVerObra(String ageObra, int idObra) {
         initComponents();
         this.toi.setId(idObra);
         cbd.openConnection();
@@ -56,8 +56,6 @@ public class informacionObra extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         campoNroObra = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        archivosButton = new javax.swing.JButton();
-        btnEditarObra = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -65,7 +63,6 @@ public class informacionObra extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        verBeneficiariosButton = new javax.swing.JButton();
         campoObra = new javax.swing.JTextField();
         campoLocalidad = new javax.swing.JTextField();
         campoFondo = new javax.swing.JTextField();
@@ -73,6 +70,7 @@ public class informacionObra extends javax.swing.JFrame {
         campoNumero = new javax.swing.JTextField();
         campoInicioObra = new com.toedter.calendar.JDateChooser();
         campoFinObra = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
         derecha_Botton = new javax.swing.JLabel();
@@ -101,30 +99,6 @@ public class informacionObra extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
 
-        archivosButton.setBackground(new java.awt.Color(255, 255, 255));
-        archivosButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        archivosButton.setText("ARCHIVOS");
-        archivosButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        archivosButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        archivosButton.setOpaque(false);
-        archivosButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                archivosButtonActionPerformed(evt);
-            }
-        });
-
-        btnEditarObra.setBackground(new java.awt.Color(255, 255, 255));
-        btnEditarObra.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        btnEditarObra.setText("ACTUALIZAR");
-        btnEditarObra.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        btnEditarObra.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnEditarObra.setOpaque(false);
-        btnEditarObra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarObraActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         jLabel1.setText("OBRA:");
 
@@ -146,18 +120,6 @@ public class informacionObra extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel7.setText("FIN DE OBRA:");
 
-        verBeneficiariosButton.setBackground(new java.awt.Color(255, 255, 255));
-        verBeneficiariosButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        verBeneficiariosButton.setText("BENEFICIARIOS");
-        verBeneficiariosButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        verBeneficiariosButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        verBeneficiariosButton.setOpaque(false);
-        verBeneficiariosButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verBeneficiariosButtonActionPerformed(evt);
-            }
-        });
-
         campoObra.setBackground(new java.awt.Color(250, 250, 250));
 
         campoLocalidad.setBackground(new java.awt.Color(250, 250, 250));
@@ -167,6 +129,13 @@ public class informacionObra extends javax.swing.JFrame {
         campoFolio.setBackground(new java.awt.Color(250, 250, 250));
 
         campoNumero.setBackground(new java.awt.Color(250, 250, 250));
+
+        jButton1.setText("Cerrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -205,15 +174,12 @@ public class informacionObra extends javax.swing.JFrame {
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(campoFinObra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(btnEditarObra, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(verBeneficiariosButton, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                            .addComponent(archivosButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(25, 25, 25))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(223, 223, 223)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,26 +208,18 @@ public class informacionObra extends javax.swing.JFrame {
                     .addComponent(campoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(campoInicioObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(campoFinObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel7)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                        .addComponent(btnEditarObra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(verBeneficiariosButton)
-                        .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(archivosButton)
-                        .addGap(96, 96, 96))))
+                        .addGap(27, 27, 27)
+                        .addComponent(campoInicioObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(campoFinObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(49, 49, 49))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 440));
@@ -318,52 +276,10 @@ public class informacionObra extends javax.swing.JFrame {
 
     }//GEN-LAST:event_derecha_BottonMouseClicked
 
-    private void verBeneficiariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verBeneficiariosButtonActionPerformed
-        beneficiariosObra benOb = new beneficiariosObra(ageObra,toi);
-        this.dispose();
-        benOb.show();
-    }//GEN-LAST:event_verBeneficiariosButtonActionPerformed
-
-    private void btnEditarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarObraActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        cbd.openConnection();
-        /*
-            id int AI PK 
-            obra varchar(60) 
-            localidad varchar(45) 
-            fondo varchar(45) 
-            folio varchar(45) 
-            numero varchar(45) 
-            inicio varchar(45) 
-            fin varchar(45) 
-            age int 
-            id_tipo_obra int 
-            created_at datetime
-        */
-        toi.setObra(campoObra.getText());
-        toi.setLocalidad(campoLocalidad.getText());
-        toi.setFondo(campoFondo.getText());
-        toi.setFolio(campoFolio.getText());
-        toi.setNumero(campoNumero.getText());
-        toi.setInicio(cut.convertirFecha(campoInicioObra.getDate()));
-        toi.setFin(cut.convertirFecha(campoFinObra.getDate()));
-        int operacionExitosa = cbd.actualizaObrasInformacion(toi);
-        cbd.closeConnection();
-        if(operacionExitosa !=0){
-            JOptionPane.showMessageDialog(null, "Los datos fueron actualizados con éxito.");
-        }
-        else{
-            JOptionPane.showMessageDialog(null, "No se pudo actualizar los datos. Verifica que los datos sean correctos.");
-        }
-        //Actualiza la información de la obra.
-    }//GEN-LAST:event_btnEditarObraActionPerformed
-
-    private void archivosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archivosButtonActionPerformed
-        // TODO add your handling code here:
-        archivosObra aro = new archivosObra(ageObra,toi);
-        aro.show();
         this.dispose();
-    }//GEN-LAST:event_archivosButtonActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,8 +318,6 @@ public class informacionObra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField a;
-    private javax.swing.JButton archivosButton;
-    private javax.swing.JButton btnEditarObra;
     private com.toedter.calendar.JDateChooser campoFinObra;
     private javax.swing.JTextField campoFolio;
     private javax.swing.JTextField campoFondo;
@@ -414,6 +328,7 @@ public class informacionObra extends javax.swing.JFrame {
     private javax.swing.JTextField campoObra;
     private javax.swing.JLabel derecha_Botton;
     private javax.swing.JLabel izquierda_Button;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -424,6 +339,5 @@ public class informacionObra extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JButton verBeneficiariosButton;
     // End of variables declaration//GEN-END:variables
 }
