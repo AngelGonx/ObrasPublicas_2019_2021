@@ -7,14 +7,20 @@ package Vista.SeccionesObras;
 
 import Controlador.ControladorBaseDeDatos;
 import Controlador.ControladorUtilerias;
+import Modelo.TablaBeneficiarios;
+import Modelo.TablaDocumentosBeneficiarios;
+import Modelo.TablaFotosBeneficiarios;
 import Modelo.TablaObrasInformacion;
 import Vista.Beneficiarios.actualizarBeneficiarios;
 import Vista.Beneficiarios.actualizarDocumentosBeneficiarios;
 import Vista.Beneficiarios.actualizarFotosBeneficiarios;
 import Vista.Beneficiarios.agregarBeneficiarios;
+import Vista.Principal.ventanaPrincipal;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import Vista.Beneficiarios.documentosBeneficiario;
 
+import Vista.Beneficiarios.fotosBeneficiario;
 /**
  * @author Ángel González Rincón
  * Date: 01-sep-2021
@@ -32,6 +38,9 @@ public class beneficiariosObra extends javax.swing.JFrame {
     String tipoObra = "";
     ControladorUtilerias cut = new ControladorUtilerias();
     ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
+    TablaBeneficiarios tbf = new TablaBeneficiarios();
+    TablaFotosBeneficiarios tfb = new TablaFotosBeneficiarios();
+    TablaDocumentosBeneficiarios tdb = new TablaDocumentosBeneficiarios();
     String campoValorID = "0";
     public beneficiariosObra(String ageObra, TablaObrasInformacion toi) {
         initComponents();
@@ -254,9 +263,12 @@ public class beneficiariosObra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void izquierda_ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_izquierda_ButtonMouseClicked
-//        informacionObra infOb = new informacionObra(ageObra);
+//        ventanaPrincipal vp = new ventanaPrincipal();
 //        this.dispose();
-//        infOb.show();
+//        vp.show();
+    informacionObra io = new informacionObra(ageObra, toi.getId());
+    io.show();
+    this.dispose();
     }//GEN-LAST:event_izquierda_ButtonMouseClicked
 
     private void derecha_BottonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_derecha_BottonMouseClicked
@@ -293,15 +305,78 @@ public class beneficiariosObra extends javax.swing.JFrame {
 
     private void documentosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentosBtnActionPerformed
         // TODO add your handling code here:
-        actualizarDocumentosBeneficiarios actb = new actualizarDocumentosBeneficiarios(ageObra, Integer.parseInt(campoValorID));
-        actb.show();
+        
+        tbf.setId(Integer.parseInt(campoValorID));
+        cbd.openConnection();
+        tdb = cbd.obtenerDocumentos(tbf);
+        cbd.closeConnection();
+        if(tdb.getId()>=1){
+            actualizarDocumentosBeneficiarios actb = new actualizarDocumentosBeneficiarios(ageObra, Integer.parseInt(campoValorID));
+            actb.show();
+        }
+        else{
+           if(tbf.getId()<=0){
+            JOptionPane.showMessageDialog(null, "Selecciona un beneficiario de la lista para continuar.");
+           
+           }
+           else{
+               
+               int dialogButton = JOptionPane.YES_NO_OPTION;
+           int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea continuar añadiendo los Documentos?","Warning",dialogButton);
+           if(dialogResult == JOptionPane.YES_OPTION){
+                  // Saving code here
+                  //nameArchive archivoGenerado sin permiso :v
+                    documentosBeneficiario actb = new documentosBeneficiario(ageObra, tbf);
+                    actb.show();
+                    this.dispose();
+
+            }else{
+                System.out.println("Proceso terminado.");
+                informacionObra io = new informacionObra(ageObra, toi.getId());
+                io.show();
+                this.dispose();
+                   // lbtc.deleteDocumento(direccion+nameArchive);
+            }
+            }
+        }
         //this.dispose();
     }//GEN-LAST:event_documentosBtnActionPerformed
 
     private void fotosbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fotosbtn1ActionPerformed
         // TODO add your handling code here:
-        actualizarFotosBeneficiarios actb = new actualizarFotosBeneficiarios(ageObra, Integer.parseInt(campoValorID));
-        actb.show();
+        tbf.setId(Integer.parseInt(campoValorID));
+        cbd.openConnection();
+        tfb = cbd.obtenerFotos(tbf);
+        cbd.closeConnection();
+         if(tfb.getId()>=1){
+            actualizarFotosBeneficiarios actb = new actualizarFotosBeneficiarios(ageObra, Integer.parseInt(campoValorID));
+            actb.show();
+        }
+        else{
+           if(tbf.getId()<=0){
+               JOptionPane.showMessageDialog(null, "Selecciona un beneficiario de la lista para continuar.");
+           }
+           else{
+
+           int dialogButton = JOptionPane.YES_NO_OPTION;
+           int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea continuar añadiendo las Fotos?","Warning",dialogButton);
+           if(dialogResult == JOptionPane.YES_OPTION){
+                  // Saving code here
+                  //nameArchive archivoGenerado sin permiso :v
+                    fotosBeneficiario actb = new fotosBeneficiario(ageObra, tbf);
+                    actb.show();
+                    this.dispose();
+
+            }else{
+                System.out.println("Proceso terminado.");
+                informacionObra io = new informacionObra(ageObra, toi.getId());
+                io.show();
+                this.dispose();
+                   // lbtc.deleteDocumento(direccion+nameArchive);
+            }
+           }
+            
+        }
         //this.dispose();
     }//GEN-LAST:event_fotosbtn1ActionPerformed
      public void refrescarTabla() {

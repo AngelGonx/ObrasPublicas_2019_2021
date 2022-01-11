@@ -5,8 +5,6 @@
  */
 package Controlador;
 
-import Vista.Principal.accesoPrincipal;
-import Vista.Principal.ventanaPrincipal;
 import java.awt.Desktop;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -25,11 +23,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Properties;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -113,6 +108,14 @@ public class ControladorUtilerias {
        }
     }
     
+    public String convertirJData(Date dato){
+        SimpleDateFormat dcn = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dcn.format(dato);
+        //jLabel1.setText(date.toString())
+        String time = date;
+        return time;
+    }
+    
     /*
     Formateo la fecha para recibirla y guardarla en MySQL
     @Author: Jose Caamal 15/07/2020
@@ -154,6 +157,8 @@ public class ControladorUtilerias {
         //Date date = new SimpleDateFormat("yyyy-MM-dd").parse(dd);
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date fechaDate = new Date();
+        System.out.println(formato);
+        
         try {
             fechaDate = formato.parse(fecha);
         } 
@@ -161,6 +166,7 @@ public class ControladorUtilerias {
         {
             System.out.println(ex);
         }
+        System.out.println(fechaDate.toString());
         return fechaDate;
     }    
     
@@ -403,7 +409,7 @@ public class ControladorUtilerias {
     fc.setFileFilter(filtro);
 
     //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
-        int seleccion=fc.showOpenDialog(null);
+        int seleccion=fc.showSaveDialog(null);
 
         //Si el usuario, pincha en aceptar
         if(seleccion==JFileChooser.APPROVE_OPTION){

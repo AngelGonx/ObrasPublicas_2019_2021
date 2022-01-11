@@ -305,8 +305,8 @@ public class agregarObras extends javax.swing.JFrame {
                 toi.setFondo(campoNombreFondo.getText());
                 toi.setFolio(campoNombreFolio.getText());
                 toi.setNumero(campoNumeroObra.getText());
-                toi.setInicio(cut.convertirFecha(campoInicioObra.getDate()));
-                toi.setFin(cut.convertirFecha(campoFinObra.getDate()));
+                toi.setInicio(cut.convertirJData(campoInicioObra.getDate()));
+                toi.setFin(cut.convertirJData(campoFinObra.getDate()));
                 toi.setAge(Integer.parseInt(ageObra));
                 toi.setId_tipo_obra(campoTipoObra.getSelectedIndex());
                 toi.setCreated_at(new Timestamp(100));

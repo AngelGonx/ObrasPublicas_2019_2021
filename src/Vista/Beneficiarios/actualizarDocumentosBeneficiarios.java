@@ -35,7 +35,7 @@ public class actualizarDocumentosBeneficiarios extends javax.swing.JFrame {
         cbd.openConnection();
         tdb = cbd.obtenerDocumentos(tbf);
         cbd.closeConnection();
-        if(tdb.getId()>0){
+        if(tdb.getId()>=1){
             jProgressBar1.setValue(100);
             jProgressBar2.setValue(100);
             jProgressBar3.setValue(100);
@@ -43,10 +43,10 @@ public class actualizarDocumentosBeneficiarios extends javax.swing.JFrame {
             jProgressBar5.setValue(100);
         }
         else{
+           this.dispose();
            JOptionPane.showMessageDialog(null, "No existe información de documentos para este usuario, vuelve a registrarlo o eliminalo.");
            ventanaPrincipal vp = new ventanaPrincipal();
-            this.dispose();
-            vp.show();
+           vp.show();
         }
     }
 

@@ -8,6 +8,7 @@ package Vista.Beneficiarios;
 import Controlador.ControladorBaseDeDatos;
 import Controlador.ControladorUtilerias;
 import Modelo.TablaBeneficiarios;
+import Modelo.TablaDocumentosBeneficiarios;
 import Modelo.TablaFotosBeneficiarios;
 import Vista.Principal.ventanaPrincipal;
 import javax.swing.JOptionPane;
@@ -25,6 +26,7 @@ public class actualizarFotosBeneficiarios extends javax.swing.JFrame {
     ControladorUtilerias cut = new ControladorUtilerias();
     TablaBeneficiarios tbf = new TablaBeneficiarios();
     TablaFotosBeneficiarios tfb = new TablaFotosBeneficiarios();
+    TablaDocumentosBeneficiarios tdb = new TablaDocumentosBeneficiarios();
     String ageObra = "";
     public actualizarFotosBeneficiarios(String ageObra,int idBeneficiario) {
         initComponents();
@@ -41,7 +43,8 @@ public class actualizarFotosBeneficiarios extends javax.swing.JFrame {
 //        tfb.setFoto_cuatro("");
 //        tfb.setFoto_cinco("");
 //        tfb.setId_beneficiario(tbf.getId());
-        if(tfb.getId()>0){
+//        System.out.println(tfb.toString());
+        if(tfb.getId()>=1){
             jProgressBar1.setValue(100);
             jProgressBar2.setValue(100);
             jProgressBar3.setValue(100);
@@ -51,11 +54,13 @@ public class actualizarFotosBeneficiarios extends javax.swing.JFrame {
         else{
            JOptionPane.showMessageDialog(null, "No existe información de documentos para este usuario, vuelve a registrarlo o eliminalo.");
            ventanaPrincipal vp = new ventanaPrincipal();
-            this.dispose();
-            vp.show();
+           vp.show();
+           cerrarV();
         }
     }
-
+    void cerrarV(){
+        this.dispose();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -10,6 +10,7 @@ import Controlador.ControladorUtilerias;
 import Modelo.TablaArchivos;
 import Modelo.TablaObrasInformacion;
 import Vista.Beneficiarios.documentosBeneficiario;
+import Vista.Principal.ventanaPrincipal;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,7 +44,7 @@ public class archivosObra extends javax.swing.JFrame {
         this.tar = cbd.obtenerArchivos(this.tar);
         cbd.closeConnection();
 //        System.out.println(this.tar);
-        if(this.tar.getId() > 0){
+        if(this.tar.getId() >= 1){
             jProgressBar1.setValue(100);
             jButton1.setEnabled(false);
             jProgressBar2.setValue(100);
@@ -60,7 +61,7 @@ public class archivosObra extends javax.swing.JFrame {
             jButton7.setEnabled(false);
             eliminacion = true;
             btnGuardar.setText("Eliminar");
-            jButton8.setVisible(true);
+            btnDown7.setVisible(true);
         }
         else{
             this.tar.setArchivo_uno("");
@@ -78,7 +79,13 @@ public class archivosObra extends javax.swing.JFrame {
             this.tar.setArchivo_siete("");
             //btnSaveSiete.setVisible(false);
             eliminacion = false;
-            jButton8.setVisible(false);
+            btnDown1.setVisible(false);
+            btnDown2.setVisible(false);
+            btnDown3.setVisible(false);
+            btnDown4.setVisible(false);
+            btnDown5.setVisible(false);
+            btnDown6.setVisible(false);
+            btnDown7.setVisible(false);
             tar.setId_obra(toi.getId());
         }
     }
@@ -132,6 +139,13 @@ public class archivosObra extends javax.swing.JFrame {
         btnEliminarSiete = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        btnDown7 = new javax.swing.JButton();
+        btnDown1 = new javax.swing.JButton();
+        btnDown2 = new javax.swing.JButton();
+        btnDown3 = new javax.swing.JButton();
+        btnDown4 = new javax.swing.JButton();
+        btnDown5 = new javax.swing.JButton();
+        btnDown6 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
@@ -145,18 +159,18 @@ public class archivosObra extends javax.swing.JFrame {
         a.setFont(new java.awt.Font("Comic Sans MS", 1, 32)); // NOI18N
         a.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         a.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-        getContentPane().add(a, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 700, 30));
+        getContentPane().add(a, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 780, 30));
 
         jTextField3.setEditable(false);
         jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 630, 700, 40));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 630, 780, 40));
 
         campoNObra.setEditable(false);
         campoNObra.setBackground(new java.awt.Color(255, 255, 255));
         campoNObra.setFont(new java.awt.Font("Comic Sans MS", 1, 18)); // NOI18N
         campoNObra.setText(" Archivos \"numero obra\"");
         campoNObra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
-        getContentPane().add(campoNObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
+        getContentPane().add(campoNObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
@@ -343,7 +357,7 @@ public class archivosObra extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, 140, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 480, 140, -1));
 
         jLabel8.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         jLabel8.setText("nombreArch.pdf");
@@ -415,15 +429,71 @@ public class archivosObra extends javax.swing.JFrame {
         jLabel14.setText("Actualizar o Añadir un Archivo:");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, -1));
 
-        jButton8.setText("Descargar");
+        btnDown7.setText("Descargar");
+        btnDown7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDown7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDown7, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, 130, -1));
+
+        btnDown1.setText("Descargar");
+        btnDown1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDown1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDown1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 130, -1));
+
+        btnDown2.setText("Descargar");
+        btnDown2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDown2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDown2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 110, 130, -1));
+
+        btnDown3.setText("Descargar");
+        btnDown3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDown3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDown3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 180, 130, -1));
+
+        btnDown4.setText("Descargar");
+        btnDown4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDown4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDown4, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 130, -1));
+
+        btnDown5.setText("Descargar");
+        btnDown5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDown5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDown5, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 320, 130, -1));
+
+        btnDown6.setText("Descargar");
+        btnDown6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDown6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDown6, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 370, 130, -1));
+
+        jButton8.setText("Cerrar");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 480, 130, -1));
+        jPanel1.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 480, 140, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 700, 550));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 780, 550));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 4, 0, 4, new java.awt.Color(0, 0, 0)));
@@ -451,7 +521,7 @@ public class archivosObra extends javax.swing.JFrame {
                 .addComponent(izquierda_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(derecha_Botton)
-                .addContainerGap(630, Short.MAX_VALUE))
+                .addContainerGap(710, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,7 +532,7 @@ public class archivosObra extends javax.swing.JFrame {
                     .addComponent(derecha_Botton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 700, 30));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 780, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -698,48 +768,97 @@ public class archivosObra extends javax.swing.JFrame {
             jButton7.setEnabled(true);
     }//GEN-LAST:event_btnEliminarSieteActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void btnDown7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDown7ActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Únicamente escribe el nombre del recuadro después de seleccionar la carpeta.");
         int operacionExitosa = 0;
         cbd.openConnection();
         String ruta = cut.obtenerRuta(3);
-        operacionExitosa = cbd.guardarArchivo(ruta, 1, tar);
-        cbd.closeConnection();
-        
-        cbd.openConnection();
-         ruta = cut.obtenerRuta(3);
-        operacionExitosa = cbd.guardarArchivo(ruta, 2, tar);
-        cbd.closeConnection();
-        
-        cbd.openConnection();
-         ruta = cut.obtenerRuta(3);
-        operacionExitosa = cbd.guardarArchivo(ruta, 3, tar);
-        cbd.closeConnection();
-        
-        cbd.openConnection();
-         ruta = cut.obtenerRuta(3);
-        operacionExitosa = cbd.guardarArchivo(ruta, 4, tar);
-        cbd.closeConnection();
-        
-        cbd.openConnection();
-         ruta = cut.obtenerRuta(3);
-        operacionExitosa = cbd.guardarArchivo(ruta, 5, tar);
-        cbd.closeConnection();
-        
-        cbd.openConnection();
-         ruta = cut.obtenerRuta(3);
-        operacionExitosa = cbd.guardarArchivo(ruta, 6, tar);
-        cbd.closeConnection();
-        
-        cbd.openConnection();
-         ruta = cut.obtenerRuta(3);
-        operacionExitosa = cbd.guardarArchivo(ruta,7, tar);
+        operacionExitosa = cbd.guardarArchivo(ruta, 7, tar);
         cbd.closeConnection();
         
         this.dispose();
         informacionObra info = new informacionObra(ageObra, tar.getId_obra());
         info.show();
+    }//GEN-LAST:event_btnDown7ActionPerformed
+
+    private void btnDown1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDown1ActionPerformed
+        // TODO add your handling code here:
+        int operacionExitosa = 0;
+        cbd.openConnection();
+        String ruta = cut.obtenerRuta(3);
+        operacionExitosa = cbd.guardarArchivo(ruta, 1, tar);
+        cbd.closeConnection();
+        this.dispose();
+        informacionObra info = new informacionObra(ageObra, tar.getId_obra());
+        info.show();
+    }//GEN-LAST:event_btnDown1ActionPerformed
+
+    private void btnDown2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDown2ActionPerformed
+        // TODO add your handling code here:
+        int operacionExitosa = 0;
+        cbd.openConnection();
+        String ruta = cut.obtenerRuta(3);
+        operacionExitosa = cbd.guardarArchivo(ruta, 2, tar);
+        cbd.closeConnection();
+        this.dispose();
+        informacionObra info = new informacionObra(ageObra, tar.getId_obra());
+        info.show();
+    }//GEN-LAST:event_btnDown2ActionPerformed
+
+    private void btnDown3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDown3ActionPerformed
+        // TODO add your handling code here:
+        int operacionExitosa = 0;
+        cbd.openConnection();
+        String ruta = cut.obtenerRuta(3);
+        operacionExitosa = cbd.guardarArchivo(ruta, 3, tar);
+        cbd.closeConnection();
+        this.dispose();
+        informacionObra info = new informacionObra(ageObra, tar.getId_obra());
+        info.show();
+    }//GEN-LAST:event_btnDown3ActionPerformed
+
+    private void btnDown4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDown4ActionPerformed
+        // TODO add your handling code here:
+        int operacionExitosa = 0;
+        cbd.openConnection();
+        String ruta = cut.obtenerRuta(3);
+        operacionExitosa = cbd.guardarArchivo(ruta, 4, tar);
+        cbd.closeConnection();
+        this.dispose();
+        informacionObra info = new informacionObra(ageObra, tar.getId_obra());
+        info.show();
+    }//GEN-LAST:event_btnDown4ActionPerformed
+
+    private void btnDown5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDown5ActionPerformed
+        // TODO add your handling code here:
+        int operacionExitosa = 0;
+        cbd.openConnection();
+        String ruta = cut.obtenerRuta(3);
+        operacionExitosa = cbd.guardarArchivo(ruta, 5, tar);
+        cbd.closeConnection();
+        this.dispose();
+        informacionObra info = new informacionObra(ageObra, tar.getId_obra());
+        info.show();
+    }//GEN-LAST:event_btnDown5ActionPerformed
+
+    private void btnDown6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDown6ActionPerformed
+        // TODO add your handling code here:
+        int operacionExitosa = 0;
+        cbd.openConnection();
+        String ruta = cut.obtenerRuta(3);
+        operacionExitosa = cbd.guardarArchivo(ruta, 6, tar);
+        cbd.closeConnection();
+        this.dispose();
+        informacionObra info = new informacionObra(ageObra, tar.getId_obra());
+        info.show();
+    }//GEN-LAST:event_btnDown6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ventanaPrincipal vp = new ventanaPrincipal();
+        vp.show();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
@@ -779,6 +898,13 @@ public class archivosObra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField a;
+    private javax.swing.JButton btnDown1;
+    private javax.swing.JButton btnDown2;
+    private javax.swing.JButton btnDown3;
+    private javax.swing.JButton btnDown4;
+    private javax.swing.JButton btnDown5;
+    private javax.swing.JButton btnDown6;
+    private javax.swing.JButton btnDown7;
     private javax.swing.JButton btnEliminarCinco;
     private javax.swing.JButton btnEliminarCuatro;
     private javax.swing.JButton btnEliminarDos;

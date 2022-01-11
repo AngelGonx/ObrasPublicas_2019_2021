@@ -10,6 +10,7 @@ import Controlador.ControladorUtilerias;
 import Modelo.TablaBeneficiarios;
 import Modelo.TablaObrasInformacion;
 import Vista.Principal.ventanaPrincipal;
+import Vista.SeccionesObras.beneficiariosObra;
 import Vista.SeccionesObras.informacionObra;
 import java.sql.Timestamp;
 import javax.swing.JOptionPane;
@@ -254,6 +255,8 @@ public class agregarBeneficiarios extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        beneficiariosObra bo = new beneficiariosObra(ageObra, toi);
+        bo.show();
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 

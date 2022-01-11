@@ -24,6 +24,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,6 +35,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ControladorBaseDeDatos {
     private static Connection Conexion; //Abro la conexión
+    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 /*Inciamos el constructor*/
 
    //controladorLibrerias lv = new controladorLibrerias();
@@ -143,7 +146,7 @@ Crecenciales de DB
                     + "\"" + tbf.getNombre()+ "\", "
                     + "\"" + tbf.getLocalidad()+ "\", "
                     + "\"" + tbf.getId_obra()+ "\", "
-                    + "\"" + tbf.getCreated_at()+ "\")";
+                    + "\"" + timestamp+ "\")";
             /*
                 Table: tabla_beneficiarios
                 Columns:
@@ -187,7 +190,7 @@ Crecenciales de DB
                     + "\"" + toi.getFin()+ "\","
                     + "\"" + toi.getAge()+ "\","
                     + "\"" + toi.getId_tipo_obra()+ "\","
-                    + "\"" + toi.getCreated_at()+ "\")";
+                    + "\"" + timestamp+ "\")";
             //Inica el statement de la conexión
             System.out.println(Query);
             Statement st = Conexion.createStatement();
@@ -334,7 +337,7 @@ Crecenciales de DB
     public int insertaImagenes(TablaFotosBeneficiarios tfb){
         int procesoExitoso = 0;
         try {
-            String querySetLimit = "SET GLOBAL max_allowed_packet=104857600;";  // 10 MB
+            String querySetLimit = "SET GLOBAL max_allowed_packet=524288000;";  // 10 MB
             Statement stSetLimit = Conexion.createStatement();
             stSetLimit.execute(querySetLimit);
             String sql = "INSERT INTO tabla_fotos_beneficiarios (id,"
@@ -357,7 +360,7 @@ Crecenciales de DB
             inputStream = new FileInputStream(new File(tfb.getFoto_cinco()));
             statement.setBlob(5, inputStream);
             statement.setInt(6, tfb.getId_beneficiario());
-            statement.setTimestamp(7, new Timestamp(100));
+            statement.setTimestamp(7, timestamp);
             int row = statement.executeUpdate();
             if (row > 0) {
                 System.out.println("A contact was inserted with photo image.");
@@ -382,7 +385,7 @@ Crecenciales de DB
     public int insertaDocumentos(TablaDocumentosBeneficiarios tdb){
         int procesoExitoso = 0;
         try {
-            String querySetLimit = "SET GLOBAL max_allowed_packet=104857600;";  // 10 MB
+            String querySetLimit = "SET GLOBAL max_allowed_packet=524288000;";  // 10 MB
             Statement stSetLimit = Conexion.createStatement();
             stSetLimit.execute(querySetLimit);
             String sql = "INSERT INTO tabla_doc_beneficiarios (id,"
@@ -405,7 +408,7 @@ Crecenciales de DB
             inputStream = new FileInputStream(new File(tdb.getDoc_cinco()));
             statement.setBlob(5, inputStream);
             statement.setInt(6, tdb.getId_beneficiario());
-            statement.setTimestamp(7, new Timestamp(100));
+            statement.setTimestamp(7, timestamp);
             int row = statement.executeUpdate();
             if (row > 0) {
                 System.out.println("A contact was inserted with photo image.");
@@ -558,7 +561,7 @@ Crecenciales de DB
     public int insertaArchivos(TablaArchivos tar){
         int procesoExitoso = 0;
         try {
-            String querySetLimit = "SET GLOBAL max_allowed_packet=104857600;";  // 10 MB
+            String querySetLimit = "SET GLOBAL max_allowed_packet=524288000;";  // 10 MB
             Statement stSetLimit = Conexion.createStatement();
             stSetLimit.execute(querySetLimit);
             String sql = "INSERT INTO tabla_archivos (id,"
@@ -587,7 +590,7 @@ Crecenciales de DB
             inputStream = new FileInputStream(new File(tar.getArchivo_siete()));
             statement.setBlob(7, inputStream);
             statement.setInt(8, tar.getId_obra());
-            statement.setTimestamp(9, new Timestamp(100));
+            statement.setTimestamp(9, timestamp);
             int row = statement.executeUpdate();
             if (row > 0) {
                 System.out.println("A contact was inserted with date.");
@@ -1102,6 +1105,85 @@ Crecenciales de DB
             Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tarAux;
+    }
+    
+      /*  ----------------------------------------------------------------------------------
+    Nombre: Clase eliminarObras
+    Función: Elimina los valores en la tabla correspondiente y sus relacionados
+    Aut@r: José Luis Caamal Ic
+    Parametros: Table: tabla_pacientes
+                Columns:
+    Date: 9/1/2022
+    ----------------------------------------------------------------------------------
+*/
+
+    public int eliminarObras(int ID) {
+        int operacionExitosa = 0;
+        try {
+            String Query = "DELETE FROM tabla_archivos WHERE id_obra = \"" + ID + "\"";
+            System.out.println("SQL Elimina: "+Query);
+            Statement st = Conexion.createStatement();
+            st.executeUpdate(Query);
+            st.close();
+            operacionExitosa = 1;
+            if(operacionExitosa == 1){
+                List listaRes = new ArrayList();
+                listaRes = obtenerIDBeneficiario(ID);
+                for(int i=0;i<listaRes.size();i++){
+                    
+                    operacionExitosa = eliminaBeneficiarios((int) listaRes.get(i));
+                    
+                }
+//                Query = "DELETE FROM tabla_beneficiarios WHERE id_obra = \"" + ID + "\"";
+//                System.out.println("SQL Elimina: "+Query);
+//                st = Conexion.createStatement();
+//                st.executeUpdate(Query);
+//                st.close();
+            }
+            if(operacionExitosa == 1){
+                 Query = "DELETE FROM tabla_obras_informacion WHERE id = \"" + ID + "\"";
+                 System.out.println("SQL Elimina: "+Query);
+                 st = Conexion.createStatement();
+                 st.executeUpdate(Query);
+                 st.close();
+            }
+        } catch (SQLException ex) {
+            //System.out.println(ex.getMessage());
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(null, "Error borrando el registro especificado");return 0;
+            operacionExitosa = 0;
+        }
+        return operacionExitosa;
+    }
+    
+     /*Nombre: Clase Consulta TablaDocumentosBeneficiarios obtenerDocumentos
+    Función:Consulta la TablaDocumentosBeneficiarios obtenerDocumentos
+    Aut@r: José Luis Caamal Ic
+    Parametros: */
+    public List obtenerIDBeneficiario(int id_obra) {
+//        TablaDocumentosBeneficiarios tarAux = new TablaDocumentosBeneficiarios();
+        String Query = "SELECT * FROM tabla_beneficiarios WHERE id_obra = '" + id_obra+ "'";
+        System.out.println(Query);
+        List listaRes = new ArrayList();
+        try {
+            Statement st;
+            st = Conexion.createStatement();
+            java.sql.ResultSet resultSet;
+            resultSet = st.executeQuery(Query);
+            while (resultSet.next()) {
+                  listaRes.add(resultSet.getInt("id"));
+//                tarAux.setDoc_uno(resultSet.getString("doc_uno"));
+//                tarAux.setDoc_uno(resultSet.getString("doc_dos"));
+//                tarAux.setDoc_uno(resultSet.getString("doc_tres"));
+//                tarAux.setDoc_uno(resultSet.getString("doc_cuatro"));
+//                tarAux.setDoc_uno(resultSet.getString("doc_cinco"));
+//                tarAux.setId_beneficiario(resultSet.getInt("id_beneficiario"));
+//                tarAux.setCreated_at(resultSet.getTimestamp("created_at"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorBaseDeDatos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaRes;
     }
     
 }

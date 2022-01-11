@@ -30,6 +30,7 @@ public class seleccionObra extends javax.swing.JFrame {
     ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
     ControladorUtilerias cut = new ControladorUtilerias();
     String campovalorID = "0";
+    int tipoObra= 0;
     public seleccionObra(String ageObra,int tipoObra) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -42,7 +43,7 @@ public class seleccionObra extends javax.swing.JFrame {
         tipoObraAux = cut.tipoObra(tipoObra);
         campoTipoObra.setText(tipoObraAux);
         jTable1.setModel(modeloInformacionObras);
-        
+        this.tipoObra = tipoObra;
         /*Obtengo el valor que selecciono de la tabla*/
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -84,11 +85,12 @@ public class seleccionObra extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         campoDatosObra = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        editarButton = new javax.swing.JButton();
+        EliminarButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         campoTipoObra = new javax.swing.JTextField();
-        editarButton1 = new javax.swing.JButton();
+        InformacionButton = new javax.swing.JButton();
+        editarButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
         derecha_Botton = new javax.swing.JLabel();
@@ -120,18 +122,18 @@ public class seleccionObra extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        editarButton.setBackground(new java.awt.Color(255, 255, 255));
-        editarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        editarButton.setText("EDITAR");
-        editarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        editarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        editarButton.setOpaque(false);
-        editarButton.addActionListener(new java.awt.event.ActionListener() {
+        EliminarButton.setBackground(new java.awt.Color(255, 255, 255));
+        EliminarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        EliminarButton.setText("ELIMINAR");
+        EliminarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        EliminarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        EliminarButton.setOpaque(false);
+        EliminarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarButtonActionPerformed(evt);
+                EliminarButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(editarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 490, 170, -1));
+        jPanel1.add(EliminarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 490, 170, -1));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
@@ -158,18 +160,31 @@ public class seleccionObra extends javax.swing.JFrame {
         campoTipoObra.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         jPanel1.add(campoTipoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 47, 900, 30));
 
-        editarButton1.setBackground(new java.awt.Color(255, 255, 255));
-        editarButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
-        editarButton1.setText("VER INFORMACIÓN");
-        editarButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
-        editarButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        editarButton1.setOpaque(false);
-        editarButton1.addActionListener(new java.awt.event.ActionListener() {
+        InformacionButton.setBackground(new java.awt.Color(255, 255, 255));
+        InformacionButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        InformacionButton.setText("VER INFORMACIÓN");
+        InformacionButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        InformacionButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        InformacionButton.setOpaque(false);
+        InformacionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarButton1ActionPerformed(evt);
+                InformacionButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(editarButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 490, 190, -1));
+        jPanel1.add(InformacionButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 490, 190, -1));
+
+        editarButton.setBackground(new java.awt.Color(255, 255, 255));
+        editarButton.setFont(new java.awt.Font("Comic Sans MS", 0, 16)); // NOI18N
+        editarButton.setText("EDITAR");
+        editarButton.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 6, 4, new java.awt.Color(0, 0, 0)));
+        editarButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        editarButton.setOpaque(false);
+        editarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(editarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 490, 170, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1030, 540));
 
@@ -225,23 +240,35 @@ public class seleccionObra extends javax.swing.JFrame {
 
     }//GEN-LAST:event_derecha_BottonMouseClicked
 
-    private void editarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButtonActionPerformed
+    private void EliminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarButtonActionPerformed
         // TODO add your handling code here:
         //        System.out.println("");
         int idObra = Integer.parseInt(campovalorID);
         
         if(idObra != 0){
-                informacionObra info = new informacionObra(ageObra, idObra);
-                info.show();
-                this.dispose();
+//                informacionObra info = new informacionObra(ageObra, idObra);
+//                info.show();
+//                this.dispose();
+                    cbd.openConnection();
+                  int operacionExitosa = cbd.eliminarObras(idObra);
+                  cbd.closeConnection();
+                  if(operacionExitosa == 1){
+                      
+                      JOptionPane.showMessageDialog(null, "La obra fue eliminada con Éxito.");
+                      refrescarTabla();
+                  }
+                  else{
+                      JOptionPane.showMessageDialog(null, "Ocurrio un error, La obra no fue eliminada con Éxito.");
+                  }                          
+            
         } 
         else{
             JOptionPane.showMessageDialog(null, "Selecciona una obra de la lista para continuar.");
         }
         
-    }//GEN-LAST:event_editarButtonActionPerformed
+    }//GEN-LAST:event_EliminarButtonActionPerformed
 
-    private void editarButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButton1ActionPerformed
+    private void InformacionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InformacionButtonActionPerformed
         // TODO add your handling code here:
         int idObra = Integer.parseInt(campovalorID);
         
@@ -253,8 +280,29 @@ public class seleccionObra extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null, "Selecciona una obra de la lista para continuar.");
         }
-    }//GEN-LAST:event_editarButton1ActionPerformed
+    }//GEN-LAST:event_InformacionButtonActionPerformed
 
+    private void editarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButtonActionPerformed
+        // TODO add your handling code here:
+        int idObra = Integer.parseInt(campovalorID);
+        
+        if(idObra != 0){
+                informacionObra info = new informacionObra(ageObra, idObra);
+                info.show();
+                this.dispose();
+        } 
+        else{
+            JOptionPane.showMessageDialog(null, "Selecciona una obra de la lista para continuar.");
+        }
+    }//GEN-LAST:event_editarButtonActionPerformed
+    
+    public void refrescarTabla() {
+        cbd.openConnection();
+        modeloInformacionObras = cbd.modeloInformacionObras(columna,tipoObra,ageObra);
+        cbd.closeConnection();
+        jTable1.setModel(modeloInformacionObras);
+        modeloInformacionObras.fireTableDataChanged();
+    }  
     /**
      * @param args the command line arguments
      */
@@ -291,12 +339,13 @@ public class seleccionObra extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton EliminarButton;
+    private javax.swing.JButton InformacionButton;
     private javax.swing.JTextField a;
     private javax.swing.JTextField campoDatosObra;
     private javax.swing.JTextField campoTipoObra;
     private javax.swing.JLabel derecha_Botton;
     private javax.swing.JButton editarButton;
-    private javax.swing.JButton editarButton1;
     private javax.swing.JLabel izquierda_Button;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

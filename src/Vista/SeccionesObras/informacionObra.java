@@ -7,7 +7,10 @@ package Vista.SeccionesObras;
 
 import Controlador.ControladorBaseDeDatos;
 import Controlador.ControladorUtilerias;
+import Modelo.TablaArchivos;
 import Modelo.TablaObrasInformacion;
+import Vista.Beneficiarios.fotosBeneficiario;
+import Vista.Principal.ventanaPrincipal;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +26,7 @@ public class informacionObra extends javax.swing.JFrame {
     TablaObrasInformacion toi = new TablaObrasInformacion();
     ControladorBaseDeDatos cbd = new ControladorBaseDeDatos();
     ControladorUtilerias cut = new ControladorUtilerias();
+    TablaArchivos tar = new TablaArchivos();
     public informacionObra(String ageObra, int idObra) {
         initComponents();
         this.toi.setId(idObra);
@@ -253,14 +257,14 @@ public class informacionObra extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel6)
                                         .addComponent(jLabel7)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                        .addComponent(btnEditarObra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(verBeneficiariosButton)
                         .addGap(32, 32, 32))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(archivosButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(archivosButton)
+                            .addComponent(btnEditarObra))
                         .addGap(96, 96, 96))))
         );
 
@@ -345,8 +349,8 @@ public class informacionObra extends javax.swing.JFrame {
         toi.setFondo(campoFondo.getText());
         toi.setFolio(campoFolio.getText());
         toi.setNumero(campoNumero.getText());
-        toi.setInicio(cut.convertirFecha(campoInicioObra.getDate()));
-        toi.setFin(cut.convertirFecha(campoFinObra.getDate()));
+        toi.setInicio(cut.convertirJData(campoInicioObra.getDate()));
+        toi.setFin(cut.convertirJData(campoFinObra.getDate()));
         int operacionExitosa = cbd.actualizaObrasInformacion(toi);
         cbd.closeConnection();
         if(operacionExitosa !=0){
@@ -360,8 +364,38 @@ public class informacionObra extends javax.swing.JFrame {
 
     private void archivosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archivosButtonActionPerformed
         // TODO add your handling code here:
-        archivosObra aro = new archivosObra(ageObra,toi);
-        aro.show();
+        this.tar.setId_obra(toi.getId());
+        cbd.openConnection();
+        this.tar = cbd.obtenerArchivos(this.tar);
+        cbd.closeConnection();
+//        System.out.println(this.tar);
+        if(this.tar.getId() >= 1){
+            archivosObra aro = new archivosObra(ageObra,toi);
+            aro.show();
+        }
+        else{
+           JOptionPane.showMessageDialog(null, "No existe información de documentos para este usuario.");
+//           ventanaPrincipal vp = new ventanaPrincipal();
+//           vp.show();
+           this.dispose();
+           int dialogButton = JOptionPane.YES_NO_OPTION;
+           int dialogResult = JOptionPane.showConfirmDialog (null, "¿Desea continuar añadiendo los archivos?","Warning",dialogButton);
+            if(dialogResult == JOptionPane.YES_OPTION){
+                  // Saving code here
+                  //nameArchive archivoGenerado sin permiso :v
+                    archivosObra aro = new archivosObra(ageObra,toi);
+                    aro.show();
+                    this.dispose();
+
+            }else{
+                System.out.println("Proceso terminado.");
+                ventanaPrincipal vp  = new ventanaPrincipal();
+                vp.show();
+                this.dispose();
+                   // lbtc.deleteDocumento(direccion+nameArchive);
+            }
+        }
+        
         this.dispose();
     }//GEN-LAST:event_archivosButtonActionPerformed
 
@@ -413,6 +447,7 @@ public class informacionObra extends javax.swing.JFrame {
     private javax.swing.JTextField campoNumero;
     private javax.swing.JTextField campoObra;
     private javax.swing.JLabel derecha_Botton;
+    private javax.swing.JButton fotosbtn;
     private javax.swing.JLabel izquierda_Button;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
