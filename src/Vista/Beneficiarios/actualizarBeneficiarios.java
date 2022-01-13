@@ -9,8 +9,6 @@ import Controlador.ControladorBaseDeDatos;
 import Controlador.ControladorUtilerias;
 import Modelo.TablaBeneficiarios;
 import Modelo.TablaObrasInformacion;
-import Vista.SeccionesObras.informacionObra;
-import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 
 /**
