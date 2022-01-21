@@ -73,7 +73,6 @@ public class informacionVerObra extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         izquierda_Button = new javax.swing.JLabel();
-        derecha_Botton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -234,13 +233,6 @@ public class informacionVerObra extends javax.swing.JFrame {
             }
         });
 
-        derecha_Botton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/flecha_derecha.png"))); // NOI18N
-        derecha_Botton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                derecha_BottonMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -248,17 +240,13 @@ public class informacionVerObra extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(izquierda_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(derecha_Botton)
-                .addContainerGap(526, Short.MAX_VALUE))
+                .addContainerGap(556, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(izquierda_Button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(derecha_Botton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(izquierda_Button, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 600, 30));
@@ -271,10 +259,6 @@ public class informacionVerObra extends javax.swing.JFrame {
         this.dispose();
         selOb.show();
     }//GEN-LAST:event_izquierda_ButtonMouseClicked
-
-    private void derecha_BottonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_derecha_BottonMouseClicked
-
-    }//GEN-LAST:event_derecha_BottonMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -326,7 +310,6 @@ public class informacionVerObra extends javax.swing.JFrame {
     private javax.swing.JTextField campoNroObra;
     private javax.swing.JTextField campoNumero;
     private javax.swing.JTextField campoObra;
-    private javax.swing.JLabel derecha_Botton;
     private javax.swing.JLabel izquierda_Button;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

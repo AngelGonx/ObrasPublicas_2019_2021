@@ -410,9 +410,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="izquierda_Button" min="-2" pref="30" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="derecha_Botton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="526" max="32767" attributes="0"/>
+                  <EmptySpace pref="556" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -420,10 +418,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="izquierda_Button" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="derecha_Botton" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="izquierda_Button" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -437,16 +432,6 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="izquierda_ButtonMouseClicked"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="derecha_Botton">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Multimedia/flecha_derecha.png"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="derecha_BottonMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
